@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:language_learning_ui/constants.dart';
-import 'package:language_learning_ui/pages/choose_language.dart';
+import 'package:language_learning_ui/pages/dashboard.dart';
 import 'package:language_learning_ui/widgets/border_text_field.dart';
 import 'package:language_learning_ui/widgets/primary_button.dart';
 import 'package:language_learning_ui/widgets/social_logins.dart';
@@ -76,7 +76,7 @@ class _CreateAccountState extends State<CreateAccount> {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (BuildContext context) {
-                          return ChooseLanguage();
+                          return Dashboard();
                         },
                       ),
                     );

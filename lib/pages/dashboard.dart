@@ -90,54 +90,55 @@ class _DashboardState extends State<Dashboard> {
                 SizedBox(
                   height: 30.0,
                 ),
-                Text('${context.watch<FileLocation>().fileLocation}'),
-                Text('${context.watch<FolderLocation>().folderLocation}'),
-                Text('${(context.watch<FileLocationController>().fileLocationController).text}'),
-                ElevatedButton.icon(
-                  onPressed: () {
-                    //Navigator.pushNamed(context),
-                    context.read<FileLocationController>().reset('changed text of controller');
-                    //getLocationSource("Changed0004884");
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.indigoAccent),
-                    padding: MaterialStateProperty.all(EdgeInsets.all(10)),
-                    //textStyle: MaterialStateProperty.all(TextStyle(fontSize: 30))
-                  ),
-
-                  icon: Icon(Icons.file_copy, size: 20),
-                  label: Text("Change controller text"),
-                ),
-                ElevatedButton.icon(
-                  onPressed: () {
-                    //Navigator.pushNamed(context),
-                      context.read<FileLocation>().reset('changed location of file');
-                      //getLocationSource("Changed0004884");
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.indigoAccent),
-                    padding: MaterialStateProperty.all(EdgeInsets.all(10)),
-                    //textStyle: MaterialStateProperty.all(TextStyle(fontSize: 30))
-                  ),
-
-                  icon: Icon(Icons.file_copy, size: 20),
-                  label: Text("Change GLobaal file loc"),
-                ),
-                ElevatedButton.icon(
-                  onPressed: () {
-                    //Navigator.pushNamed(context),
-                    context.read<FolderLocation>().reset('changed location of folder');
-                    //getLocationSource("Changed0004884");
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.indigoAccent),
-                    padding: MaterialStateProperty.all(EdgeInsets.all(10)),
-                    //textStyle: MaterialStateProperty.all(TextStyle(fontSize: 30))
-                  ),
-
-                  icon: Icon(Icons.file_copy, size: 20),
-                  label: Text("Change GLobaal file loc"),
-                ),
+                // Text('Testing purppose'),
+                // Text('${context.watch<FileLocation>().fileLocation}'),
+                // Text('${context.watch<FolderLocation>().folderLocation}'),
+                // Text('${(context.watch<FileLocationController>().fileLocationController).text}'),
+                // ElevatedButton.icon(
+                //   onPressed: () {
+                //     //Navigator.pushNamed(context),
+                //     context.read<FileLocationController>().reset('changed text of controller');
+                //     //getLocationSource("Changed0004884");
+                //   },
+                //   style: ButtonStyle(
+                //     backgroundColor: MaterialStateProperty.all(Colors.indigoAccent),
+                //     padding: MaterialStateProperty.all(EdgeInsets.all(10)),
+                //     //textStyle: MaterialStateProperty.all(TextStyle(fontSize: 30))
+                //   ),
+                //
+                //   icon: Icon(Icons.file_copy, size: 20),
+                //   label: Text("Change controller text"),
+                // ),
+                // ElevatedButton.icon(
+                //   onPressed: () {
+                //     //Navigator.pushNamed(context),
+                //       context.read<FileLocation>().reset('changed location of file');
+                //       //getLocationSource("Changed0004884");
+                //   },
+                //   style: ButtonStyle(
+                //     backgroundColor: MaterialStateProperty.all(Colors.indigoAccent),
+                //     padding: MaterialStateProperty.all(EdgeInsets.all(10)),
+                //     //textStyle: MaterialStateProperty.all(TextStyle(fontSize: 30))
+                //   ),
+                //
+                //   icon: Icon(Icons.file_copy, size: 20),
+                //   label: Text("Change GLobaal file loc"),
+                // ),
+                // ElevatedButton.icon(
+                //   onPressed: () {
+                //     //Navigator.pushNamed(context),
+                //     context.read<FolderLocation>().reset('changed location of folder');
+                //     //getLocationSource("Changed0004884");
+                //   },
+                //   style: ButtonStyle(
+                //     backgroundColor: MaterialStateProperty.all(Colors.indigoAccent),
+                //     padding: MaterialStateProperty.all(EdgeInsets.all(10)),
+                //     //textStyle: MaterialStateProperty.all(TextStyle(fontSize: 30))
+                //   ),
+                //
+                //   icon: Icon(Icons.file_copy, size: 20),
+                //   label: Text("Change GLobaal file loc"),
+                // ),
                 //TopicsList(),
                 //SizedBox(height: 30.0),
                 Row(
