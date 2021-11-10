@@ -3,6 +3,7 @@ import 'package:language_learning_ui/models/course_model.dart';
 import 'package:language_learning_ui/models/instructor_model.dart';
 import 'package:language_learning_ui/models/topic_model.dart';
 import 'package:language_learning_ui/models/course_model_qc.dart';
+import 'dart:io';
 
 //globals
 // TextEditingController file_location_controller = new TextEditingController();
@@ -26,6 +27,7 @@ class Constants {
   static const Color primaryTextColor = Color.fromRGBO(38, 50, 98, 1);
   static const Color captionTextColor = Color.fromRGBO(157, 161, 180, 1);
   static const Color primaryColor = Color.fromRGBO(200, 92, 92, 1.0);
+  // static const Socket socket = null;
 
   static List<TopicModel> topics = [
     TopicModel(

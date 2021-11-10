@@ -9,6 +9,8 @@ import 'package:language_learning_ui/widgets/primary_button.dart';
 import 'package:provider/provider.dart';
 import 'package:language_learning_ui/providers/folder_location_provider.dart';
 import 'package:language_learning_ui/providers/folder_location_controller_provider.dart';
+import 'package:language_learning_ui/providers/socket_provider.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -127,6 +129,9 @@ class Home extends StatelessWidget {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (BuildContext context) {
+                        var tempIpControler = Provider.of<IpController>(context,listen:false).ipController;
+                        String tempIp = tempIpControler.text;
+                        Provider.of<Sockett>(context,listen:false).reset(tempIp);
                         return Dashboard();
                       },
                     ),

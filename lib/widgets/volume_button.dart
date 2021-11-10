@@ -66,18 +66,18 @@ class _VolumeButton extends State<VolumeButton> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        IconButton(
-          icon: (context.watch<Volume>().volume!=0) ?const Icon(Icons.volume_up):const Icon(Icons.volume_off),
-          tooltip: 'Increase volume by 10',
-          onPressed: () {
-            setState(() {
-              if(context.watch<Volume>().volume!=0)
-                Provider.of<Volume>(context,listen:false).reset(0);
-              else
-                Provider.of<Volume>(context,listen:false).reset(30);
-            });
-          },
-        ),
+        // IconButton(
+        //   icon: (context.watch<Volume>().volume!=0) ?const Icon(Icons.volume_up):const Icon(Icons.volume_off),
+        //   tooltip: 'Increase volume by 10',
+        //   onPressed: () {
+        //     setState(() {
+        //       if(context.watch<Volume>().volume!=0)
+        //         Provider.of<Volume>(context,listen:false).reset(0);
+        //       else
+        //         Provider.of<Volume>(context,listen:false).reset(30);
+        //     });
+        //   },
+        // ),
         Slider(
           value: context.watch<Volume>().volume,
           min: 0,
