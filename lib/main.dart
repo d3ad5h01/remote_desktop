@@ -9,7 +9,9 @@ import 'package:language_learning_ui/providers/file_location_provider.dart';
 import 'package:language_learning_ui/providers/folder_location_provider.dart';
 import 'package:language_learning_ui/providers/file_location_controller_provider.dart';
 import 'package:language_learning_ui/providers/folder_location_controller_provider.dart';
-import 'package:language_learning_ui/widgets/file_system.dart';
+import 'package:language_learning_ui/pages/file_system.dart';
+import 'package:language_learning_ui/providers/ip_controller_provider.dart';
+import 'package:language_learning_ui/providers/volume_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -20,6 +22,8 @@ void main() {
         ChangeNotifierProvider(create: (_) => FolderLocation()),
         ChangeNotifierProvider(create: (_) => FileLocationController()),
         ChangeNotifierProvider(create: (_) => FolderLocationController()),
+        ChangeNotifierProvider(create: (_) => Volume()),
+        ChangeNotifierProvider(create: (_) => IpController()),
       ],
       child: MyApp(),
     ),

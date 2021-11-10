@@ -3,7 +3,8 @@ import 'dart:math' as math;
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:language_learning_ui/constants.dart';
-import 'package:language_learning_ui/widgets/file_system.dart';
+import 'package:language_learning_ui/pages/file_system.dart';
+import 'package:language_learning_ui/pages/presentation.dart';
 import 'package:language_learning_ui/providers/file_location_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:language_learning_ui/providers/folder_location_provider.dart';
@@ -450,7 +451,12 @@ class _CopyCard1State extends State<CopyCard1> {
                           child: ElevatedButton.icon(
                             onPressed: () {
                               //Navigator.pushNamed(context),
-
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Presentation(presentation_location: 'Random'),
+                                ),
+                              );
                             },
                             style: ButtonStyle(
                                 backgroundColor: MaterialStateProperty.all(Colors.indigoAccent),
@@ -640,179 +646,7 @@ class CopyCard2 extends StatelessWidget {
 }
 
 
-class CopyCard3 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    int _value;
-    return ExpandableNotifier(
-        child: Padding(
-          padding: const EdgeInsets.all(1),
-          child: Card(
-            clipBehavior: Clip.antiAlias,
-            child: Column(
-              children: <Widget>[
-                SizedBox(
-                  height: 50,
-                  child: Container(
-                    color: Colors.indigoAccent,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      //mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        Expanded(
-                          child: Icon(Icons.delete ,size: 40.0,color: Colors.white,),
 
-
-                        )
-
-                      ],
-                    ),
-                  ),
-                ),
-                ScrollOnExpand(
-                  scrollOnExpand: true,
-                  scrollOnCollapse: false,
-                  child: ExpandablePanel(
-                    theme: const ExpandableThemeData(
-                      headerAlignment: ExpandablePanelHeaderAlignment.center,
-                      tapBodyToCollapse: true,
-                    ),
-                    header: Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Text(
-                          "Delete Files",
-                          //style: Theme.of(context).textTheme.body2,
-                        )),
-                    collapsed: Text(
-                      "Location of file / directory to delete.",
-                      softWrap: true,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    expanded: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          "Choose Location of file / directory.",
-                          softWrap: true,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        TextFormField(
-                          cursorColor: Theme.of(context).cursorColor,
-                          //initialValue: 'Input Location',
-                          //maxLength: 20,
-                          decoration: InputDecoration(
-                            icon: Icon(Icons.insert_drive_file_outlined ),
-                            //labelText: 'Label text',
-                            labelStyle: TextStyle(
-                              color: Color(0xFF6200EE),
-                            ),
-                            hintText: 'Input Location of file / folder',
-                            helperText: 'Click icon to select from directory',
-                            suffixIcon: Icon(
-                              Icons.check_circle,
-                            ),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xFF6200EE)),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 20),
-                        Text(
-                          "Choose directory or file.",
-                          softWrap: true,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        Row(
-                          children: [
-                            Flexible(
-                              flex: 1,
-                              child: Row(
-                                children: [
-                                  Radio(
-                                      value: 1, groupValue: 'null', onChanged: (index) {}),
-                                  Expanded(
-                                      child: Text(
-                                        'Folder / Directory',
-                                        maxLines: 2,
-                                      ))
-                                ],
-                              ),
-                            ),
-                            Flexible(
-                              flex: 1,
-                              child: Row(
-                                children: [
-                                  Radio(
-                                      value: 1, onChanged: (index) {}),
-                                  Text('File')
-                                ],
-                              ),
-                            ),
-
-                          ],
-                        ),
-
-                        // Column(
-                        //   children: <Widget>[
-                        //     for (int i = 1; i <= 5; i++)
-                        //       ListTile(
-                        //         title: Text(
-                        //           'Radio $i',
-                        //           style:  Theme.of(context).textTheme.subtitle1.copyWith(color: i == 5 ? Colors.black38 : Colors.black),
-                        //         ),
-                        //         leading: Radio(
-                        //           value: i,
-                        //           groupValue: _value,
-                        //           activeColor: Color(0xFF6200EE),
-                        //           onChanged: i == 5 ? null : (int value) {
-                        //             setState(() {
-                        //               _value = value;
-                        //             });
-                        //           },
-                        //         ),
-                        //       ),
-                        //   ],
-                        // ),
-
-                        SizedBox(height: 30),
-                        Align(
-                          alignment: Alignment.topRight,
-                          child: ElevatedButton.icon(
-                            onPressed: () {
-                              // Respond to button press
-                            },
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(Colors.indigoAccent),
-                              padding: MaterialStateProperty.all(EdgeInsets.all(10)),
-                              //textStyle: MaterialStateProperty.all(TextStyle(fontSize: 30))
-                            ),
-                            icon: Icon(Icons.delete, size: 20),
-                            label: Text("Delete File / Directory"),
-                          ),
-                        )
-
-
-                      ],
-                    ),
-                    builder: (_, collapsed, expanded) {
-                      return Padding(
-                        padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                        child: Expandable(
-                          collapsed: collapsed,
-                          expanded: expanded,
-                          theme: const ExpandableThemeData(crossFadePoint: 0),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ));
-  }
-}
+/*
+*
+**/

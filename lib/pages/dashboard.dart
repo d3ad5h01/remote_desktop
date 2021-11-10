@@ -254,7 +254,8 @@ class _DashboardState extends State<Dashboard> {
                         children: [
 
                            CopyCard1(),
-                            CopyCard3(),
+                           // CopyCard3(),
+
                           SizedBox(height: 30,),
                           //CopyCard2(),
                         ],

@@ -109,8 +109,8 @@ class CourseCardQC extends StatelessWidget {
               onPressed: () { },
             );
         }
-      else if(p==2)
-          return MuteButton();
+      // else if(p==2)
+      //     return MuteButton();
       else if(p==3)
         return VolumeButton();
       else if(p==4)
