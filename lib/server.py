@@ -22,7 +22,35 @@ volume_convert_dict = {0: -65.25, 1: -56.99, 2: -51.67, 3: -47.74, 4: -44.62, 5:
  81: -3.15, 82: -2.97, 83: -2.79, 84: -2.61, 85: -2.43, 86: -2.26, 87: -2.09, 88: -1.91, 89: -1.75, 90: -1.58,
  91: -1.41, 92: -1.25, 93: -1.09, 94: -0.93, 95: -0.77, 96: -0.61, 97: -0.46, 98: -0.3, 99: -0.15, 100: 0.0}
 
+def tasklist():
+	command = "tasklist /FO CSV /NH"
+	command = command.split()
+	output,err = subprocess.Popen(command,stdout=subprocess.PIPE).communicate()
+	# print(output)
+	csvreader = csv.reader(output.decode('utf-8').splitlines())
+	rows = []
+	ret_str = ""
+	for row in csvreader:
+		row.pop(2)
+		row.pop(2)
+		row[-1] = row[-1].strip().replace(' ','')
+		row[-1] = row[-1].replace("K","")
+		row[-1] = row[-1].replace(",","")
+		row[-1] = int(row[-1])
+		rows.append(row)
+	
+	sorted_list = sorted(rows, key=lambda x: x[-1], reverse=True)
+	for row in sorted_list:
+		row[0] = row[0].strip()
+		ret_str += row[0]+","+row[1]+","+str(row[-1])+";"
 
+	ret_str = str(len(rows)) + ";" + ret_str
+	return (ret_str)
+
+def kill_process(pid):
+	command = "taskkill /F /PID %s"%(pid)
+	command = command.split()
+	subprocess.Popen(command)
 
 def accept_connection(sock):
 
