@@ -10,6 +10,7 @@ interface = devices.Activate(
     IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
 volume = cast(interface, POINTER(IAudioEndpointVolume))
 from time import sleep
+import subprocess
 
 volume_convert_dict = {0: -65.25, 1: -56.99, 2: -51.67, 3: -47.74, 4: -44.62, 5: -42.03, 6: -39.82, 7: -37.89, 8: -36.17, 9: -34.63, 10: -33.24,
  11: -31.96, 12: -30.78, 13: -29.68, 14: -28.66, 15: -27.7, 16: -26.8, 17: -25.95, 18: -25.15, 19: -24.38, 20: -23.65,
@@ -21,6 +22,11 @@ volume_convert_dict = {0: -65.25, 1: -56.99, 2: -51.67, 3: -47.74, 4: -44.62, 5:
  71: -5.12, 72: -4.91, 73: -4.71, 74: -4.5, 75: -4.3, 76: -4.11, 77: -3.91, 78: -3.72, 79: -3.53, 80: -3.34,
  81: -3.15, 82: -2.97, 83: -2.79, 84: -2.61, 85: -2.43, 86: -2.26, 87: -2.09, 88: -1.91, 89: -1.75, 90: -1.58,
  91: -1.41, 92: -1.25, 93: -1.09, 94: -0.93, 95: -0.77, 96: -0.61, 97: -0.46, 98: -0.3, 99: -0.15, 100: 0.0}
+
+def run_command_on_terminal(command):
+	command = command.split()
+	output,err = subprocess.Popen(command,stdout=subprocess.PIPE).communicate()
+	return output
 
 def tasklist():
 	command = "tasklist /FO CSV /NH"
