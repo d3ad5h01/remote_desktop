@@ -9,6 +9,6 @@ class Volume with ChangeNotifier {
   void reset(double newVolume) {
     _volume = newVolume;
     notifyListeners();
-    print('${_volume.floor()}');
+    //print('${_volume.floor()}');
   }
 }

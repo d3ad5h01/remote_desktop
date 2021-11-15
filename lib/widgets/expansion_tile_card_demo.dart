@@ -4,6 +4,8 @@ import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:language_learning_ui/constants.dart';
 import 'package:language_learning_ui/pages/file_system.dart';
+import 'package:language_learning_ui/pages/media_controller.dart';
+import 'package:language_learning_ui/pages/mouse_keyboard.dart';
 import 'package:language_learning_ui/pages/presentation.dart';
 import 'package:language_learning_ui/providers/file_location_provider.dart';
 import 'package:provider/provider.dart';
@@ -322,13 +324,7 @@ class CopyCard1 extends StatefulWidget {
 class _CopyCard1State extends State<CopyCard1> {
   @override
 
-  String scrFileLoc='C:/vaas ';
-  void getLocationSource(String loc)
-  {
-    setState(() {
-      scrFileLoc = loc;
-    });
-  }
+
 
   Widget build(BuildContext context) {
     destination = 'none';
@@ -394,7 +390,7 @@ class _CopyCard1State extends State<CopyCard1> {
                             icon: IconButton(icon: new Icon(Icons.file_copy), onPressed: () { Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => FileSystem(getLocationSource: getLocationSource),
+                                builder: (context) => FileSystem(),
                               ),
                             ); },),
                             //labelText: 'Label text',
@@ -427,7 +423,7 @@ class _CopyCard1State extends State<CopyCard1> {
                             icon: IconButton(icon: new Icon(Icons.folder), onPressed: () { Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => FileSystem(getLocationSource: getLocationSource),
+                                builder: (context) => FileSystem(),
                               ),
                             ); },),
                             //Icon(Icons.folder),
@@ -451,12 +447,12 @@ class _CopyCard1State extends State<CopyCard1> {
                           child: ElevatedButton.icon(
                             onPressed: () {
                               //Navigator.pushNamed(context),
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Presentation(presentation_location: 'Random'),
-                                ),
-                              );
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) => Presentation(),
+                              //   ),
+                              // );
                             },
                             style: ButtonStyle(
                                 backgroundColor: MaterialStateProperty.all(Colors.indigoAccent),
@@ -647,6 +643,389 @@ class CopyCard2 extends StatelessWidget {
 
 
 
-/*
-*
-**/
+
+
+
+
+/*Presentation*/
+
+class PresentationControlCard extends StatefulWidget {
+  @override
+  State<PresentationControlCard> createState() => _PresentationControlCardState();
+}
+
+class _PresentationControlCardState extends State<PresentationControlCard> {
+  @override
+
+
+  Widget build(BuildContext context) {
+    return ExpandableNotifier(
+        child: Padding(
+          padding: const EdgeInsets.all(1),
+          child: Card(
+            clipBehavior: Clip.antiAlias,
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 50,
+                  child: Container(
+                    color: Colors.indigoAccent,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: <Widget>[
+                        Expanded(
+                          child: Icon(Icons.slideshow,size: 40.0,color: Colors.white,),
+
+
+                        )
+
+                      ],
+                    ),
+                  ),
+                ),
+                ScrollOnExpand(
+                  scrollOnExpand: true,
+                  scrollOnCollapse: false,
+                  child: ExpandablePanel(
+                    theme: const ExpandableThemeData(
+                      headerAlignment: ExpandablePanelHeaderAlignment.center,
+                      tapBodyToCollapse: true,
+                    ),
+                    header: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Text(
+                          "Presentation",
+                          //style: Theme.of(context).textTheme.body2,
+                        )),
+                    collapsed: Text(
+                      "Location of presentaion file.",
+                      softWrap: true,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    expanded: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          "Choose Location of file .",
+                          softWrap: true,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        TextFormField(
+                          cursorColor: Theme.of(context).cursorColor,
+                          controller: context.watch<FileLocationController>().fileLocationController,
+                          decoration: InputDecoration(
+                            icon: IconButton(icon: new Icon(Icons.file_copy), onPressed: () { Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => FileSystem(),
+                              ),
+                            ); },),
+                            //labelText: 'Label text',
+                            labelStyle: TextStyle(
+                              color: Color(0xFF6200EE),
+                            ),
+                            hintText: 'Input Location of file',
+                            helperText: 'Click icon to select from directory',
+                            suffixIcon: Icon(
+                              Icons.check_circle,
+                            ),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xFF6200EE)),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 30),
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: ElevatedButton.icon(
+                            onPressed: () {
+                              //Navigator.pushNamed(context),
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => PresentationController(),
+                                ),
+                              );
+                            },
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(Colors.indigoAccent),
+                              padding: MaterialStateProperty.all(EdgeInsets.all(10)),
+                              //textStyle: MaterialStateProperty.all(TextStyle(fontSize: 30))
+                            ),
+                            icon: Icon(Icons.slideshow, size: 20),
+                            label: Text("Open Presentation"),
+                          ),
+                        )
+
+
+                      ],
+                    ),
+                    builder: (_, collapsed, expanded) {
+                      return Padding(
+                        padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                        child: Expandable(
+                          collapsed: collapsed,
+                          expanded: expanded,
+                          theme: const ExpandableThemeData(crossFadePoint: 0),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ));
+  }
+}
+
+/**/
+
+
+/*Media COntrol Card*/
+
+class MediaControlCard extends StatefulWidget {
+  @override
+  State<MediaControlCard> createState() => _MediaControlCardState();
+}
+
+class _MediaControlCardState extends State<MediaControlCard> {
+  @override
+
+
+  Widget build(BuildContext context) {
+    return ExpandableNotifier(
+        child: Padding(
+          padding: const EdgeInsets.all(1),
+          child: Card(
+            clipBehavior: Clip.antiAlias,
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 50,
+                  child: Container(
+                    color: Colors.indigoAccent,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: <Widget>[
+                        Expanded(
+                          child: Icon(Icons.multitrack_audio ,size: 40.0,color: Colors.white,),
+
+
+                        )
+
+                      ],
+                    ),
+                  ),
+                ),
+                ScrollOnExpand(
+                  scrollOnExpand: true,
+                  scrollOnCollapse: false,
+                  child: ExpandablePanel(
+                    theme: const ExpandableThemeData(
+                      headerAlignment: ExpandablePanelHeaderAlignment.center,
+                      tapBodyToCollapse: true,
+                    ),
+                    header: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Text(
+                          "MediaControlCard",
+                          //style: Theme.of(context).textTheme.body2,
+                        )),
+                    collapsed: Text(
+                      "Location of Media file.",
+                      softWrap: true,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    expanded: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          "Choose Location of file .",
+                          softWrap: true,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        TextFormField(
+                          cursorColor: Theme.of(context).cursorColor,
+                          controller: context.watch<FileLocationController>().fileLocationController,
+                          decoration: InputDecoration(
+                            icon: IconButton(icon: new Icon(Icons.file_copy), onPressed: () { Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => FileSystem(),
+                              ),
+                            ); },),
+                            //labelText: 'Label text',
+                            labelStyle: TextStyle(
+                              color: Color(0xFF6200EE),
+                            ),
+                            hintText: 'Input Location of file',
+                            helperText: 'Click icon to select from directory',
+                            suffixIcon: Icon(
+                              Icons.check_circle,
+                            ),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xFF6200EE)),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 30),
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: ElevatedButton.icon(
+                            onPressed: () {
+                              //Navigator.pushNamed(context),
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>  MediaController(),
+                                ),
+                              );
+                            },
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(Colors.indigoAccent),
+                              padding: MaterialStateProperty.all(EdgeInsets.all(10)),
+                              //textStyle: MaterialStateProperty.all(TextStyle(fontSize: 30))
+                            ),
+                            icon: Icon(Icons.multitrack_audio , size: 20),
+                            label: Text("Open MediaControlCard"),
+                          ),
+                        )
+
+
+                      ],
+                    ),
+                    builder: (_, collapsed, expanded) {
+                      return Padding(
+                        padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                        child: Expandable(
+                          collapsed: collapsed,
+                          expanded: expanded,
+                          theme: const ExpandableThemeData(crossFadePoint: 0),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ));
+  }
+}
+
+/**/
+
+/*Mouse Keyboard*/
+class MouseKeyboardCard extends StatefulWidget {
+  @override
+  State<MouseKeyboardCard> createState() => _MouseKeyboardCardState();
+}
+
+class _MouseKeyboardCardState extends State<MouseKeyboardCard> {
+  @override
+
+
+  Widget build(BuildContext context) {
+    return ExpandableNotifier(
+        child: Padding(
+          padding: const EdgeInsets.all(1),
+          child: Card(
+            clipBehavior: Clip.antiAlias,
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 50,
+                  child: Container(
+                    color: Colors.indigoAccent,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: <Widget>[
+                        Expanded(
+                          child: Icon(Icons.mouse  ,size: 40.0,color: Colors.white,),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                ScrollOnExpand(
+                  scrollOnExpand: true,
+                  scrollOnCollapse: false,
+                  child: ExpandablePanel(
+                    theme: const ExpandableThemeData(
+                      headerAlignment: ExpandablePanelHeaderAlignment.center,
+                      tapBodyToCollapse: true,
+                    ),
+                    header: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Text(
+                          "Mouse and Keyboard Remote Access",
+                          //style: Theme.of(context).textTheme.body2,
+                        )),
+                    collapsed: Text(
+                      "Remote Mouse and Keyboard Controls.",
+                      softWrap: true,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    expanded: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          "Click to access remote controls.",
+                          softWrap: true,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: ElevatedButton.icon(
+                            onPressed: () {
+                              //Navigator.pushNamed(context),
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>  MouseKeyboard(),
+                                ),
+                              );
+                            },
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(Colors.indigoAccent),
+                              padding: MaterialStateProperty.all(EdgeInsets.all(10)),
+                              //textStyle: MaterialStateProperty.all(TextStyle(fontSize: 30))
+                            ),
+                            icon: Icon(Icons.mouse , size: 20),
+                            label: Text("Access Controls"),
+                          ),
+                        )
+
+
+                      ],
+                    ),
+                    builder: (_, collapsed, expanded) {
+                      return Padding(
+                        padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                        child: Expandable(
+                          collapsed: collapsed,
+                          expanded: expanded,
+                          theme: const ExpandableThemeData(crossFadePoint: 0),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ));
+  }
+}
+/**/

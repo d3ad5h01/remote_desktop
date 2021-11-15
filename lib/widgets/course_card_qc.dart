@@ -8,7 +8,8 @@ import 'package:language_learning_ui/widgets/power_button.dart';
 import 'package:language_learning_ui/widgets/primary_button.dart';
 import 'package:language_learning_ui/widgets/slider.dart';
 import 'package:language_learning_ui/widgets/volume_button.dart';
-import 'package:language_learning_ui/widgets/wifi_button.dart';
+import 'package:language_learning_ui/widgets/bluetooth_button.dart';
+import 'package:language_learning_ui/widgets/brightness_button.dart';
 
 class CourseCardQC extends StatelessWidget {
   final CourseModelQC courseqc;
@@ -100,7 +101,7 @@ class CourseCardQC extends StatelessWidget {
   {
       if(p == 0)
         {
-              return MyStatefulWidget();
+              return BrightnessButton();
         }
       else if(p==1)
         {
@@ -114,7 +115,7 @@ class CourseCardQC extends StatelessWidget {
       else if(p==3)
         return VolumeButton();
       else if(p==4)
-        return WifiButton();
+        return BluetoothButton();
       else if(p==5)
         return PowerButton();
   }

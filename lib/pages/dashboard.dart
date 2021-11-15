@@ -253,7 +253,13 @@ class _DashboardState extends State<Dashboard> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
 
-                           CopyCard1(),
+                          CopyCard1(),
+                          SizedBox(height: 30,),
+                          PresentationControlCard(),
+                          SizedBox(height: 30,),
+                          MediaControlCard(),
+                          SizedBox(height: 30,),
+                          MouseKeyboardCard(),
                            // CopyCard3(),
 
                           SizedBox(height: 30,),

@@ -110,7 +110,7 @@ class Constants {
     ),
 
     CourseModelQC(
-        name: "Wifi",
+        name: "Bluetooth",
         color: Colors.lightGreenAccent,
         image: "assets/images/course-5.png",
         specs: "90%",
