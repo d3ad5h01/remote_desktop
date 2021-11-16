@@ -3,17 +3,20 @@ import 'dart:io';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
+import 'package:language_learning_ui/providers/terminal_output_provider.dart';
+import 'package:provider/provider.dart';
 
 class Sockett with ChangeNotifier {
   Socket _socket;
+  String _terminalOutput ='None';
   Socket get socket => _socket;
-
+  String get terminalOutput => _terminalOutput;
   void reset(String newIp) async {
 
     print('yes : $newIp');
 
     // TODO : change this ip to dynamic resolution
-    _socket = await Socket.connect('192.168.0.6',6969);
+    _socket = await Socket.connect('192.168.0.108',6969);
     _socket.write('Connected ... ');
     print('Connected ...');
     notifyListeners();
@@ -69,28 +72,35 @@ class Sockett with ChangeNotifier {
     notifyListeners();
   }
 
-  String terminal(String text) {
+  void terminal(String text){
     String message = "                              ";
     _socket.write("terminal:"+text);
     _socket.listen((data) {
       print("inside");
       message = String.fromCharCodes(data);
-      print(message);
+      _terminalOutput = message;
+      print("Done");
     },
-
-    // handle errors
-    onError: (error) {
-      print(error);
-    },
-
-    // handle the client closing the connection
-    onDone: () {
-      print('command executed');
-    },
-  );
+    //
+    // // handle errors
+    // onError: (error) {
+    //   print(error);
+    // },
+    //
+    // // handle the client closing the connection
+    // onDone: () {
+    //   print('command executed');
+    // },
+    );
     notifyListeners();
-    return message;
+    //return message;
   }
+
+
+
+
+
+
 
   String task_manager() {
     String message = "                              ";
@@ -110,14 +120,16 @@ class Sockett with ChangeNotifier {
       print('command executed');
     },
   );
+
     notifyListeners();
+
     return message;
   }
 
-  void kill_process(String pid)
-  {
-    String command = 
-  }
+  // void kill_process(String pid)
+  // {
+  //   String command =
+  // }
 
 }
 

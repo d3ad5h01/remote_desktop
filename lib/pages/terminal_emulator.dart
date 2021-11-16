@@ -12,8 +12,9 @@ import 'package:language_learning_ui/providers/folder_location_provider.dart';
 import 'package:language_learning_ui/providers/file_location_controller_provider.dart';
 import 'package:language_learning_ui/providers/folder_location_controller_provider.dart';
 import 'package:language_learning_ui/providers/file_location_controller_provider.dart';
+import 'package:language_learning_ui/providers/terminal_output_provider.dart';
 
-String _output = "";
+
 
 class TerminalEmulator extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -111,7 +112,7 @@ class _ListDemoState extends State<ListDemo> {
                                     padding: const EdgeInsets.all(15.0),
                                     child: Text(
                                       //ToDO : make this _output as dynamic : setState
-                                        _output,
+                                       Provider.of<Sockett>(context,listen:true).terminalOutput,
                                         style: TextStyle(
                                         fontSize: 15.0,
                                         color: Constants.fontColor,
@@ -121,6 +122,7 @@ class _ListDemoState extends State<ListDemo> {
                                   ),
                                 ),
                               ),
+
                               SizedBox(height: 30),
                               Align(
                                 alignment: Alignment.topLeft,
@@ -168,10 +170,16 @@ class _ListDemoState extends State<ListDemo> {
                               SizedBox(height: 10),
                               OutlinedButton(
                                 onPressed: () {
-                                  setState(() {
+                                   setState(() {
                                     String _text = Provider.of<KeyboardController>(context,listen:false).text();
                                     Provider.of<KeyboardController>(context,listen:false).reset('');
-                                    _output = Provider.of<Sockett>(context,listen:false).terminal(_text);
+                                     Provider.of<Sockett>(context,listen:false).terminal(_text);
+                                    // print('TEz here');
+                                    // print(_output);
+                                    // print('TEz end');
+
+                                    //Provider.of<TerminalOutput>(context,listen:false).reset(Provider.of<Sockett>(context,listen:false).terminal(_text));
+
                                   });
                                 },
                                 child: Padding(
@@ -206,3 +214,5 @@ class _ListDemoState extends State<ListDemo> {
     );
   }
 }
+
+

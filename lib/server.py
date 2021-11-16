@@ -31,9 +31,9 @@ volume_convert_dict = {0: -65.25, 1: -56.99, 2: -51.67, 3: -47.74, 4: -44.62, 5:
                        91: -1.41, 92: -1.25, 93: -1.09, 94: -0.93, 95: -0.77, 96: -0.61, 97: -0.46, 98: -0.3, 99: -0.15, 100: 0.0}
 
 def run_command_on_terminal(command):
-	command = command.split()
-	output,err = subprocess.Popen(command,stdout=subprocess.PIPE).communicate()
-	return output
+    command = command.split()
+    output,err = subprocess.Popen(command,stdout=subprocess.PIPE).communicate()
+    return output
 
 def tasklist():
     command = "tasklist /FO CSV /NH"
@@ -187,7 +187,7 @@ def main():
         print("Socket successfully created")
 
         port = 6969
-        sock.bind(('192.168.0.6', port))
+        sock.bind(('192.168.0.108', port))
         sock.listen(5)
         print("Listening for connections")
         accept_connection(sock)

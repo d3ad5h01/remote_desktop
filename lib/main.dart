@@ -17,6 +17,7 @@ import 'package:language_learning_ui/providers/keyboard_controller_provider.dart
 import 'package:language_learning_ui/providers/socket_provider.dart';
 import 'package:language_learning_ui/providers/task_manager_provider.dart';
 import 'package:language_learning_ui/providers/volume_provider.dart';
+import 'package:language_learning_ui/providers/terminal_output_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:language_learning_ui/widgets/brightness_button.dart';
 
@@ -35,6 +36,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => KeyboardController()),
         ChangeNotifierProvider(create: (_) => TaskManagerProvider()),
         ChangeNotifierProvider(create: (_) => BottomNavigation()),
+        ChangeNotifierProvider(create: (_) => TerminalOutput()),
       ],
       child: MyApp(),
     ),
