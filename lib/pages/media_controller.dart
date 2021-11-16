@@ -3,6 +3,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:language_learning_ui/pages/dashboard.dart';
 import 'package:language_learning_ui/widgets/expansion_tile_card_demo.dart';
 import 'package:language_learning_ui/widgets/volume_button.dart';
+import 'package:language_learning_ui/widgets/mute_button.dart';
 import 'package:language_learning_ui/providers/socket_provider.dart';
 import '../constants.dart';
 import 'package:provider/provider.dart';
@@ -44,17 +45,21 @@ class _ListDemoState extends State<ListDemo> {
     // sze = widget.sze;
     final isSelected = <bool>[false, false, false];
     return Scaffold(
-      appBar: AppBar(
+     appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: Text("Media Controller"),
-        backgroundColor: Color(0xFF6200EE),
+        //title: Text("Media Controller"),
+        backgroundColor: Constants.backColor,
         centerTitle: true,
       ),
 
-      body: Padding(
+      body: Container(
+        decoration: new BoxDecoration(
+          color: Constants.backColor,
+        ),
+        child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView(
           children: [
@@ -63,19 +68,29 @@ class _ListDemoState extends State<ListDemo> {
               padding: const EdgeInsets.all(10.0),
               child: Icon(
                 Icons.audiotrack,
-                color: Colors.black,
+                color: Constants.cardColor8,
                 size: 100.0,
               ),
             ),
+             SizedBox(height: 20),
+
+            //Center(child: Text('Selected Media file: ${context.watch<FileLocation>().fileLocation}')),
+            //SizedBox(height: 20),
+
+            // Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: MuteButton(),
+            // ),
             SizedBox(height: 20),
 
-            Center(child: Text('Selected Media file: ${context.watch<FileLocation>().fileLocation}')),
-            SizedBox(height: 20),
+            //Center(child: Text('Selected Media file: ${context.watch<FileLocation>().fileLocation}')),
+            //SizedBox(height: 20),
 
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: VolumeButton(),
             ),
+
             Container(
               child: Row(
 
@@ -91,7 +106,7 @@ class _ListDemoState extends State<ListDemo> {
                         },
                         child: Icon(
                           Icons.skip_previous,
-                          color: Colors.black,
+                          color: Constants.fontColor,
                           size: 60.0,
                         ),
                         style: ElevatedButton.styleFrom(
@@ -112,7 +127,7 @@ class _ListDemoState extends State<ListDemo> {
                           size: 60.0,
                         ):const Icon(
                           Icons.pause,
-                          color: Colors.black,
+                          color: Constants.fontColor,
                           size: 60.0,
                         ),
                         onPressed: () {
@@ -121,11 +136,9 @@ class _ListDemoState extends State<ListDemo> {
                             (_play == 0) ? _play = 1 : _play = 0;
                           });
                         },
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12), // <-- Radius
+                         style: OutlinedButton.styleFrom(
+                            side: BorderSide(width: 1.0, color: Constants.fontColor),
                           ),
-                        ),
                       ),
                     ),
                   ),
@@ -140,7 +153,7 @@ class _ListDemoState extends State<ListDemo> {
                         },
                         child: Icon(
                           Icons.skip_next,
-                          color: Colors.black,
+                          color: Constants.fontColor,
                           size: 60.0,
                         ),
                         style: ElevatedButton.styleFrom(
@@ -154,52 +167,10 @@ class _ListDemoState extends State<ListDemo> {
                 ],
               ),
             ),
-            // Container(
-            //   child: Row(
-            //
-            //     children: <Widget>[
-            //       Expanded(
-            //         child: Padding(
-            //           padding: const EdgeInsets.all(8.0),
-            //           child: OutlinedButton(
-            //             onPressed: () {},
-            //             child: Icon(
-            //               Icons.arrow_back_ios,
-            //               color: Colors.black,
-            //               size: 40.0,
-            //             ),
-            //             style: ElevatedButton.styleFrom(
-            //               shape: RoundedRectangleBorder(
-            //                 borderRadius: BorderRadius.circular(12), // <-- Radius
-            //               ),
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //       Expanded(
-            //         child: Padding(
-            //           padding: const EdgeInsets.all(8.0),
-            //           child: OutlinedButton(
-            //             onPressed: () {},
-            //             child: Icon(
-            //               Icons.arrow_forward_ios,
-            //               color: Colors.black,
-            //               size: 40.0,
-            //             ),
-            //             style: ElevatedButton.styleFrom(
-            //               shape: RoundedRectangleBorder(
-            //                 borderRadius: BorderRadius.circular(12), // <-- Radius
-            //               ),
-            //             ),
-            //           ),
-            //         ),
-            //       )
-            //     ],
-            //   ),
-            // )
+
           ],
         ),
-      ),
+      ),),
     );
   }
 

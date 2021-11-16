@@ -5,6 +5,7 @@ import 'package:language_learning_ui/pages/create_account.dart';
 import 'package:language_learning_ui/pages/dashboard.dart';
 import 'package:language_learning_ui/pages/home.dart';
 import 'package:language_learning_ui/pages/lesson_screen.dart';
+import 'package:language_learning_ui/providers/bottom_navigation.dart';
 import 'package:language_learning_ui/providers/brightness_provider.dart';
 import 'package:language_learning_ui/providers/file_location_provider.dart';
 import 'package:language_learning_ui/providers/folder_location_provider.dart';
@@ -14,6 +15,7 @@ import 'package:language_learning_ui/pages/file_system.dart';
 import 'package:language_learning_ui/providers/ip_controller_provider.dart';
 import 'package:language_learning_ui/providers/keyboard_controller_provider.dart';
 import 'package:language_learning_ui/providers/socket_provider.dart';
+import 'package:language_learning_ui/providers/task_manager_provider.dart';
 import 'package:language_learning_ui/providers/volume_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:language_learning_ui/widgets/brightness_button.dart';
@@ -31,6 +33,8 @@ void main() {
         ChangeNotifierProvider(create: (_) => Sockett()),
         ChangeNotifierProvider(create: (_) => Brightness()),
         ChangeNotifierProvider(create: (_) => KeyboardController()),
+        ChangeNotifierProvider(create: (_) => TaskManagerProvider()),
+        ChangeNotifierProvider(create: (_) => BottomNavigation()),
       ],
       child: MyApp(),
     ),

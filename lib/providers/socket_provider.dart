@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'dart:async';
 import 'dart:convert';
+import 'dart:typed_data';
 
 class Sockett with ChangeNotifier {
   Socket _socket;
@@ -55,4 +56,68 @@ class Sockett with ChangeNotifier {
     _socket.write(command);
     notifyListeners();
   }
+
+  void bluetooth(String arr) {
+    String command = "blue:"+arr;
+    _socket.write(command);
+    notifyListeners();
+  }
+
+  void mute() {
+    String command = "mute";
+    _socket.write(command);
+    notifyListeners();
+  }
+
+  String terminal(String text) {
+    String message = "                              ";
+    _socket.write("terminal:"+text);
+    _socket.listen((data) {
+      print("inside");
+      message = String.fromCharCodes(data);
+      print(message);
+    },
+
+    // handle errors
+    onError: (error) {
+      print(error);
+    },
+
+    // handle the client closing the connection
+    onDone: () {
+      print('command executed');
+    },
+  );
+    notifyListeners();
+    return message;
+  }
+
+  String task_manager() {
+    String message = "                              ";
+    _socket.write("tasklist");
+    _socket.listen((data) {
+      message = String.fromCharCodes(data);
+      print(message);
+    },
+
+    // handle errors
+    onError: (error) {
+      print(error);
+    },
+
+    // handle the client closing the connection
+    onDone: () {
+      print('command executed');
+    },
+  );
+    notifyListeners();
+    return message;
+  }
+
+  void kill_process(String pid)
+  {
+    String command = 
+  }
+
 }
+

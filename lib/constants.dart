@@ -29,6 +29,66 @@ class Constants {
   static const Color primaryColor = Color.fromRGBO(200, 92, 92, 1.0);
   // static const Socket socket = null;
 
+static const Color cardIconColor = Color.fromRGBO(179,179,179, 1.0);
+  static const Color fontColor = Colors.white;
+  static const Color backColor = Color.fromRGBO(18,18,18, 1.0);
+  static const Color cardColor1 = Color(0xFF7EC8E3);
+  static const Color cardColor2 = Color(0xFFFA26A0);
+  static const Color cardColor3 = Color(0xFFF51720);
+  static const Color cardColor4 = Color(0xFFF8D210);
+  static const Color cardColor5 = Color(0xFF2FF3E0);
+  static const Color cardColor6 = Color(0xFF4C5270);
+  static const Color cardColor7 = Color(0xFF07BB9C);
+  static const Color cardColor8 = Color(0xFF18A558);
+  static const Color cardColor9 = Color(0xFF18A558);
+  static const Color cardColor10 = Color(0xFF18A558);
+  static const Color cardColor11 = Color(0xFFFF4500);
+  static const Color cardColor12 = Color(0xFFFF8300);
+  static const Color cardColor13 = Color(0xFF6166B3);
+  static const Color cardColor14 = Color(0xFFB4FE98);
+  static const Color cardColor15 = Color(0xFFB983FF);
+  static const Color cardColor16 = Color(0xFFFBD148);
+  static const Color cardColor17 = Color(0xFFFF8300);
+  static const Color cardColor18 = Color(0xFFFF8300);
+  static const Color cardColor19 = Color(0xFFFF8300);
+  static const Color cardColor20 = Color(0xFFFF8300);
+  static const Color cardColor21 = Color(0xFFFF8300);
+  static const Color cardColor22 = Color(0xFFFF8300);
+  static const Color cardColor23 = Color(0xFF22577A);
+  static const Color cardColor24 = Color(0xFF38A3A5);
+  static const Color cardColor25 = Color(0xFF57CC99);
+  static const Color cardColor26 = Color(0xFF80ED99);
+  // static const Color cardColor29 = Color(0xFF88E0EF);
+  // static const Color cardColor28 = Color(0xFF161E54);
+  // static const Color cardColor27 = Color(0xFFFF5151);
+  // static const Color cardColor30 = Color(0xFF80ED99);
+
+
+  static const Color cardColor31 = Color(0xFFC85C5C);
+  static const Color cardColor32 = Color(0xFFB2EA70);
+  static const Color cardColor33 = Color(0xFFFBD148);
+  static const Color cardColor34 = Color(0xFFF9975D);
+
+
+  static const Color cardColor27 = Color(0xFF2B2E4A);
+  static const Color cardColor28 = Color(0xFFE84545);
+  static const Color cardColor29 = Color(0xFF903749);
+  static const Color cardColor30 = Color(0xFF53354A);
+
+  // static const Color cardColor35 = Color(0xFFF38181);
+  // static const Color cardColor36 = Color(0xFFFCE38A);
+  // static const Color cardColor37 = Color(0xFF95E1D3);
+  // static const Color cardColor38 = Color(0xFF6C5B7B);
+  static const Color cardColor35 = Color(0xFF2B2E4A);
+  static const Color cardColor36 = Color(0xFFE84545);
+  static const Color cardColor37 = Color(0xFF903749);
+  static const Color cardColor38 = Color(0xFF53354A);
+  static const Color cardColor39 = Color(0xFF1FAB89);
+  static const Color cardColor40 = Color(0xFF07689F);
+
+
+
+
   static List<TopicModel> topics = [
     TopicModel(
       color: Constants.primaryColor,

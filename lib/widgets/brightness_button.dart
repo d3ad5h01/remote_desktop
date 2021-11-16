@@ -49,7 +49,7 @@ class _BrightnessButton extends State<BrightnessButton> {
             });
           },
         ),
-        Text('Brightness : ${(context.watch<Brightness>().brightness).floor()}')
+       // Text('Brightness : ${(context.watch<Brightness>().brightness).floor()}')
       ],
     );
   }

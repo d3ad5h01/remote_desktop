@@ -2,12 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:language_learning_ui/constants.dart';
+//import 'package:language_learning_ui/pages/profile.dart';
+import 'package:language_learning_ui/providers/bottom_navigation.dart';
 import 'package:language_learning_ui/providers/file_location_controller_provider.dart';
+import 'package:language_learning_ui/providers/volume_provider.dart';
 import 'package:language_learning_ui/widgets/border_text_field.dart';
+import 'package:language_learning_ui/widgets/brightness_button.dart';
 import 'package:language_learning_ui/widgets/course_card.dart';
 import 'package:language_learning_ui/widgets/course_card_qc.dart';
 import 'package:language_learning_ui/widgets/expansion_tile_card_demo.dart';
 import 'package:language_learning_ui/widgets/instructor_card.dart';
+import 'package:language_learning_ui/widgets/server_button.dart';
 import 'package:language_learning_ui/widgets/topics_list.dart';
 import 'package:language_learning_ui/widgets/user_menu_bar.dart';
 import 'package:language_learning_ui/widgets/active_project_card.dart';
@@ -15,7 +20,15 @@ import 'package:expandable/expandable.dart';
 import 'package:expansion_card/expansion_card.dart';
 import 'package:language_learning_ui/providers/file_location_provider.dart';
 import 'package:language_learning_ui/providers/folder_location_provider.dart';
+import 'package:language_learning_ui/widgets/volume_button.dart';
+import 'package:language_learning_ui/widgets/bluetooth_button.dart';
 import 'package:provider/provider.dart';
+import 'package:language_learning_ui/providers/brightness_provider.dart';
+import 'package:language_learning_ui/providers/bottom_navigation.dart';
+import 'package:provider/provider.dart';
+
+import 'all_commands.dart';
+
 
 class Dashboard extends StatefulWidget {
   @override
@@ -25,53 +38,97 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   @override
-  Color color = Colors.white;
+  Color color = Colors.grey;
 
   Widget build(BuildContext context) {
+    var _selectedIndex=0;
+    void _onTap(int index)
+    {
+      setState(() {
+        Provider.of<BottomNavigation>(context,listen:false).reset(index);
+        print(Provider.of<BottomNavigation>(context,listen:false).bottomNavigation);
+        if(Provider.of<BottomNavigation>(context,listen:false).bottomNavigation==1)
+          {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>  AllCommands(),
+              ),
+            );
+          }
+        if(Provider.of<BottomNavigation>(context,listen:false).bottomNavigation==2)
+        {
+
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(
+          //     builder: (context) => Profile(),
+          //   ),
+          // );
+        }
+      });
+    }
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         showSelectedLabels: false,
+        currentIndex: Provider.of<BottomNavigation>(context,listen:false).bottomNavigation,
+        onTap: _onTap,
         showUnselectedLabels: false,
+        iconSize: 22,
+        elevation: 0,
+        backgroundColor: Constants.backColor,
+
         unselectedIconTheme: IconThemeData(
-          color: Color.fromRGBO(202, 205, 219, 1),
+          color: Constants.cardIconColor,
         ),
         selectedIconTheme: IconThemeData(
-          color: Constants.primaryColor,
+          color: Constants.cardColor8,
         ),
         items: [
           BottomNavigationBarItem(
             label: "",
-            icon: Icon(FlutterIcons.home_fea),
-          ),
-          BottomNavigationBarItem(
-            label: "",
-            icon: Icon(
-              FlutterIcons.calendar_fea,
+            icon:
+            Icon(
+              Icons.home,
+              size: 25.0,
             ),
           ),
           BottomNavigationBarItem(
             label: "",
-            icon: Icon(
-              FlutterIcons.edit_fea,
+            icon:
+            Icon(
+              Icons.apps,
+              size: 25.0,
             ),
           ),
           BottomNavigationBarItem(
             label: "",
-            icon: Icon(
-              FlutterIcons.user_fea,
+            icon:
+            Icon(
+              Icons.person,
+              size: 25.0,
             ),
           ),
+
+
         ],
+
       ),
+
 
       body: SingleChildScrollView(
         child: SafeArea(
           child: Container(
+            decoration: new BoxDecoration(
+                color: Constants.backColor,
+            ),
             padding: EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,
               children: [
+
                 SizedBox(
                   height: 30.0,
                 ),
@@ -90,186 +147,509 @@ class _DashboardState extends State<Dashboard> {
                 SizedBox(
                   height: 30.0,
                 ),
-                // Text('Testing purppose'),
-                // Text('${context.watch<FileLocation>().fileLocation}'),
-                // Text('${context.watch<FolderLocation>().folderLocation}'),
-                // Text('${(context.watch<FileLocationController>().fileLocationController).text}'),
-                // ElevatedButton.icon(
-                //   onPressed: () {
-                //     //Navigator.pushNamed(context),
-                //     context.read<FileLocationController>().reset('changed text of controller');
-                //     //getLocationSource("Changed0004884");
-                //   },
-                //   style: ButtonStyle(
-                //     backgroundColor: MaterialStateProperty.all(Colors.indigoAccent),
-                //     padding: MaterialStateProperty.all(EdgeInsets.all(10)),
-                //     //textStyle: MaterialStateProperty.all(TextStyle(fontSize: 30))
-                //   ),
-                //
-                //   icon: Icon(Icons.file_copy, size: 20),
-                //   label: Text("Change controller text"),
-                // ),
-                // ElevatedButton.icon(
-                //   onPressed: () {
-                //     //Navigator.pushNamed(context),
-                //       context.read<FileLocation>().reset('changed location of file');
-                //       //getLocationSource("Changed0004884");
-                //   },
-                //   style: ButtonStyle(
-                //     backgroundColor: MaterialStateProperty.all(Colors.indigoAccent),
-                //     padding: MaterialStateProperty.all(EdgeInsets.all(10)),
-                //     //textStyle: MaterialStateProperty.all(TextStyle(fontSize: 30))
-                //   ),
-                //
-                //   icon: Icon(Icons.file_copy, size: 20),
-                //   label: Text("Change GLobaal file loc"),
-                // ),
-                // ElevatedButton.icon(
-                //   onPressed: () {
-                //     //Navigator.pushNamed(context),
-                //     context.read<FolderLocation>().reset('changed location of folder');
-                //     //getLocationSource("Changed0004884");
-                //   },
-                //   style: ButtonStyle(
-                //     backgroundColor: MaterialStateProperty.all(Colors.indigoAccent),
-                //     padding: MaterialStateProperty.all(EdgeInsets.all(10)),
-                //     //textStyle: MaterialStateProperty.all(TextStyle(fontSize: 30))
-                //   ),
-                //
-                //   icon: Icon(Icons.file_copy, size: 20),
-                //   label: Text("Change GLobaal file loc"),
-                // ),
-                //TopicsList(),
-                //SizedBox(height: 30.0),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       "Device Specs",
                       style: TextStyle(
-                        fontSize: 21.0,
-                        color: Constants.primaryTextColor,
+                        fontSize: 30.0,
+                        color: Constants.fontColor,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    // Text(
-                    //   "View all",
-                    //   style: TextStyle(
-                    //     fontSize: 15.0,
-                    //     color: Constants.captionTextColor,
-                    //   ),
-                    // ),
                   ],
                 ),
                 SizedBox(
                   height: 12.0,
                 ),
                 SizedBox(height: 10.0),
-                Container(
-                  height: ScreenUtil().setHeight(130.0),
-                  child: ListView.separated(
-                    separatorBuilder: (BuildContext context, int index) {
-                      return SizedBox(
-                        width: 10.0,
-                      );
-                    },
-                    scrollDirection: Axis.horizontal,
-                    itemCount: Constants.courses.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return CourseCard(
-                        course: Constants.courses[index],
-                      );
-                    },
-                  ),
+                Row(
+                  children: <Widget>[
+                    Flexible(
+                      flex: 1,
+                      fit: FlexFit.tight,
+                      child: Container(
+                        height: 330,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                  "Device Ip",
+                                  style: TextStyle(
+                                    fontSize: 15.0,
+                                    color: Constants.fontColor,
+                                    fontWeight: FontWeight.w600,
+                                  ),),
+                              ),
+                              SizedBox(height: 10),
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                  "172.21.2.4",
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    color: Constants.fontColor,
+                                    fontWeight: FontWeight.w600,
+                                  ),),
+                              ),
+                              SizedBox(height: 15),
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                  "OS Name:",
+                                  style: TextStyle(
+                                    fontSize: 15.0,
+                                    color: Constants.fontColor,
+                                    fontWeight: FontWeight.w600,
+                                  ),),
+                              ),
+                              SizedBox(height: 10),
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                  "Microsoft Windows 10",
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    color: Constants.fontColor,
+                                    fontWeight: FontWeight.w600,
+                                  ),),
+                              ),
+                              SizedBox(height: 15),
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                  'Host Name',
+                                  style: TextStyle(
+                                    fontSize: 15.0,
+                                    color: Constants.fontColor,
+                                    fontWeight: FontWeight.w600,
+                                  ),),
+                              ),
+                              SizedBox(height: 10),
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                  "DESKTOP-VP1F6F0",
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    color: Constants.fontColor,
+                                    fontWeight: FontWeight.w600,
+                                  ),),
+                              ),
+                              SizedBox(height: 15),
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                  'Product ID',
+                                  style: TextStyle(
+                                    fontSize: 15.0,
+                                    color: Constants.fontColor,
+                                    fontWeight: FontWeight.w600,
+                                  ),),
+                              ),
+                              SizedBox(height: 10),
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                  "00347-35849-54819-AAOEM",
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    color: Constants.fontColor,
+                                    fontWeight: FontWeight.w600,
+                                  ),),
+                              ),
+                              //CopyCard2(),
+                            ],
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Constants.cardColor27,
+                        ), //BoxDecoration
+                      ), //Container
+                    ), //Flexible
+                    SizedBox(
+                      width: 10,
+                    ),
+                    //SizedBox
+
+                    Column(
+                      children: [
+                        Container(
+                          height: 100.0,
+                          width: 100.0,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Align(
+                                alignment: Alignment.center,
+                                child: Icon(
+                                  Icons.devices_outlined,
+                                  color: Colors.black,
+                                  size: 40.0,
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              Align(
+                                alignment: Alignment.bottomCenter,
+                                child: Text(
+                                  "Connected",
+                                  style: TextStyle(
+                                    fontSize: 15.0,
+                                    color: Constants.fontColor,
+                                    fontWeight: FontWeight.w600,
+                                  ),),
+                              ),
+
+                              //CopyCard2(),
+                            ],
+                          ),
+                        ),
+
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            color:  Constants.cardColor28,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          height: 100.0,
+                          width: 100.0,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Align(
+                                  alignment: Alignment.center,
+                                  child: Icon(
+                                    Icons.battery_std,
+                                    color: Colors.black,
+                                    size: 40.0,
+                                  ),
+                                ),
+                                SizedBox(height: 10),
+                                Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: Text(
+                                    "90%",
+                                    style: TextStyle(
+                                      fontSize: 15.0,
+                                      color: Constants.fontColor,
+                                      fontWeight: FontWeight.w600,
+                                    ),),
+                                ),
+
+                                //CopyCard2(),
+                              ],
+                            ),
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            color: Constants.cardColor29,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          height: 100.0,
+                          width: 100.0,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Align(
+                                  alignment: Alignment.center,
+                                  child: Icon(
+                                    Icons.wifi,
+                                    color: Colors.black,
+                                    size: 40.0,
+                                  ),
+                                ),
+                                SizedBox(height: 10),
+                                Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: Text(
+                                    "Wifi",
+                                    style: TextStyle(
+                                      fontSize: 15.0,
+                                      color: Constants.fontColor,
+                                      fontWeight: FontWeight.w600,
+                                    ),),
+                                ),
+
+                                //CopyCard2(),
+                              ],
+                            ),
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            color:  Constants.cardColor30,
+                          ),
+                        ),
+
+                      ],
+                    ),
+                     //Flexible
+                  ], //<Widget>[]
+                  mainAxisAlignment: MainAxisAlignment.center,
                 ),
-                SizedBox(height: 20.0),
+                SizedBox(
+                  height: 40,
+                ),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Quick Control",
+                      "Quick Controls",
                       style: TextStyle(
-                        fontSize: 21.0,
-                        color: Constants.primaryTextColor,
+                        fontSize: 25.0,
+                        color: Constants.fontColor,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
                   ],
                 ),
+
                 SizedBox(
-                  height: 12.0,
-                ),
-                Container(
-                  height: ScreenUtil().setHeight(167.0),
-                  child: ListView.separated(
-                    separatorBuilder: (BuildContext context, int index) {
-                      return SizedBox(
-                        width: 10.0,
-                      );
-                    },
-                    scrollDirection: Axis.horizontal,
-                    itemCount: Constants.coursesqc.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return CourseCardQC(
-                        courseqc: Constants.coursesqc[index],
-                      );
-                    },
-                  ),
-                ),
-                SizedBox(height: 20.0),
-                Text(
-                  "More Commands",
-                  style: TextStyle(
-                    fontSize: 21.0,
-                    color: Constants.primaryTextColor,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  height: 15.0,
                 ),
 
+                //Quick Controls
+                Row(
+                  children: <Widget>[
+                    Flexible(
+                      flex: 1,
+                      fit: FlexFit.tight,
+                      child: Container(
+                        height: 100,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "Brightness :",
+                                      style: TextStyle(
+                                        fontSize: 18.0,
+                                        color: Constants.fontColor,
+                                        fontWeight: FontWeight.w400,
+                                      ),),
+                                    Text(
+                                      "  ${(context.watch<Brightness>().brightness).floor()}",
+                                      style: TextStyle(
+                                        fontSize: 20.0,
+                                        color: Constants.backColor,
+                                        fontWeight: FontWeight.w900,
+                                      ),),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              //Text('Brightness : ')
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: BrightnessButton(),
+                              ),
 
-                Container(
-                  color: Colors.transparent,
-                  padding: EdgeInsets.symmetric(
-                      horizontal: 10.0, vertical: 10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      //subheading('Active Projects'),
-                      SizedBox(height: 5.0),
-                      Row(
-                        children: <Widget>[
-                          // ActiveProjectsCard(
-                          //   cardColor: Constants.kGreen,
-                          //   loadingPercent: 0.25,
-                          //   title: 'Medical App',
-                          //   subtitle: '9 hours progress',
-                          // ),
-                          // SizedBox(width: 20.0),
-                        ],
-                      ),
+                              //CopyCard2(),
+                            ],
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Constants.cardColor23,
+                        ), //BoxDecoration
+                      ), //Container
+                    ), //Flexible
+                    SizedBox(
+                      width: 10,
+                    ),
+                    //SizedBox
 
-
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-
-                          CopyCard1(),
-                          SizedBox(height: 30,),
-                          PresentationControlCard(),
-                          SizedBox(height: 30,),
-                          MediaControlCard(),
-                          SizedBox(height: 30,),
-                          MouseKeyboardCard(),
-                           // CopyCard3(),
-
-                          SizedBox(height: 30,),
-                          //CopyCard2(),
-                        ],
-                      ),
-                      SizedBox(height: 50,),
-                    ],
-                  ),
+                    //Flexible
+                  ], //<Widget>[]
+                  mainAxisAlignment: MainAxisAlignment.center,
                 ),
+                SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  children: <Widget>[
+                    Flexible(
+                      flex: 1,
+                      fit: FlexFit.tight,
+                      child: Container(
+                        height: 100,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "Volume :",
+                                      style: TextStyle(
+                                        fontSize: 18.0,
+                                        color: Constants.fontColor,
+                                        fontWeight: FontWeight.w400,
+                                      ),),
+                                    //Text('Volume : ${(context.watch<Volume>().volume).floor()}')
+                                    Text(
+                                      "  ${(context.watch<Volume>().volume).floor()}",
+                                      style: TextStyle(
+                                        fontSize: 20.0,
+                                        color: Constants.backColor,
+                                        fontWeight: FontWeight.w900,
+                                      ),),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              //Text('Brightness : ')
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: VolumeButton(),
+                              ),
+
+                              //CopyCard2(),
+                            ],
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Constants.cardColor24,
+                        ), //BoxDecoration
+                      ), //Container
+                    ), //Flexible
+                    SizedBox(
+                      width: 10,
+                    ),
+                    //SizedBox
+
+                    //Flexible
+                  ], //<Widget>[]
+                  mainAxisAlignment: MainAxisAlignment.center,
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  children: <Widget>[
+                    Flexible(
+                      flex: 1,
+                      fit: FlexFit.tight,
+                      child: Container(
+                        height: 120,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Align(
+                                alignment: Alignment.topCenter,
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "Bluetooth",
+                                      style: TextStyle(
+                                        fontSize: 18.0,
+                                        color: Constants.fontColor,
+                                        fontWeight: FontWeight.w400,
+                                      ),),
+                                    //Text('Volume : ${(context.watch<Volume>().volume).floor()}')
+                                  ],
+                                ),
+                              ),
+
+                              Align(
+                                alignment: Alignment.center,
+                                child: BluetoothButton(),
+                              ),
+
+                              //CopyCard2(),
+                            ],
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Constants.cardColor25,
+                        ), //BoxDecoration
+                      ), //Container
+                    ), //Flexible
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Flexible(
+                      flex: 1,
+                      fit: FlexFit.tight,
+                      child: Container(
+                        height: 120,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "Server",
+                                      style: TextStyle(
+                                        fontSize: 18.0,
+                                        color: Constants.fontColor,
+                                        fontWeight: FontWeight.w400,
+                                      ),),
+                                    //Text('Volume : ${(context.watch<Volume>().volume).floor()}')
+
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              //Text('Brightness : ')
+                              Align(
+                                alignment: Alignment.topCenter,
+                                child: ServerButton(),
+                              ),
+
+                              //CopyCard2(),
+                            ],
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Constants.cardColor26,
+                        ), //BoxDecoration
+                      ), //Container
+                    ),
+                    //SizedBox
+
+                    //Flexible
+                  ], //<Widget>[]
+                  mainAxisAlignment: MainAxisAlignment.center,
+                ),
+
               ],
             ),
           ),
@@ -278,4 +658,3 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 }
-

@@ -27,11 +27,11 @@ class _BluetoothButton extends State<BluetoothButton> {
             setState(() {
               if(_bluetooth!=0) {
                 _bluetooth = 0;
-                //Provider.of<Sockett>(context,listen:false).wifi(0);
+                Provider.of<Sockett>(context,listen:false).bluetooth("off");
               }
               else {
                 _bluetooth = 1;
-                //Provider.of<Sockett>(context,listen:false).wifi(1);
+                Provider.of<Sockett>(context,listen:false).bluetooth("on");
               }
             });
           },
