@@ -7,11 +7,13 @@ import 'package:language_learning_ui/constants.dart';
 import 'package:language_learning_ui/pages/dashboard.dart';
 import 'package:language_learning_ui/pages/mouse_keyboard.dart';
 import 'package:language_learning_ui/pages/presentation.dart';
+import 'package:language_learning_ui/pages/profile.dart';
 //import 'package:language_learning_ui/pages/profile.dart';
 import 'package:language_learning_ui/pages/task_manager.dart';
 import 'package:language_learning_ui/pages/terminal_emulator.dart';
 import 'package:language_learning_ui/providers/bottom_navigation.dart';
 import 'package:language_learning_ui/providers/file_location_controller_provider.dart';
+import 'package:language_learning_ui/providers/socket_provider.dart';
 import 'package:language_learning_ui/providers/volume_provider.dart';
 import 'package:language_learning_ui/widgets/border_text_field.dart';
 import 'package:language_learning_ui/widgets/brightness_button.dart';
@@ -68,12 +70,12 @@ class _AllCommandsState extends State<AllCommands> {
         if(Provider.of<BottomNavigation>(context,listen:false).bottomNavigation==2)
         {
 
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(
-          //     builder: (context) => Profile(),
-          //   ),
-          // );
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Profile(),
+            ),
+          );
         }
       });
     }
@@ -338,6 +340,7 @@ class _AllCommandsState extends State<AllCommands> {
                       child: InkWell(
                         onTap: (){
                           print("Task Manager");
+                          Provider.of<Sockett>(context,listen:false).task_manager();
                           Navigator.push(
                             context,
                             MaterialPageRoute(

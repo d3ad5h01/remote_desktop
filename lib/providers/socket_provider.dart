@@ -8,9 +8,12 @@ import 'package:provider/provider.dart';
 
 class Sockett with ChangeNotifier {
   Socket _socket;
-  String _terminalOutput ='None';
+  String _terminalOutput ='Output will be printed here.';
+  String _taskManagerOutput ='1;./root,0,0;';
   Socket get socket => _socket;
   String get terminalOutput => _terminalOutput;
+  String get taskManagerOutput => _taskManagerOutput;
+
   void reset(String newIp) async {
 
     print('yes : $newIp');
@@ -78,8 +81,10 @@ class Sockett with ChangeNotifier {
     _socket.listen((data) {
       print("inside");
       message = String.fromCharCodes(data);
-      _terminalOutput = message;
       print("Done");
+      _terminalOutput = message;
+      notifyListeners();
+     print('Updated');
     },
     //
     // // handle errors
@@ -102,28 +107,31 @@ class Sockett with ChangeNotifier {
 
 
 
-  String task_manager() {
+  void task_manager() {
     String message = "                              ";
     _socket.write("tasklist");
     _socket.listen((data) {
-      message = String.fromCharCodes(data);
-      print(message);
+      notifyListeners();
+      _taskManagerOutput = String.fromCharCodes(data);
+      notifyListeners();notifyListeners();notifyListeners();
+      //print(message);
     },
+
 
     // handle errors
-    onError: (error) {
-      print(error);
-    },
-
-    // handle the client closing the connection
-    onDone: () {
-      print('command executed');
-    },
+    // onError: (error) {
+    //   print(error);
+    // },
+    //
+    // // handle the client closing the connection
+    // onDone: () {
+    //   print('command executed');
+    // },
   );
 
     notifyListeners();
 
-    return message;
+
   }
 
   // void kill_process(String pid)

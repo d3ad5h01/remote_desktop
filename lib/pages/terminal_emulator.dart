@@ -97,33 +97,52 @@ class _ListDemoState extends State<ListDemo> {
                                 ),
                               ),
                               SizedBox(height: 20),
-                              Container(
-                                height: 350,
-                                decoration: BoxDecoration(
-                                  color: Constants.backColor,
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(
-                                    color: Constants.fontColor,
-                                    width: 1,
-                                  ),
-                                ),
-                                child: SingleChildScrollView(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(15.0),
-                                    child: Text(
-                                      //ToDO : make this _output as dynamic : setState
-                                       Provider.of<Sockett>(context,listen:true).terminalOutput,
-                                        style: TextStyle(
-                                        fontSize: 15.0,
-                                        color: Constants.fontColor,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              // Container(
+                              //   height: 350,
+                              //   decoration: BoxDecoration(
+                              //     color: Constants.backColor,
+                              //     borderRadius: BorderRadius.circular(10),
+                              //     border: Border.all(
+                              //       color: Constants.fontColor,
+                              //       width: 1,
+                              //     ),
+                              //   ),
+                              //   child: SingleChildScrollView(
+                              //     child: Padding(
+                              //       padding: const EdgeInsets.all(15.0),
+                              //       child: Text(
+                              //         //ToDO : make this _output as dynamic : setState
+                              //          Provider.of<Sockett>(context,listen:false).terminalOutput,
+                              //           style: TextStyle(
+                              //           fontSize: 15.0,
+                              //           color: Constants.fontColor,
+                              //           fontWeight: FontWeight.w600,
+                              //         ),
+                              //       ),
+                              //     ),
+                              //   ),
+                              // ),
 
                               SizedBox(height: 30),
+                              Container(
+                                decoration: BoxDecoration(
+                                      color: Constants.backColor,
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                        color: Constants.fontColor,
+                                        width: 1,
+                                      ),
+                                    ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(Provider.of<Sockett>(context,listen:true).terminalOutput,
+                                      style: TextStyle(
+                                      fontSize: 15.0,
+                                      color: Constants.fontColor,
+                                      fontWeight: FontWeight.w600,
+                                  ),),
+                                ),
+                              ),
                               Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
