@@ -340,7 +340,7 @@ class _AllCommandsState extends State<AllCommands> {
                       child: InkWell(
                         onTap: (){
                           print("Task Manager");
-                          Provider.of<Sockett>(context,listen:false).task_manager();
+                          //Provider.of<Sockett>(context,listen:false).task_manager();
                           Navigator.push(
                             context,
                             MaterialPageRoute(

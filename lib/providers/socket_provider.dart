@@ -9,17 +9,20 @@ import 'package:provider/provider.dart';
 class Sockett with ChangeNotifier {
   Socket _socket;
   String _terminalOutput ='Output will be printed here.';
-  String _taskManagerOutput ='1;./root,0,0;';
+  String _taskManagerOutput ='1;1,roo,1;';
   Socket get socket => _socket;
   String get terminalOutput => _terminalOutput;
   String get taskManagerOutput => _taskManagerOutput;
-
+  List<List<String>> _table =[['a','b','c']];
+  List<List<String>> get table => _table;
+  int _sze =1;
+  int get sze => _sze;
   void reset(String newIp) async {
 
     print('yes : $newIp');
 
     // TODO : change this ip to dynamic resolution
-    _socket = await Socket.connect('192.168.0.108',6969);
+    _socket = await Socket.connect('192.168.0.6',6969);
     _socket.write('Connected ... ');
     print('Connected ...');
     notifyListeners();
@@ -86,16 +89,7 @@ class Sockett with ChangeNotifier {
       notifyListeners();
      print('Updated');
     },
-    //
-    // // handle errors
-    // onError: (error) {
-    //   print(error);
-    // },
-    //
-    // // handle the client closing the connection
-    // onDone: () {
-    //   print('command executed');
-    // },
+
     );
     notifyListeners();
     //return message;
@@ -103,6 +97,48 @@ class Sockett with ChangeNotifier {
 
 
 
+  void getTable() {
+    int e = _sze;
+    int f = 3;
+    _table = List.generate(e, (i) => List(f), growable: false);
+    int i = 0;
+    int j = 0;
+    String tmp = "";
+    for (int s = 0; s < _taskManagerOutput.length; s++) {
+      if (_taskManagerOutput[s] == ',') {
+        _table[i][j] = tmp;
+        tmp = "";
+        j++;
+      } else if (_taskManagerOutput[s] == ';') {
+        _table[i][j] = tmp;
+        tmp = "";
+        j = 0;
+        i++;
+      } else
+        tmp = tmp + _taskManagerOutput[s];
+    }
+  }
+
+  void getSize()
+  {
+    _sze=0;
+    String ret='';
+    for(int s=0;s<_taskManagerOutput.length;s++)
+    {
+      if(_taskManagerOutput[s]!=';') {
+        ret = ret+ _taskManagerOutput[s];
+      }
+      else{
+        //print(ret);
+        _sze = int.parse(ret);
+        _taskManagerOutput = _taskManagerOutput.substring(s+1);
+        break;
+      }
+    }
+    // print(_taskManagerOutput.length);
+    // print('size is');
+    // print(sze);
+  }
 
 
 
@@ -113,7 +149,10 @@ class Sockett with ChangeNotifier {
     _socket.listen((data) {
       notifyListeners();
       _taskManagerOutput = String.fromCharCodes(data);
-      notifyListeners();notifyListeners();notifyListeners();
+      getSize();
+      getTable();
+      notifyListeners();
+
       //print(message);
     },
 
@@ -129,15 +168,15 @@ class Sockett with ChangeNotifier {
     // },
   );
 
-    notifyListeners();
-
-
+   // notifyListeners();
   }
 
-  // void kill_process(String pid)
-  // {
-  //   String command =
-  // }
+  void kill_process(String pid)
+  {
+    String command = "kill:"+pid;
+    _socket.write(command);
+    notifyListeners();
+  }
 
 }
 

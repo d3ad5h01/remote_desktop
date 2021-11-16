@@ -41,22 +41,19 @@ class ListDemo extends StatefulWidget {
 }
 
 class _ListDemoState extends State<ListDemo> {
-   @override
-  void initState() {
-      // //ToDo : use this k string for display
-      // String k = Provider.of<Sockett>(context,listen:false).task_manager();
-      // print(k);
-
-      super.initState();
-  }
+  String k = '';
+  //  @override
+  // void initState() {
+  //    super.initState();
+  //     //ToDo : use this k string for display
+  //     Provider.of<Sockett>(context,listen:false).task_manager();
+  //     k = Provider.of<Sockett>(context,listen:false).taskManagerOutput;
+  //    // print(k);
+  // }
 
 
   int _selectedIndex = -1;
-  String dir = 'empty';
-  String Loc = 'empty';
-  String LocFile = 'empty';
-  String LocDir = 'empty';
-  String name = 'None';
+  String dir;
   int sze;
   var dirArr;
   int _currentTabIndex = 0;
@@ -73,8 +70,7 @@ class _ListDemoState extends State<ListDemo> {
       style: optionStyle,
     ),
   ];
-  Map<int, bool> countToValue = <int, bool>{};
-
+  
   void dirArrayMaker() {
     int e = sze;
     int f = 4;
@@ -82,18 +78,18 @@ class _ListDemoState extends State<ListDemo> {
     int i = 0;
     int j = 0;
     String tmp = "";
-    for (int s = 0; s < dir.length; s++) {
-      if (dir[s] == ',') {
+    for (int s = 0; s < k.length; s++) {
+      if (k[s] == ',') {
         dirArr[i][j] = tmp;
         tmp = "";
         j++;
-      } else if (dir[s] == ';') {
+      } else if (k[s] == ';') {
         dirArr[i][j] = tmp;
         tmp = "";
         j = 0;
         i++;
       } else
-        tmp = tmp + dir[s];
+        tmp = tmp + k[s];
     }
   }
 
@@ -101,34 +97,28 @@ class _ListDemoState extends State<ListDemo> {
   {
     sze=0;
     String ret='';
-    for(int s=0;s<dir.length;s++)
+    for(int s=0;s<k.length;s++)
     {
-      if(dir[s]!=';') {
-        ret = ret+ dir[s];
+      if(k[s]!=';') {
+        ret = ret+ k[s];
       }
       else{
+        print(ret);
         sze = int.parse(ret);
-        dir = dir.substring(s+1);
+        k = k.substring(s+1);
         break;
       }
     }
-    print(dir.length);
+    print(k.length);
     print('size is');
     print(sze);
   }
 
   Widget build(BuildContext context) {
-
-    //while(dir=='1;./root,0,0;')
-    //{
-      dir = Provider.of<Sockett>(context,listen:false).taskManagerOutput;
-      print(dir);
-      //}
-    //dir = Provider.of<Sockett>(context,listen:false).taskManagerOutput;
-    //print(dir);
-    //sze = widget.sze;
-    getSize();
-    dirArrayMaker();
+    //k = Provider.of<Sockett>(context,listen:false).taskManagerOutput;
+      // print(dir);
+    //getSize();
+    //dirArrayMaker();
 
     return Scaffold(
       appBar: AppBar(
@@ -152,9 +142,11 @@ class _ListDemoState extends State<ListDemo> {
               child: Center(
                 child: InkWell(
                   onTap: (){
-                    setState(() {
-                      dir = Provider.of<Sockett>(context,listen:false).taskManagerOutput;
-                    });
+                    // setState(() {
+                    //     Provider.of<Sockett>(context,listen:false).task_manager();
+                    //     k = Provider.of<Sockett>(context,listen:false).taskManagerOutput;
+                    //
+                    // });
                   },
                   child: Container(
                     child: Icon(
@@ -167,34 +159,95 @@ class _ListDemoState extends State<ListDemo> {
                 ),
               ),
             ),
+             Container(
+              child: Row(
+
+                children: <Widget>[
+
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: OutlinedButton(
+                        onPressed: () {
+                          setState(() {
+                            Provider.of<Sockett>(context,listen:false).task_manager();
+                          });
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Icon(
+                            Icons.refresh,
+                            color: Colors.white,
+                            size: 30.0,
+                          ),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12), // <-- Radius
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: OutlinedButton(
+                        onPressed: () {
+                          setState(() {
+                            k = Provider.of<Sockett>(context,listen:false).taskManagerOutput;
+                          });
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Icon(
+                            Icons.arrow_upward_sharp,
+                            color: Colors.white,
+                            size: 30.0,
+                          ),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12), // <-- Radius
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                ],
+              ),
+            ),
             SizedBox(height: 10),
 
             //for (int i=0,a=dirArr[i][0],b=dirArr[i][1],c=dirArr[i][2],d=dirArr[i][3] ; (i< dir.length);i++,a=dirArr[i][0],b=dirArr[i][1],c=dirArr[i][2],d=dirArr[i][3])
-            for (int i = 0; (i < sze); i++)
+            for (int i = 0; (i < Provider.of<Sockett>(context,listen:false).sze); i++)
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ListTile(
-                  title: Text('${dirArr[i][0]}',style: TextStyle(
+                  title: Text('${(Provider.of<Sockett>(context,listen:false).table)[i][0]}',style: TextStyle(
                     fontSize: 20.0,
                     color: Constants.fontColor,
                     fontWeight: FontWeight.w200,
                   ),),
                   isThreeLine: true,
                   subtitle: Text(
-                      'PID: ${dirArr[i][1]} \nRam Occupied:${dirArr[i][2]}K',style: TextStyle(
+                      'PID: ${(Provider.of<Sockett>(context,listen:false).table)[i][1]} \nRam Occupied:${(Provider.of<Sockett>(context,listen:false).table)[i][2]}K',style: TextStyle(
                     fontSize: 15.0,
                     color: Constants.fontColor,
                     fontWeight: FontWeight.w200,
                   ),),
                   leading: Icon(Icons.settings_rounded,color: Constants.cardColor8,),
-                  selected: countToValue[i] ?? false,
+                  //selected: countToValue[i] ?? false,
                   trailing: OutlinedButton(
                     onPressed: () {
                       setState(() {
                         _selectedIndex = i;
-                        name = dirArr[i][0];
-                        Provider.of<TaskManagerProvider>(context,listen:false).reset(dirArr[_selectedIndex][0]);
-                        print(name);
+                        //name = dirArr[i][0];
+                        Provider.of<TaskManagerProvider>(context,listen:false).reset((Provider.of<Sockett>(context,listen:false).table)[_selectedIndex][0]);
+                        Provider.of<TaskManagerProvider>(context,listen:false).resetPid((Provider.of<Sockett>(context,listen:false).table)[_selectedIndex][1]);
+
+                        //print(name);
                         //await Future.delayed(const Duration(seconds: 2), (){});
                         //showDialog<void>(context: context, builder: (context) => dialog);
                         showDialog(
@@ -202,8 +255,7 @@ class _ListDemoState extends State<ListDemo> {
                             builder: (_) {
                               return MyDialog();
                             });
-
-                        print(name);
+                       // print(name);
                       });
                     },
                     child: Padding(
@@ -266,7 +318,7 @@ class _MyDialogState extends State<MyDialog> {
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 10,),
-            Text('This will end the process ${Provider.of<TaskManagerProvider>(context,listen:false).task}.',style: TextStyle(
+            Text('This will end the process ${Provider.of<TaskManagerProvider>(context,listen:false).task}. Its PID is: ${Provider.of<TaskManagerProvider>(context,listen:false).pid}.',style: TextStyle(
               fontSize: 15.0,
               color: Constants.fontColor,
               fontWeight: FontWeight.w200,
@@ -289,8 +341,14 @@ class _MyDialogState extends State<MyDialog> {
         ),
         FlatButton(
           textColor: Colors.red,
-          onPressed: () => Navigator.pop(context),
-          child: Text('END PROCESS'),
+          onPressed: (){
+            setState(() {
+              Provider.of<Sockett>(context,listen:false).kill_process(Provider.of<TaskManagerProvider>(context,listen:false).pid);
+              Navigator.pop(context);
+            });
+    },
+            child: Text
+          ('END PROCESS'),
         ),
       ],
     );

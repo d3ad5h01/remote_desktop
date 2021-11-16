@@ -49,7 +49,10 @@ def tasklist():
         row[-1] = row[-1].strip().replace(' ','')
         row[-1] = row[-1].replace("K","")
         row[-1] = row[-1].replace(",","")
-        row[-1] = int(row[-1])
+        if(row[-1]=="N/A"):
+            row[-1] = int(0)
+        else:
+            row[-1] = int(row[-1])
         rows.append(row)
 
     sorted_list = sorted(rows, key=lambda x: x[-1], reverse=True)
@@ -63,7 +66,8 @@ def tasklist():
 def kill_process(pid):
     command = "taskkill /F /PID %s"%(pid)
     command = command.split()
-    subprocess.Popen(command)
+    output,err = subprocess.Popen(command,stdout=subprocess.PIPE).communicate()
+    print(output)
 
 def run_terminal(command):
     command = command.split()
@@ -170,7 +174,10 @@ def accept_connection(sock):
                     battery = psutil.sensors_battery()
                     percent = str(battery.percent)
                     conn.send(percent)
-
+                
+                elif command_lst[0] == "kill":
+                    pid = command_lst[1]
+                    kill_process(pid)
         #         if (command == "close"):
         #             break
         #
@@ -187,7 +194,7 @@ def main():
         print("Socket successfully created")
 
         port = 6969
-        sock.bind(('192.168.0.108', port))
+        sock.bind(('192.168.0.6', port))
         sock.listen(5)
         print("Listening for connections")
         accept_connection(sock)

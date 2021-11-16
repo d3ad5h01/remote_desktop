@@ -31,7 +31,7 @@ class Constants {
 
 static const Color cardIconColor = Color.fromRGBO(179,179,179, 1.0);
   static const Color fontColor = Colors.white;
-  static const Color backColor = Color.fromRGBO(18,18,18, 1.0);
+  static const Color backColor = Colors.black;
   static const Color cardColor1 = Color(0xFF7EC8E3);
   static const Color cardColor2 = Color(0xFFFA26A0);
   static const Color cardColor3 = Color(0xFFF51720);
