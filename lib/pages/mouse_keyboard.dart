@@ -43,251 +43,257 @@ class _ListDemoState extends State<ListDemo> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
+          icon: Icon(Icons.arrow_back, color: Colors.black,size:30),
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: Text("Input Controller"),
-        backgroundColor: Color(0xFF6200EE),
+        backgroundColor: Colors.white,
+        elevation: 0,
         centerTitle: true,
       ),
 
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListView(
-          children: [
-            //SizedBox(height: 20),
-            //Center(child: Text('Selected Media file: ${context.watch<FileLocation>().fileLocation}')),
-            SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Center(
-                child: Text(
-                'Mouse Access',
-                style: TextStyle(fontSize: 25),
-            ),
-              ),
-            ),
-            SizedBox(height: 20),
-            Container(
-              child: Row(
-
-                children: <Widget>[
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(),
-                    ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: OutlinedButton(
-                        onPressed: () {
-                          setState(() {
-                            Provider.of<Sockett>(context,listen:false).arrows("u");
-                          });
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Icon(
-                            Icons.arrow_upward_sharp,
-                            color: Colors.black,
-                            size: 60.0,
-                          ),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12), // <-- Radius
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Container(
-              child: Row(
-
-                children: <Widget>[
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: OutlinedButton(
-                        onPressed: () {
-                          setState(() {
-                            Provider.of<Sockett>(context,listen:false).arrows("l");
-                          });
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Icon(
-                            Icons.arrow_back_sharp,
-                            color: Colors.black,
-                            size: 60.0,
-                          ),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12), // <-- Radius
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: OutlinedButton(
-                        onPressed: () {
-                          setState(() {
-                            Provider.of<Sockett>(context,listen:false).arrows("click");
-                          });
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Icon(
-                            Icons.mouse,
-                            color: Colors.black,
-                            size: 60.0,
-                          ),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12), // <-- Radius
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: OutlinedButton(
-                        onPressed: () {
-                          setState(() {
-                            Provider.of<Sockett>(context,listen:false).arrows("r");
-                          });
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Icon(
-                            Icons.arrow_forward_sharp,
-                            color: Colors.black,
-                            size: 60.0,
-                          ),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12), // <-- Radius
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              child: Row(
-
-                children: <Widget>[
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(),
-                    ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: OutlinedButton(
-                        onPressed: () {
-                          setState(() {
-                            Provider.of<Sockett>(context,listen:false).arrows("d");
-                          });
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Icon(
-                            Icons.arrow_downward_sharp,
-                            color: Colors.black,
-                            size: 60.0,
-                          ),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12), // <-- Radius
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            SizedBox(height: 30),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Center(
-                child: Text(
-                  'Keyboard Access',
+      body: Container(
+        decoration: new BoxDecoration(
+          color: Constants.backColor,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListView(
+            children: [
+              //SizedBox(height: 20),
+              //Center(child: Text('Selected Media file: ${context.watch<FileLocation>().fileLocation}')),
+              SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Center(
+                  child: Text(
+                  'Mouse Access',
                   style: TextStyle(fontSize: 25),
+              ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: TextFormField(
-                cursorColor: Theme.of(context).cursorColor,
-                controller: context.watch<KeyboardController>().keyboardController,
-                decoration: InputDecoration(
-                  //labelText: 'Label text',
-                  labelStyle: TextStyle(
-                    color: Color(0xFF6200EE),
-                  ),
-                  hintText: 'Input as keyboard',
-                  suffixIcon: Icon(
-                    Icons.keyboard,
-                  ),
-                  border: OutlineInputBorder(),
+              SizedBox(height: 20),
+              Container(
+                child: Row(
+
+                  children: <Widget>[
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: OutlinedButton(
+                          onPressed: () {
+                            setState(() {
+                              Provider.of<Sockett>(context,listen:false).arrows("u");
+                            });
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Icon(
+                              Icons.arrow_upward_sharp,
+                              color: Colors.black,
+                              size: 60.0,
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12), // <-- Radius
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(),
+                      ),
+                    )
+                  ],
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: OutlinedButton(
-                onPressed: () {
-                  setState(() {
-                    String _text = Provider.of<KeyboardController>(context,listen:false).text();
-                    Provider.of<KeyboardController>(context,listen:false).reset('');
-                    Provider.of<Sockett>(context,listen:false).keyboard(_text);
-                  });
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Text('Send',style: TextStyle(fontSize: 25),),
+              Container(
+                child: Row(
+
+                  children: <Widget>[
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: OutlinedButton(
+                          onPressed: () {
+                            setState(() {
+                              Provider.of<Sockett>(context,listen:false).arrows("l");
+                            });
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Icon(
+                              Icons.arrow_back_sharp,
+                              color: Colors.black,
+                              size: 60.0,
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12), // <-- Radius
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: OutlinedButton(
+                          onPressed: () {
+                            setState(() {
+                              Provider.of<Sockett>(context,listen:false).arrows("click");
+                            });
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Icon(
+                              Icons.mouse,
+                              color: Colors.black,
+                              size: 60.0,
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12), // <-- Radius
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: OutlinedButton(
+                          onPressed: () {
+                            setState(() {
+                              Provider.of<Sockett>(context,listen:false).arrows("r");
+                            });
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Icon(
+                              Icons.arrow_forward_sharp,
+                              color: Colors.black,
+                              size: 60.0,
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12), // <-- Radius
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12), // <-- Radius
+              ),
+              Container(
+                child: Row(
+
+                  children: <Widget>[
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: OutlinedButton(
+                          onPressed: () {
+                            setState(() {
+                              Provider.of<Sockett>(context,listen:false).arrows("d");
+                            });
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Icon(
+                              Icons.arrow_downward_sharp,
+                              color: Colors.black,
+                              size: 60.0,
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12), // <-- Radius
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(height: 30),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Center(
+                  child: Text(
+                    'Keyboard Access',
+                    style: TextStyle(fontSize: 25),
                   ),
                 ),
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: TextFormField(
+                  cursorColor: Theme.of(context).cursorColor,
+                  controller: context.watch<KeyboardController>().keyboardController,
+                  decoration: InputDecoration(
+                    //labelText: 'Label text',
+                    labelStyle: TextStyle(
+                      color: Color(0xFF6200EE),
+                    ),
+                    hintText: 'Input as keyboard',
+                    suffixIcon: Icon(
+                      Icons.keyboard,
+                    ),
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: OutlinedButton(
+                  onPressed: () {
+                    setState(() {
+                      String _text = Provider.of<KeyboardController>(context,listen:false).text();
+                      Provider.of<KeyboardController>(context,listen:false).reset('');
+                      Provider.of<Sockett>(context,listen:false).keyboard(_text);
+                    });
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text('Send',style: TextStyle(fontSize: 25),),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12), // <-- Radius
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

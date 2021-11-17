@@ -13,7 +13,7 @@ class Sockett with ChangeNotifier {
   Socket get socket => _socket;
   String get terminalOutput => _terminalOutput;
   String get taskManagerOutput => _taskManagerOutput;
-  List<List<String>> _table =[['a','b','c']];
+  List<List<String>> _table =[['default','4','34']];
   List<List<String>> get table => _table;
   int _sze =1;
   int get sze => _sze;
@@ -147,16 +147,11 @@ class Sockett with ChangeNotifier {
     String message = "                              ";
     _socket.write("tasklist");
     _socket.listen((data) {
-      notifyListeners();
       _taskManagerOutput = String.fromCharCodes(data);
-      getSize();
-      getTable();
+      // getSize();
+      // getTable();
       notifyListeners();
-
-      //print(message);
     },
-
-
     // handle errors
     // onError: (error) {
     //   print(error);
@@ -168,7 +163,9 @@ class Sockett with ChangeNotifier {
     // },
   );
 
-   // notifyListeners();
+   notifyListeners();
+   //  _socket.close();
+   //  reset("");
   }
 
   void kill_process(String pid)

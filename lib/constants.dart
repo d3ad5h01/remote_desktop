@@ -30,8 +30,16 @@ class Constants {
   // static const Socket socket = null;
 
 static const Color cardIconColor = Color.fromRGBO(179,179,179, 1.0);
-  static const Color fontColor = Colors.white;
-  static const Color backColor = Colors.black;
+  static const Color fontColor = Color.fromRGBO(38, 50, 98, 1);
+  static const Color fontColor2 = Colors.black;
+  static const Color fontColor3 = Colors.white;
+
+  static const Color cardColor41 = Color.fromRGBO(86, 131, 223, 1);
+  static const Color cardColor42 = Color.fromRGBO(255, 152, 117, 1);
+  static const Color cardColor43 = Color.fromRGBO(255, 133, 125, 1);
+
+
+  static const Color backColor = Colors.white;
   static const Color cardColor1 = Color(0xFF7EC8E3);
   static const Color cardColor2 = Color(0xFFFA26A0);
   static const Color cardColor3 = Color(0xFFF51720);
@@ -85,6 +93,29 @@ static const Color cardIconColor = Color.fromRGBO(179,179,179, 1.0);
   static const Color cardColor38 = Color(0xFF53354A);
   static const Color cardColor39 = Color(0xFF1FAB89);
   static const Color cardColor40 = Color(0xFF07689F);
+
+  // static const Color cardColor44 = Color(0xFF96ceb4);
+  // static const Color cardColor45 = Color(0xFFffeead);
+  // static const Color cardColor46 = Color(0xFFFF6F69);
+  // static const Color cardColor47 = Color(0xFFFFCC5C);
+  static const Color cardColor48 = Color(0xFFe6e6ea);
+  static const Color cardColor49 = Color(0xFF88D8B0);
+
+
+  static const Color cardColor44 = Color(0xFFC85C5C);
+  static const Color cardColor45 = Color(0xFFB2EA70);
+  static const Color cardColor46 = Color(0xFFFBD148);
+  static const Color cardColor47 = Color(0xFFF9975D);
+
+  // static const Color cardColor44 = Color(0xFFabd67d);
+  // static const Color cardColor45 = Color(0xFFc7fffa);
+  // static const Color cardColor46 = Color(0xFFff876b);
+  // static const Color cardColor47 = Color(0xFFFFCC5C);
+  // static const Color cardColor48 = Color(0xFFffbfb0);
+  // static const Color cardColor49 = Color(0xFFc7a1d1);
+  //
+
+
 
 
 

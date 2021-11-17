@@ -43,6 +43,7 @@ def tasklist():
     csvreader = csv.reader(output.decode('utf-8').splitlines())
     rows = []
     ret_str = ""
+    length = 0
     for row in csvreader:
         row.pop(2)
         row.pop(2)
@@ -54,6 +55,10 @@ def tasklist():
         else:
             row[-1] = int(row[-1])
         rows.append(row)
+        if length == 20:
+            break
+        length+=1
+
 
     sorted_list = sorted(rows, key=lambda x: x[-1], reverse=True)
     for row in sorted_list:

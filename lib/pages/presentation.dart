@@ -43,11 +43,12 @@ class _ListDemoState extends State<ListDemo> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
+          icon: Icon(Icons.arrow_back, color: Colors.black,size:30),
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: Text("Presentation Control"),
-        backgroundColor: Color(0xFF6200EE),
+        elevation: 0,
+        backgroundColor: Colors.white,
         centerTitle: true,
       ),
 
@@ -66,7 +67,7 @@ class _ListDemoState extends State<ListDemo> {
             ),
             SizedBox(height: 20),
 
-            Center(child: Text('Selected Powerpoint File: ${context.watch<FileLocation>().fileLocation}')),
+            //Center(child: Text('Selected Powerpoint File: ${context.watch<FileLocation>().fileLocation}')),
             SizedBox(height: 20),
             Container(
               child: Row(

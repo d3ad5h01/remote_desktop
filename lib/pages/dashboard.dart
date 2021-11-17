@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:language_learning_ui/constants.dart';
+import 'package:language_learning_ui/pages/profile.dart';
 //import 'package:language_learning_ui/pages/profile.dart';
 import 'package:language_learning_ui/providers/bottom_navigation.dart';
 import 'package:language_learning_ui/providers/file_location_controller_provider.dart';
@@ -26,6 +27,8 @@ import 'package:provider/provider.dart';
 import 'package:language_learning_ui/providers/brightness_provider.dart';
 import 'package:language_learning_ui/providers/bottom_navigation.dart';
 import 'package:provider/provider.dart';
+import 'package:language_learning_ui/pages/sys_info.dart';
+import 'package:language_learning_ui/providers/socket_provider.dart';
 
 import 'all_commands.dart';
 
@@ -59,64 +62,74 @@ class _DashboardState extends State<Dashboard> {
         if(Provider.of<BottomNavigation>(context,listen:false).bottomNavigation==2)
         {
 
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(
-          //     builder: (context) => Profile(),
-          //   ),
-          // );
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Profile(),
+            ),
+          );
         }
       });
     }
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        showSelectedLabels: false,
-        currentIndex: Provider.of<BottomNavigation>(context,listen:false).bottomNavigation,
-        onTap: _onTap,
-        showUnselectedLabels: false,
-        iconSize: 22,
-        elevation: 0,
-        backgroundColor: Constants.backColor,
-
-        unselectedIconTheme: IconThemeData(
-          color: Constants.cardIconColor,
+      bottomNavigationBar: Container(
+        decoration: new BoxDecoration(
+            color: Colors.white,
+            borderRadius: new BorderRadius.only(
+              topLeft: const Radius.circular(20.0),
+              topRight: const Radius.circular(20.0),
+            ),
+                boxShadow: [
+                BoxShadow(color: Colors.grey, spreadRadius: 1,blurRadius: 10.0,),
+          ],
         ),
-        selectedIconTheme: IconThemeData(
-          color: Constants.cardColor8,
+        child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          showSelectedLabels: false,
+          currentIndex: Provider.of<BottomNavigation>(context,listen:false).bottomNavigation,
+          onTap: _onTap,
+          showUnselectedLabels: false,
+          iconSize: 22,
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+
+          unselectedIconTheme: IconThemeData(
+            color: Constants.cardIconColor,
+          ),
+          selectedIconTheme: IconThemeData(
+            color: Constants.kRed,
+          ),
+          items: [
+            BottomNavigationBarItem(
+              label: "",
+              icon:
+              Icon(
+                Icons.home,
+                size: 25.0,
+              ),
+            ),
+            BottomNavigationBarItem(
+              label: "",
+              icon:
+              Icon(
+                Icons.apps,
+                size: 25.0,
+              ),
+            ),
+            BottomNavigationBarItem(
+              label: "",
+              icon:
+              Icon(
+                Icons.person,
+                size: 25.0,
+              ),
+            ),
+
+
+          ],
+
         ),
-        items: [
-          BottomNavigationBarItem(
-            label: "",
-            icon:
-            Icon(
-              Icons.home,
-              size: 25.0,
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: "",
-            icon:
-            Icon(
-              Icons.apps,
-              size: 25.0,
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: "",
-            icon:
-            Icon(
-              Icons.person,
-              size: 25.0,
-            ),
-          ),
-
-
-        ],
-
       ),
-
-
       body: SingleChildScrollView(
         child: SafeArea(
           child: Container(
@@ -154,7 +167,7 @@ class _DashboardState extends State<Dashboard> {
                     Text(
                       "Device Specs",
                       style: TextStyle(
-                        fontSize: 30.0,
+                        fontSize: 20.0,
                         color: Constants.fontColor,
                         fontWeight: FontWeight.w600,
                       ),
@@ -164,7 +177,6 @@ class _DashboardState extends State<Dashboard> {
                 SizedBox(
                   height: 12.0,
                 ),
-                SizedBox(height: 10.0),
                 Row(
                   children: <Widget>[
                     Flexible(
@@ -183,7 +195,7 @@ class _DashboardState extends State<Dashboard> {
                                   "Device Ip",
                                   style: TextStyle(
                                     fontSize: 15.0,
-                                    color: Constants.fontColor,
+                                    color: Constants.fontColor3,
                                     fontWeight: FontWeight.w600,
                                   ),),
                               ),
@@ -191,7 +203,7 @@ class _DashboardState extends State<Dashboard> {
                               Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
-                                  "172.21.2.4",
+                                  "192.168.0.6",
                                   style: TextStyle(
                                     fontSize: 20.0,
                                     color: Constants.fontColor,
@@ -205,7 +217,7 @@ class _DashboardState extends State<Dashboard> {
                                   "OS Name:",
                                   style: TextStyle(
                                     fontSize: 15.0,
-                                    color: Constants.fontColor,
+                                    color: Constants.fontColor3,
                                     fontWeight: FontWeight.w600,
                                   ),),
                               ),
@@ -227,7 +239,7 @@ class _DashboardState extends State<Dashboard> {
                                   'Host Name',
                                   style: TextStyle(
                                     fontSize: 15.0,
-                                    color: Constants.fontColor,
+                                    color: Constants.fontColor3,
                                     fontWeight: FontWeight.w600,
                                   ),),
                               ),
@@ -235,7 +247,7 @@ class _DashboardState extends State<Dashboard> {
                               Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
-                                  "DESKTOP-VP1F6F0",
+                                  "LAPTOP-CV0CA7RG",
                                   style: TextStyle(
                                     fontSize: 20.0,
                                     color: Constants.fontColor,
@@ -249,7 +261,7 @@ class _DashboardState extends State<Dashboard> {
                                   'Product ID',
                                   style: TextStyle(
                                     fontSize: 15.0,
-                                    color: Constants.fontColor,
+                                    color: Constants.fontColor3,
                                     fontWeight: FontWeight.w600,
                                   ),),
                               ),
@@ -257,7 +269,7 @@ class _DashboardState extends State<Dashboard> {
                               Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
-                                  "00347-35849-54819-AAOEM",
+                                  "00327-35914-82716-AAOEM",
                                   style: TextStyle(
                                     fontSize: 20.0,
                                     color: Constants.fontColor,
@@ -270,7 +282,10 @@ class _DashboardState extends State<Dashboard> {
                         ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Constants.cardColor27,
+                          color: Constants.cardColor41,
+                          boxShadow: [
+                            BoxShadow(color: Colors.grey, spreadRadius: 1,blurRadius: 10.0,),
+                          ],
                         ), //BoxDecoration
                       ), //Container
                     ), //Flexible
@@ -284,6 +299,7 @@ class _DashboardState extends State<Dashboard> {
                         Container(
                           height: 100.0,
                           width: 100.0,
+
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
@@ -293,8 +309,8 @@ class _DashboardState extends State<Dashboard> {
                                 alignment: Alignment.center,
                                 child: Icon(
                                   Icons.devices_outlined,
-                                  color: Colors.black,
-                                  size: 40.0,
+                                  color: Constants.fontColor,
+                                  size: 30.0,
                                 ),
                               ),
                               SizedBox(height: 10),
@@ -303,7 +319,7 @@ class _DashboardState extends State<Dashboard> {
                                 child: Text(
                                   "Connected",
                                   style: TextStyle(
-                                    fontSize: 15.0,
+                                    fontSize: 14.0,
                                     color: Constants.fontColor,
                                     fontWeight: FontWeight.w600,
                                   ),),
@@ -313,11 +329,14 @@ class _DashboardState extends State<Dashboard> {
                             ],
                           ),
                         ),
-
-                          decoration: BoxDecoration(
+                          decoration: new BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
-                            color:  Constants.cardColor28,
+                            color:  Constants.cardColor42,
+                            boxShadow: [
+                              BoxShadow(color: Colors.grey, spreadRadius: 1,blurRadius: 10.0,),
+                            ],
                           ),
+
                         ),
                         SizedBox(
                           height: 10,
@@ -334,7 +353,7 @@ class _DashboardState extends State<Dashboard> {
                                   alignment: Alignment.center,
                                   child: Icon(
                                     Icons.battery_std,
-                                    color: Colors.black,
+                                    color: Constants.fontColor,
                                     size: 40.0,
                                   ),
                                 ),
@@ -342,7 +361,7 @@ class _DashboardState extends State<Dashboard> {
                                 Align(
                                   alignment: Alignment.bottomCenter,
                                   child: Text(
-                                    "90%",
+                                    "95%",
                                     style: TextStyle(
                                       fontSize: 15.0,
                                       color: Constants.fontColor,
@@ -356,47 +375,66 @@ class _DashboardState extends State<Dashboard> {
                           ),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
-                            color: Constants.cardColor29,
+                            color: Constants.cardColor43,
+                            boxShadow: [
+                              BoxShadow(color: Colors.grey, spreadRadius: 1,blurRadius: 10.0,),
+                            ],
                           ),
                         ),
                         SizedBox(
                           height: 10,
                         ),
-                        Container(
-                          height: 100.0,
-                          width: 100.0,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: Icon(
-                                    Icons.wifi,
-                                    color: Colors.black,
-                                    size: 40.0,
-                                  ),
-                                ),
-                                SizedBox(height: 10),
-                                Align(
-                                  alignment: Alignment.bottomCenter,
-                                  child: Text(
-                                    "Wifi",
-                                    style: TextStyle(
-                                      fontSize: 15.0,
+                        InkWell(
+                          onTap: () {
+                             setState(() {
+                               Provider.of<Sockett>(context,listen:false).terminal('systeminfo');
+                                      Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SystemInfo(),
+                            ),
+                          );
+                                      });
+                          },
+                          child: Container(
+                            height: 100.0,
+                            width: 100.0,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Align(
+                                    alignment: Alignment.center,
+                                    child: Icon(
+                                      Icons.more_horiz,
                                       color: Constants.fontColor,
-                                      fontWeight: FontWeight.w600,
-                                    ),),
-                                ),
+                                      size: 40.0,
+                                    ),
+                                  ),
+                                  SizedBox(height: 10),
+                                  Align(
+                                    alignment: Alignment.bottomCenter,
+                                    child: Text(
+                                      "More",
+                                      style: TextStyle(
+                                        fontSize: 15.0,
+                                        color: Constants.fontColor,
+                                        fontWeight: FontWeight.w600,
+                                      ),),
+                                  ),
 
-                                //CopyCard2(),
+                                  //CopyCard2(),
+                                ],
+                              ),
+                            ),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              color:  Constants.cardColor31,
+                              boxShadow: [
+                                BoxShadow(color: Colors.grey, spreadRadius: 1,blurRadius: 10.0,),
                               ],
                             ),
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color:  Constants.cardColor30,
                           ),
                         ),
 
@@ -406,8 +444,9 @@ class _DashboardState extends State<Dashboard> {
                   ], //<Widget>[]
                   mainAxisAlignment: MainAxisAlignment.center,
                 ),
+                
                 SizedBox(
-                  height: 40,
+                  height: 20,
                 ),
 
                 Row(
@@ -416,7 +455,7 @@ class _DashboardState extends State<Dashboard> {
                     Text(
                       "Quick Controls",
                       style: TextStyle(
-                        fontSize: 25.0,
+                        fontSize: 20.0,
                         color: Constants.fontColor,
                         fontWeight: FontWeight.w600,
                       ),
@@ -449,7 +488,7 @@ class _DashboardState extends State<Dashboard> {
                                       "Brightness :",
                                       style: TextStyle(
                                         fontSize: 18.0,
-                                        color: Constants.fontColor,
+                                        color: Constants.fontColor3,
                                         fontWeight: FontWeight.w400,
                                       ),),
                                     Text(
@@ -476,7 +515,11 @@ class _DashboardState extends State<Dashboard> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Constants.cardColor23,
-                        ), //BoxDecoration
+                          boxShadow: [
+                            BoxShadow(color: Colors.grey, spreadRadius: 1,blurRadius: 10.0,),
+                          ],
+                        ),
+                        //BoxDecoration
                       ), //Container
                     ), //Flexible
                     SizedBox(
@@ -489,7 +532,7 @@ class _DashboardState extends State<Dashboard> {
                   mainAxisAlignment: MainAxisAlignment.center,
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 Row(
                   children: <Widget>[
@@ -511,7 +554,7 @@ class _DashboardState extends State<Dashboard> {
                                       "Volume :",
                                       style: TextStyle(
                                         fontSize: 18.0,
-                                        color: Constants.fontColor,
+                                        color: Constants.fontColor3,
                                         fontWeight: FontWeight.w400,
                                       ),),
                                     //Text('Volume : ${(context.watch<Volume>().volume).floor()}')
@@ -539,6 +582,9 @@ class _DashboardState extends State<Dashboard> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Constants.cardColor24,
+                          boxShadow: [
+                            BoxShadow(color: Colors.grey, spreadRadius: 1,blurRadius: 10.0,),
+                          ],
                         ), //BoxDecoration
                       ), //Container
                     ), //Flexible
@@ -552,7 +598,7 @@ class _DashboardState extends State<Dashboard> {
                   mainAxisAlignment: MainAxisAlignment.center,
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 Row(
                   children: <Widget>[
@@ -594,6 +640,9 @@ class _DashboardState extends State<Dashboard> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Constants.cardColor25,
+                          boxShadow: [
+                            BoxShadow(color: Colors.grey, spreadRadius: 1,blurRadius: 10.0,),
+                          ],
                         ), //BoxDecoration
                       ), //Container
                     ), //Flexible
@@ -640,6 +689,9 @@ class _DashboardState extends State<Dashboard> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Constants.cardColor26,
+                          boxShadow: [
+                            BoxShadow(color: Colors.grey, spreadRadius: 1,blurRadius: 10.0,),
+                          ],
                         ), //BoxDecoration
                       ), //Container
                     ),

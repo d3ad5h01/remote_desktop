@@ -80,51 +80,63 @@ class _AllCommandsState extends State<AllCommands> {
       });
     }
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        showSelectedLabels: false,
-        currentIndex: Provider.of<BottomNavigation>(context,listen:false).bottomNavigation,
-        onTap: _onTap,
-        showUnselectedLabels: false,
-        iconSize: 22,
-        elevation: 0,
-        backgroundColor: Constants.backColor,
-
-        unselectedIconTheme: IconThemeData(
-          color: Constants.cardIconColor,
+      bottomNavigationBar: Container(
+        decoration: new BoxDecoration(
+          color: Colors.white,
+          borderRadius: new BorderRadius.only(
+            topLeft: const Radius.circular(20.0),
+            topRight: const Radius.circular(20.0),
+          ),
+          boxShadow: [
+            BoxShadow(color: Colors.grey, spreadRadius: 1,blurRadius: 10.0,),
+          ],
         ),
-        selectedIconTheme: IconThemeData(
-          color: Constants.cardColor8,
+        child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          showSelectedLabels: false,
+          currentIndex: Provider.of<BottomNavigation>(context,listen:false).bottomNavigation,
+          onTap: _onTap,
+          showUnselectedLabels: false,
+          iconSize: 22,
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+
+          unselectedIconTheme: IconThemeData(
+            color: Constants.cardIconColor,
+          ),
+          selectedIconTheme: IconThemeData(
+            color: Constants.kRed,
+          ),
+          items: [
+            BottomNavigationBarItem(
+              label: "",
+              icon:
+              Icon(
+                Icons.home,
+                size: 25.0,
+              ),
+            ),
+            BottomNavigationBarItem(
+              label: "",
+              icon:
+              Icon(
+                Icons.apps,
+                size: 25.0,
+              ),
+            ),
+            BottomNavigationBarItem(
+              label: "",
+              icon:
+              Icon(
+                Icons.person,
+                size: 25.0,
+              ),
+            ),
+
+
+          ],
+
         ),
-        items: [
-          BottomNavigationBarItem(
-            label: "",
-            icon:
-            Icon(
-              Icons.home,
-              size: 25.0,
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: "",
-            icon:
-            Icon(
-              Icons.apps,
-              size: 25.0,
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: "",
-            icon:
-            Icon(
-              Icons.person,
-              size: 25.0,
-            ),
-          ),
-
-
-        ],
-
       ),
 
 
@@ -150,7 +162,7 @@ class _AllCommandsState extends State<AllCommands> {
                         "All Commands",
                         style: TextStyle(
                           fontSize: 30.0,
-                          color: Constants.cardColor8,
+                          color: Constants.fontColor,
                           fontWeight: FontWeight.w900,
                         ),
                       ),
@@ -216,7 +228,10 @@ class _AllCommandsState extends State<AllCommands> {
                           ),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Constants.cardColor35,
+                            color: Constants.cardColor44,
+                            boxShadow: [
+                              BoxShadow(color: Colors.grey, spreadRadius: 1,blurRadius: 10.0,),
+                            ],
                           ), //BoxDecoration
                         ),
                       ), //Container
@@ -268,7 +283,10 @@ class _AllCommandsState extends State<AllCommands> {
                           ),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Constants.cardColor36,
+                            color: Constants.cardColor45,
+                            boxShadow: [
+                              BoxShadow(color: Colors.grey, spreadRadius: 1,blurRadius: 10.0,),
+                            ],
                           ), //BoxDecoration
                         ),
                       ), //Container
@@ -326,7 +344,10 @@ class _AllCommandsState extends State<AllCommands> {
                           ),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Constants.cardColor37,
+                            color: Constants.cardColor46,
+                            boxShadow: [
+                              BoxShadow(color: Colors.grey, spreadRadius: 1,blurRadius: 10.0,),
+                            ],
                           ), //BoxDecoration
                         ),
                       ), //Container
@@ -379,7 +400,10 @@ class _AllCommandsState extends State<AllCommands> {
                           ),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Constants.cardColor38,
+                            color: Constants.cardColor47,
+                            boxShadow: [
+                              BoxShadow(color: Colors.grey, spreadRadius: 1,blurRadius: 10.0,),
+                            ],
                           ), //BoxDecoration
                         ),
                       ), //Container
@@ -437,7 +461,10 @@ class _AllCommandsState extends State<AllCommands> {
                           ),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Constants.cardColor39,
+                            color: Constants.cardColor49,
+                            boxShadow: [
+                              BoxShadow(color: Colors.grey, spreadRadius: 1,blurRadius: 10.0,),
+                            ],
                           ), //BoxDecoration
                         ),
                       ), //Container
@@ -489,7 +516,10 @@ class _AllCommandsState extends State<AllCommands> {
                           ),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Constants.cardColor40,
+                            color: Constants.cardColor48,
+                            boxShadow: [
+                              BoxShadow(color: Colors.grey, spreadRadius: 1,blurRadius: 10.0,),
+                            ],
                           ), //BoxDecoration
                         ),
                       ), //Container

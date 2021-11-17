@@ -28,6 +28,7 @@ import 'package:language_learning_ui/providers/bottom_navigation.dart';
 import 'package:provider/provider.dart';
 
 import 'all_commands.dart';
+import 'dashboard.dart';
 
 
 class Profile extends StatefulWidget {
@@ -56,64 +57,76 @@ class _ProfileState extends State<Profile> {
             ),
           );
         }
-        if(Provider.of<BottomNavigation>(context,listen:false).bottomNavigation==2)
+        if(Provider.of<BottomNavigation>(context,listen:false).bottomNavigation==0)
         {
 
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => Profile(),
+              builder: (context) => Dashboard(),
             ),
           );
         }
       });
     }
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        showSelectedLabels: false,
-        currentIndex: Provider.of<BottomNavigation>(context,listen:false).bottomNavigation,
-        onTap: _onTap,
-        showUnselectedLabels: false,
-        iconSize: 22,
-        elevation: 0,
-        backgroundColor: Constants.backColor,
-
-        unselectedIconTheme: IconThemeData(
-          color: Constants.cardIconColor,
+      bottomNavigationBar: Container(
+        decoration: new BoxDecoration(
+          color: Colors.white,
+          borderRadius: new BorderRadius.only(
+            topLeft: const Radius.circular(20.0),
+            topRight: const Radius.circular(20.0),
+          ),
+          boxShadow: [
+            BoxShadow(color: Colors.grey, spreadRadius: 1,blurRadius: 10.0,),
+          ],
         ),
-        selectedIconTheme: IconThemeData(
-          color: Constants.cardColor8,
+        child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          showSelectedLabels: false,
+          currentIndex: Provider.of<BottomNavigation>(context,listen:false).bottomNavigation,
+          onTap: _onTap,
+          showUnselectedLabels: false,
+          iconSize: 22,
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+
+          unselectedIconTheme: IconThemeData(
+            color: Constants.cardIconColor,
+          ),
+          selectedIconTheme: IconThemeData(
+            color: Constants.kRed,
+          ),
+          items: [
+            BottomNavigationBarItem(
+              label: "",
+              icon:
+              Icon(
+                Icons.home,
+                size: 25.0,
+              ),
+            ),
+            BottomNavigationBarItem(
+              label: "",
+              icon:
+              Icon(
+                Icons.apps,
+                size: 25.0,
+              ),
+            ),
+            BottomNavigationBarItem(
+              label: "",
+              icon:
+              Icon(
+                Icons.person,
+                size: 25.0,
+              ),
+            ),
+
+
+          ],
+
         ),
-        items: [
-          BottomNavigationBarItem(
-            label: "",
-            icon:
-            Icon(
-              Icons.home,
-              size: 25.0,
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: "",
-            icon:
-            Icon(
-              Icons.apps,
-              size: 25.0,
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: "",
-            icon:
-            Icon(
-              Icons.person,
-              size: 25.0,
-            ),
-          ),
-
-
-        ],
-
       ),
 
 
@@ -122,7 +135,7 @@ class _ProfileState extends State<Profile> {
           child: Container(
             height: 800,
             decoration: new BoxDecoration(
-              color: Constants.backColor,
+              color: Constants.fontColor3,
             ),
             padding: EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
@@ -141,7 +154,7 @@ class _ProfileState extends State<Profile> {
                       "Profile",
                       style: TextStyle(
                         fontSize: 25.0,
-                        color: Constants.cardColor8,
+                        color: Constants.fontColor,
                         fontWeight: FontWeight.w800,
                       ),
                     ),
@@ -152,6 +165,7 @@ class _ProfileState extends State<Profile> {
                 ),
                 SizedBox(height: 10.0),
             new Container(
+
                     height: 250.0,
                     color: Constants.backColor,
                     child: new Column(
@@ -182,7 +196,7 @@ class _ProfileState extends State<Profile> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
                                     new CircleAvatar(
-                                      backgroundColor: Colors.red,
+                                      backgroundColor: Constants.cardColor25,
                                       radius: 25.0,
                                       child: new Icon(
                                         Icons.camera_alt,
@@ -213,7 +227,7 @@ class _ProfileState extends State<Profile> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Divyatez.",
+                      "Gajjala Deepak",
                       style: TextStyle(
                         fontSize: 25.0,
                         color: Constants.fontColor,
@@ -247,7 +261,7 @@ class _ProfileState extends State<Profile> {
                                       "My Devices",
                                       style: TextStyle(
                                         fontSize: 20.0,
-                                        color: Constants.fontColor,
+                                        color: Constants.fontColor3,
                                         fontWeight: FontWeight.w400,
                                       ),),
                                   ],
@@ -259,6 +273,9 @@ class _ProfileState extends State<Profile> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Constants.cardColor23,
+                          boxShadow: [
+                            BoxShadow(color: Colors.grey, spreadRadius: 1,blurRadius: 10.0,),
+                          ],
                         ), //BoxDecoration
                       ), //Container
                     ), //Flexible
@@ -294,7 +311,7 @@ class _ProfileState extends State<Profile> {
                                       "History",
                                       style: TextStyle(
                                         fontSize: 18.0,
-                                        color: Constants.fontColor,
+                                        color: Constants.fontColor3,
                                         fontWeight: FontWeight.w400,
                                       ),),
                                     //Text('Volume : ${(context.watch<Volume>().volume).floor()}')
@@ -310,6 +327,9 @@ class _ProfileState extends State<Profile> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Constants.cardColor24,
+                          boxShadow: [
+                            BoxShadow(color: Colors.grey, spreadRadius: 1,blurRadius: 10.0,),
+                          ],
                         ), //BoxDecoration
                       ), //Container
                     ), //Flexible
@@ -347,7 +367,7 @@ class _ProfileState extends State<Profile> {
                                         "Support",
                                         style: TextStyle(
                                           fontSize: 18.0,
-                                          color: Constants.fontColor,
+                                          color: Constants.fontColor3,
                                           fontWeight: FontWeight.w400,
                                         ),),
                                       //Text('Volume : ${(context.watch<Volume>().volume).floor()}')
@@ -361,6 +381,9 @@ class _ProfileState extends State<Profile> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Constants.cardColor25,
+                            boxShadow: [
+                              BoxShadow(color: Colors.grey, spreadRadius: 1,blurRadius: 10.0,),
+                            ],
                           ), //BoxDecoration
                         ), //Container
                       ), //Flexible
@@ -385,7 +408,7 @@ class _ProfileState extends State<Profile> {
                                         "Log Out",
                                         style: TextStyle(
                                           fontSize: 18.0,
-                                          color: Constants.fontColor,
+                                          color: Constants.fontColor3,
                                           fontWeight: FontWeight.w400,
                                         ),),
                                       //Text('Volume : ${(context.watch<Volume>().volume).floor()}')
@@ -401,6 +424,9 @@ class _ProfileState extends State<Profile> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Constants.cardColor26,
+                            boxShadow: [
+                              BoxShadow(color: Colors.grey, spreadRadius: 1,blurRadius: 10.0,),
+                            ],
                           ), //BoxDecoration
                         ), //Container
                       ),

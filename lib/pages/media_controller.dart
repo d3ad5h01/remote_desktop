@@ -47,10 +47,11 @@ class _ListDemoState extends State<ListDemo> {
     return Scaffold(
      appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
+          icon: Icon(Icons.arrow_back, color: Colors.black,size:30),
           onPressed: () => Navigator.of(context).pop(),
         ),
         //title: Text("Media Controller"),
+       elevation: 0,
         backgroundColor: Constants.backColor,
         centerTitle: true,
       ),
@@ -68,7 +69,7 @@ class _ListDemoState extends State<ListDemo> {
               padding: const EdgeInsets.all(10.0),
               child: Icon(
                 Icons.audiotrack,
-                color: Constants.cardColor8,
+                color: Constants.fontColor,
                 size: 100.0,
               ),
             ),
