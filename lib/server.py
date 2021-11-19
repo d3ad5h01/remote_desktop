@@ -55,7 +55,7 @@ def tasklist():
         else:
             row[-1] = int(row[-1])
         rows.append(row)
-        if length == 20:
+        if length == 500:
             break
         length+=1
 
@@ -199,7 +199,7 @@ def main():
         print("Socket successfully created")
 
         port = 6969
-        sock.bind(('192.168.0.6', port))
+        sock.bind(('192.168.0.108', port))
         sock.listen(5)
         print("Listening for connections")
         accept_connection(sock)

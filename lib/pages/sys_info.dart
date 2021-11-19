@@ -76,6 +76,47 @@ class _ListDemoState extends State<ListDemo> {
                   ),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Padding(
+                    padding: EdgeInsets.fromLTRB(40.0, 10.0, 40.0, 10.0),
+                  child: InkWell(
+                    onTap: () {
+                      setState(() {
+                        Provider.of<Sockett>(context,listen:false).resetTerminalOutput('Loading..............');
+                        String _text = 'systeminfo';
+                        Provider.of<Sockett>(context,listen:false).terminal(_text);
+                      //     Provider.of<Sockett>(context,listen:false).task_manager();
+                      //     k = Provider.of<Sockett>(context,listen:false).taskManagerOutput;
+                      //
+                       });
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Constants.backColor,
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          color: Constants.fontColor,
+                          width: 1,
+                        ),
+                      ),
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "Get Info",
+                            style: TextStyle(
+                              fontSize: 20.0,
+                              color: Constants.fontColor,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
               SizedBox(height: 20),
               Container(
                 child: Row(
@@ -87,34 +128,6 @@ class _ListDemoState extends State<ListDemo> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                             
-                              SizedBox(height: 20),
-                              // Container(
-                              //   height: 350,
-                              //   decoration: BoxDecoration(
-                              //     color: Constants.backColor,
-                              //     borderRadius: BorderRadius.circular(10),
-                              //     border: Border.all(
-                              //       color: Constants.fontColor,
-                              //       width: 1,
-                              //     ),
-                              //   ),
-                              //   child: SingleChildScrollView(
-                              //     child: Padding(
-                              //       padding: const EdgeInsets.all(15.0),
-                              //       child: Text(
-                              //         //ToDO : make this _output as dynamic : setState
-                              //          Provider.of<Sockett>(context,listen:false).terminalOutput,
-                              //           style: TextStyle(
-                              //           fontSize: 15.0,
-                              //           color: Constants.fontColor,
-                              //           fontWeight: FontWeight.w600,
-                              //         ),
-                              //       ),
-                              //     ),
-                              //   ),
-                              // ),
-
                               SizedBox(height: 30),
                               Container(
                                 decoration: BoxDecoration(

@@ -123,7 +123,7 @@ class _ListDemoState extends State<ListDemo> {
                               //   ),
                               // ),
 
-                              SizedBox(height: 30),
+                              SizedBox(height: 10),
                               Container(
                                 decoration: BoxDecoration(
                                       color: Constants.backColor,
@@ -143,6 +143,7 @@ class _ListDemoState extends State<ListDemo> {
                                   ),),
                                 ),
                               ),
+
                               Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
@@ -193,6 +194,7 @@ class _ListDemoState extends State<ListDemo> {
                               OutlinedButton(
                                 onPressed: () {
                                    setState(() {
+                                     Provider.of<Sockett>(context,listen:false).resetTerminalOutput('Loading..............');
                                     String _text = Provider.of<KeyboardController>(context,listen:false).text();
                                     Provider.of<KeyboardController>(context,listen:false).reset('');
                                      Provider.of<Sockett>(context,listen:false).terminal(_text);

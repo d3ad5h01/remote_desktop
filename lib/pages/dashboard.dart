@@ -387,7 +387,12 @@ class _DashboardState extends State<Dashboard> {
                         InkWell(
                           onTap: () {
                              setState(() {
-                               Provider.of<Sockett>(context,listen:false).terminal('systeminfo');
+                               print('More tapped');
+                               //Provider.of<Sockett>(context,listen:false).terminal('systeminfo');
+
+                               //String tmpVar = Provider.of<Sockett>(context,listen:true).systemInfoOutput;
+                               //if(tmpVar!='Loading..')
+                               //Provider.of<Sockett>(context,listen:false).getSystemInfo();
                                       Navigator.push(
                             context,
                             MaterialPageRoute(
