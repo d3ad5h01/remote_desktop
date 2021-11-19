@@ -6,6 +6,7 @@ import 'package:language_learning_ui/pages/profile.dart';
 //import 'package:language_learning_ui/pages/profile.dart';
 import 'package:language_learning_ui/providers/bottom_navigation.dart';
 import 'package:language_learning_ui/providers/file_location_controller_provider.dart';
+import 'package:language_learning_ui/providers/ip_controller_provider.dart';
 import 'package:language_learning_ui/providers/volume_provider.dart';
 import 'package:language_learning_ui/widgets/border_text_field.dart';
 import 'package:language_learning_ui/widgets/brightness_button.dart';
@@ -203,7 +204,7 @@ class _DashboardState extends State<Dashboard> {
                               Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
-                                  "192.168.0.6",
+                                  '${(Provider.of<Sockett>(context,listen:false).twoCond)[9][3]}',
                                   style: TextStyle(
                                     fontSize: 20.0,
                                     color: Constants.fontColor,
@@ -225,7 +226,7 @@ class _DashboardState extends State<Dashboard> {
                               Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
-                                  "Microsoft Windows 10",
+                                  '${(Provider.of<Sockett>(context,listen:false).twoCond)[1][3]}',
                                   style: TextStyle(
                                     fontSize: 20.0,
                                     color: Constants.fontColor,
@@ -247,7 +248,7 @@ class _DashboardState extends State<Dashboard> {
                               Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
-                                  "LAPTOP-CV0CA7RG",
+                                  '${(Provider.of<Sockett>(context,listen:false).twoCond)[0][3]}',
                                   style: TextStyle(
                                     fontSize: 20.0,
                                     color: Constants.fontColor,
@@ -269,7 +270,7 @@ class _DashboardState extends State<Dashboard> {
                               Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
-                                  "00327-35914-82716-AAOEM",
+                                  '${(Provider.of<Sockett>(context,listen:false).twoCond)[8][3]}',
                                   style: TextStyle(
                                     fontSize: 20.0,
                                     color: Constants.fontColor,
@@ -305,21 +306,38 @@ class _DashboardState extends State<Dashboard> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Align(
+                              (((Provider.of<Sockett>(context,listen:false).twoCond)[9][3])!='')?Align(
                                 alignment: Alignment.center,
                                 child: Icon(
                                   Icons.devices_outlined,
                                   color: Constants.fontColor,
                                   size: 30.0,
                                 ),
+                              ):Align(
+                                alignment: Alignment.center,
+                                child: Icon(
+                                  Icons. desktop_access_disabled,
+                                  color: Constants.fontColor,
+                                  size: 30.0,
+                                ),
                               ),
+
                               SizedBox(height: 10),
-                              Align(
+                              (((Provider.of<Sockett>(context,listen:false).twoCond)[9][3])!='')?Align(
                                 alignment: Alignment.bottomCenter,
                                 child: Text(
                                   "Connected",
                                   style: TextStyle(
                                     fontSize: 14.0,
+                                    color: Constants.fontColor,
+                                    fontWeight: FontWeight.w600,
+                                  ),),
+                              ):Align(
+                                alignment: Alignment.bottomCenter,
+                                child: Text(
+                                  "Disconnected",
+                                  style: TextStyle(
+                                    fontSize: 12.0,
                                     color: Constants.fontColor,
                                     fontWeight: FontWeight.w600,
                                   ),),

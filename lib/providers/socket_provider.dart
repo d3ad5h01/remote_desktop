@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'package:language_learning_ui/providers/terminal_output_provider.dart';
 import 'package:provider/provider.dart';
+import 'dart:math';
 
 class Sockett with ChangeNotifier {
   Socket _socket;
@@ -107,6 +108,107 @@ class Sockett with ChangeNotifier {
     );
     notifyListeners();
     //return message;
+  }
+
+  Future<void> terminal2(String text) async {
+    String message = "                              ";
+    _socket.write("terminal:" + text);
+    await _socket.listen(
+          (data) {
+        print("inside");
+        message = String.fromCharCodes(data);
+        print("Done");
+        _terminalOutput = message;
+        notifyListeners();
+        print('Updated');
+        extractSystemInfo(_terminalOutput);
+      },
+    );
+    notifyListeners();
+    //return message;
+  }
+
+  String _systemInfo ='';
+  String get systemInfo => _systemInfo;
+
+  List<List<String>> _twoCond = [['Host','Name:','OS',''],
+    ['OS','Name:','OS',''],
+    ['OS','Version:','OS',''],
+    ['System','Model:','System',''],
+    ['Host','Name:','OS',''],
+    ['Host','Name:','OS',''],
+    ['Max','Size:','Virtual',''],
+    ['In','Use:','Page',''],
+    ['Product','ID:','Original',''],
+    ['address(es)','[01]:','[02]:','']
+
+  ];
+
+  List<List<String>> _threeCond = [['Total','Physical','Memory:','Available',''],
+    ['Available','Physical','Memory:','Virtual',''],[ 'IP', 'address(es)', '[01]:','[02]:','']];
+
+  List<List<String>> get twoCond => _twoCond;
+  List<List<String>> get threeCond => _threeCond;
+
+
+  void extractSystemInfo(String text)
+  {
+
+    _systemInfo = text;
+
+    _systemInfo = _systemInfo.replaceAll('\n', '#');
+    _systemInfo = _systemInfo.replaceAll(' ', '#');
+    print(_systemInfo);
+    var listName = _systemInfo.split('#');
+    var newList;
+    listName.removeWhere((value) => value == '');
+
+    for(int i=0;i<listName.length-2;i++)
+    {
+      print(listName[i]);
+      for(int k=0;k<_twoCond.length;k++)
+      {
+
+        if(listName[i]==_twoCond[k][0]&&listName[i+1]==_twoCond[k][1]){
+
+          for(int j=i+2;j<listName.length;j++)
+          {
+            print('Found');
+            if(listName[j]==_twoCond[k][2])
+              break;
+            else
+              _twoCond[k][3] = _twoCond[k][3] + listName[j] + ' ';
+          }
+        }
+
+      }
+
+      for(int k=0;k<_threeCond.length;k++)
+      {
+        if(listName[i]==_threeCond[k][0]&&listName[i+1]==_threeCond[k][1]&&listName[i+2]==_threeCond[k][2]){
+          //print('Found');
+          for(int j=i+3;j<listName.length;j++)
+          {
+            if(listName[j]==_threeCond[k][3])
+              break;
+            else
+              _threeCond[k][4] = _threeCond[k][4] + listName[j] + ' ';
+          }
+        }
+      }
+
+      if(listName[i]=='IP')
+      {
+          _twoCond[9][3]=listName[i+3];
+      }
+
+
+
+    }
+    print(_threeCond[0]);
+    print(_threeCond[1]);
+    print(_threeCond[2]);
+    print(_twoCond);
   }
 
   void getTable() {

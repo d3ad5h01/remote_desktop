@@ -189,6 +189,9 @@ class _AllCommandsState extends State<AllCommands> {
                       fit: FlexFit.tight,
                       child: InkWell(
                         onTap: (){
+                          setState(() {
+                            Provider.of<Sockett>(context,listen:false).resetTerminalOutput('Input below to display output is Here.');
+                          });
                           print("Terminal Emulator button ");
                           Navigator.push(
                             context,

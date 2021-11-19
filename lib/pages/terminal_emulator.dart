@@ -143,7 +143,7 @@ class _ListDemoState extends State<ListDemo> {
                                   ),),
                                 ),
                               ),
-
+                              SizedBox(height: 20),
                               Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(

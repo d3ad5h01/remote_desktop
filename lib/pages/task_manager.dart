@@ -363,12 +363,10 @@ class _ListDemoState extends State<ListDemo> {
                             _selectedIndex = index;
                             //name = dirArr[i][0];
                             Provider.of<TaskManagerProvider>(context, listen: false)
-                                .reset((Provider.of<Sockett>(context, listen: false)
-                                .table)[_selectedIndex][0]);
+                                .reset(items[_selectedIndex][0]);
                             Provider.of<TaskManagerProvider>(context, listen: false)
                                 .resetPid(
-                                (Provider.of<Sockett>(context, listen: false)
-                                    .table)[_selectedIndex][1]);
+                                (items[_selectedIndex][1]));
 
                             //print(name);
                             //await Future.delayed(const Duration(seconds: 2), (){});
