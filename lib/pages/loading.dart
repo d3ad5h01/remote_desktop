@@ -30,7 +30,7 @@ class ListDemo extends StatefulWidget {
 
 class _ListDemoState extends State<ListDemo> {
 
-
+  int loader =0;
 
 
   Widget load = Center(
@@ -56,8 +56,7 @@ class _ListDemoState extends State<ListDemo> {
   @override
   void initState() {
     super.initState();
-    //load=CircularProgressIndicator();
-    Future.delayed(const Duration(seconds: 2), Setter);
+    Future.delayed(const Duration(seconds: 2), setterLoad);
   }
 
   void navigator()
@@ -69,7 +68,7 @@ class _ListDemoState extends State<ListDemo> {
       ),
     );
   }
-  void Setter()
+  void setterLoad()
   {
     setState(() {
       load = SingleChildScrollView(
@@ -85,7 +84,8 @@ class _ListDemoState extends State<ListDemo> {
                   padding: const EdgeInsets.symmetric(vertical: 32.0),
                   child: Image.asset("assets/images/handPhone.jpg",height:300, width:300),
                 ),
-              ),Text('Welcome',
+              ),
+              Text('Welcome',
                 style: TextStyle(
                   fontSize: 30.0,
                   color: Constants.fontColor,
@@ -120,51 +120,50 @@ class _ListDemoState extends State<ListDemo> {
                   ),
                 ),
               ),
-              //SizedBox(height:40),
-              Container(
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(40.0, 10.0, 40.0, 10.0),
-                    child: InkWell(
-                      onTap: () {
-                        Provider.of<FileLocation>(context,listen:false).setLoadingScreenSystemInfo();
-                        Future.delayed(const Duration(seconds: 8), navigator);
-                        //Future.delayed(const Duration(seconds: 5) ,() => Provider.of<Sockett>(context,listen:false).extractSystemInfo(Provider.of<Sockett>(context,listen:false).terminalOutput));
+              InkWell(
+                onTap: () {
 
-                        setState(() {
-                          print('Here');
-                          Provider.of<Sockett>(context,listen:false).resetTerminalOutput('Loading..............');
-                          String _text = 'systeminfo';
-                          Provider.of<Sockett>(context,listen:false).terminal2(_text);
-                          //     Provider.of<Sockett>(context,listen:false).task_manager();
-                          //     k = Provider.of<Sockett>(context,listen:false).taskManagerOutput;
-                          //
-                        });
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Constants.backColor,
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                            color: Constants.fontColor,
-                            width: 1,
-                          ),
-                        ),
-                        child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "Get Started",
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                color: Constants.fontColor,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
+                  //Future.delayed(const Duration(seconds: 5) ,() => Provider.of<Sockett>(context,listen:false).extractSystemInfo(Provider.of<Sockett>(context,listen:false).terminalOutput));
+
+                  setState(() {
+                    if(loader==0) {
+                      loader=1;
+                      setterLoad2();
+                      Future.delayed(const Duration(seconds: 7), unsetterLoad2);
+                      Future.delayed(const Duration(seconds: 8), navigator);
+                      Provider.of<Sockett>(context, listen: false).resetTerminalOutput('Loading..............');
+                      String _text = 'systeminfo';
+                      Provider.of<Sockett>(context, listen: false).terminal2(_text);
+                    }
+                    else
+                    {
+                      Future.delayed(const Duration(seconds: 0), navigator);
+                    }
+                  });
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Constants.backColor,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: Constants.fontColor,
+                      width: 1,
+                    ),
+                  ),
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "Get Started",
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          color: Constants.fontColor,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
                   ),
+                ),
               ),
 
             ],
@@ -174,32 +173,36 @@ class _ListDemoState extends State<ListDemo> {
     });
   }
 
+  void unsetterLoad2()
+  {
+    setState(() {
+      load2 = Container();
+    });
+  }
+
+  void setterLoad2()
+  {
+    setState(() {
+      load2 = Column(
+        children: [
+          CircularProgressIndicator(),
+          SizedBox(height:10),
+          Text('Setting up environment..',
+            style: TextStyle(
+              fontSize: 15.0,
+              color: Constants.fontColor,
+              fontWeight: FontWeight.w600,
+            ),),
+        ],
+      );
+    });
+  }
 
 
   Widget build(BuildContext context) {
 
-
-    void getSystemInfo()
-    {
-      // String _text = 'systeminfo';
-      // Future.delayed(const Duration(seconds: 2), () => Provider.of<Sockett>(context,listen:false).terminal(_text));
-      // Future.delayed(const Duration(seconds: 4), () =>  print(Provider.of<Sockett>(context,listen:true).terminalOutput));
-    }
-
-    void initState() {
-      super.initState();
-
-    }
-
-
-
     return Scaffold(
       appBar: AppBar(
-        // leading: IconButton(
-        //   //icon: Icon(Icons.arrow_back, color: Colors.black,size:30),
-        //   onPressed: () => Navigator.of(context).pop(),
-        // ),
-        //title: Text("Task Manager"),
         backgroundColor: Constants.backColor,
         centerTitle: true,
         elevation: 0,
@@ -215,7 +218,7 @@ class _ListDemoState extends State<ListDemo> {
               padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
               child: Center(child: SizedBox(height:600,child: Center(child: load))),
             ),
-            Provider.of<FileLocation>(context,listen:false).loadingScreenSystemInfo,
+            load2,
             //Text('Welcome..'),
 
 

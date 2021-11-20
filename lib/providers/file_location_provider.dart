@@ -16,6 +16,7 @@ class FileLocation with ChangeNotifier {
   void noLoad()
   {
     _isLoading = false;
+    _loadingScreenSystemInfo = Container();
     notifyListeners();
   }
 
@@ -33,9 +34,12 @@ class FileLocation with ChangeNotifier {
           ),),
       ],
     );
+    _isLoading = true;
     notifyListeners();
 
   }
+
+
 
 
   void reset(String newFileLocation) {

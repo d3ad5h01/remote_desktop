@@ -13,7 +13,7 @@ import 'package:language_learning_ui/providers/file_location_controller_provider
 import 'package:language_learning_ui/providers/folder_location_controller_provider.dart';
 import 'package:language_learning_ui/providers/file_location_controller_provider.dart';
 
-class MouseKeyboard extends StatelessWidget {
+class GameControls extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,9 +67,9 @@ class _ListDemoState extends State<ListDemo> {
                 padding: const EdgeInsets.all(10.0),
                 child: Center(
                   child: Text(
-                  'Mouse Access',
-                  style: TextStyle(fontSize: 25),
-              ),
+                    'Mini Clip Keyboard',
+                    style: TextStyle(fontSize: 25),
+                  ),
                 ),
               ),
               SizedBox(height: 20),
@@ -158,7 +158,7 @@ class _ListDemoState extends State<ListDemo> {
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Icon(
-                              Icons.mouse,
+                              Icons.arrow_downward_sharp,
                               color: Colors.black,
                               size: 60.0,
                             ),
@@ -203,12 +203,7 @@ class _ListDemoState extends State<ListDemo> {
                 child: Row(
 
                   children: <Widget>[
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(),
-                      ),
-                    ),
+
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -220,10 +215,9 @@ class _ListDemoState extends State<ListDemo> {
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
-                            child: Icon(
-                              Icons.arrow_downward_sharp,
-                              color: Colors.black,
-                              size: 60.0,
+                            child: Text(
+                              'Space',
+                              style: TextStyle(fontSize: 25,color: Constants.fontColor2),
                             ),
                           ),
                           style: ElevatedButton.styleFrom(
@@ -237,125 +231,80 @@ class _ListDemoState extends State<ListDemo> {
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Container(),
+                        child: OutlinedButton(
+                          onPressed: () {
+                            setState(() {
+                              Provider.of<Sockett>(context,listen:false).arrows("d");
+                            });
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Text(
+                              'Enter',
+                              style: TextStyle(fontSize: 25,color: Constants.fontColor2),
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12), // <-- Radius
+                            ),
+                          ),
+                        ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
-
               SizedBox(height: 30),
-
-
-              //Keyboard
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Center(
-                  child: Text(
-                    'Keyboard Access',
-                    style: TextStyle(fontSize: 25),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: TextFormField(
-                  cursorColor: Theme.of(context).cursorColor,
-                  controller: context.watch<KeyboardController>().keyboardController,
-                  decoration: InputDecoration(
-                    //labelText: 'Label text',
-                    labelStyle: TextStyle(
-                      color: Color(0xFF6200EE),
-                    ),
-                    hintText: 'Input as keyboard',
-                    suffixIcon: Icon(
-                      Icons.keyboard,
-                    ),
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-              ),
-              Padding(
-                  padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
-                child: Container(
-                  child: Row(
-
-                    children: <Widget>[
-
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(0.0),
-                          child: OutlinedButton(
-                            onPressed: () {
-                              setState(() {
-                                Provider.of<Sockett>(context,listen:false).arrows("d");
-                              });
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Text(
-                                'Space',
-                                style: TextStyle(fontSize: 25,color: Constants.fontColor2),
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12), // <-- Radius
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        child: Padding(
-                            padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-                          child: OutlinedButton(
-                            onPressed: () {
-                              setState(() {
-                                Provider.of<Sockett>(context,listen:false).arrows("d");
-                              });
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Text(
-                                'Enter',
-                                style: TextStyle(fontSize: 25,color: Constants.fontColor2),
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12), // <-- Radius
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: OutlinedButton(
-                  onPressed: () {
-                    setState(() {
-                      String _text = Provider.of<KeyboardController>(context,listen:false).text();
-                      Provider.of<KeyboardController>(context,listen:false).reset('');
-                      Provider.of<Sockett>(context,listen:false).keyboard(_text);
-                    });
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Text('Send',style: TextStyle(fontSize: 25),),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12), // <-- Radius
-                    ),
-                  ),
-                ),
-              ),
+              KeyboardCard(),
+              // Padding(
+              //   padding: const EdgeInsets.all(10.0),
+              //   child: Center(
+              //     child: Text(
+              //       'Keyboard Access',
+              //       style: TextStyle(fontSize: 25),
+              //     ),
+              //   ),
+              // ),
+              // Padding(
+              //   padding: const EdgeInsets.all(20.0),
+              //   child: TextFormField(
+              //     cursorColor: Theme.of(context).cursorColor,
+              //     controller: context.watch<KeyboardController>().keyboardController,
+              //     decoration: InputDecoration(
+              //       //labelText: 'Label text',
+              //       labelStyle: TextStyle(
+              //         color: Color(0xFF6200EE),
+              //       ),
+              //       hintText: 'Input as keyboard',
+              //       suffixIcon: Icon(
+              //         Icons.keyboard,
+              //       ),
+              //       border: OutlineInputBorder(),
+              //     ),
+              //   ),
+              // ),
+              // Padding(
+              //   padding: const EdgeInsets.all(20.0),
+              //   child: OutlinedButton(
+              //     onPressed: () {
+              //       setState(() {
+              //         String _text = Provider.of<KeyboardController>(context,listen:false).text();
+              //         Provider.of<KeyboardController>(context,listen:false).reset('');
+              //         Provider.of<Sockett>(context,listen:false).keyboard(_text);
+              //       });
+              //     },
+              //     child: Padding(
+              //       padding: const EdgeInsets.all(10.0),
+              //       child: Text('Send',style: TextStyle(fontSize: 25),),
+              //     ),
+              //     style: ElevatedButton.styleFrom(
+              //       shape: RoundedRectangleBorder(
+              //         borderRadius: BorderRadius.circular(12), // <-- Radius
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),

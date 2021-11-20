@@ -8,6 +8,8 @@ import 'package:language_learning_ui/pages/media_controller.dart';
 import 'package:language_learning_ui/pages/mouse_keyboard.dart';
 import 'package:language_learning_ui/pages/presentation.dart';
 import 'package:language_learning_ui/providers/file_location_provider.dart';
+import 'package:language_learning_ui/providers/keyboard_controller_provider.dart';
+import 'package:language_learning_ui/providers/socket_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:language_learning_ui/providers/folder_location_provider.dart';
 import 'package:language_learning_ui/providers/file_location_controller_provider.dart';
@@ -1029,3 +1031,107 @@ class _MouseKeyboardCardState extends State<MouseKeyboardCard> {
   }
 }
 /**/
+
+
+
+
+
+/*keyboard Crad */
+
+class KeyboardCard extends StatefulWidget {
+  @override
+  State<KeyboardCard> createState() => _KeyboardCardState();
+}
+
+class _KeyboardCardState extends State<KeyboardCard> {
+  @override
+
+
+
+  Widget build(BuildContext context) {
+    destination = 'none';
+    return ExpandableNotifier(
+        child: Padding(
+          padding: const EdgeInsets.all(1),
+          child: Card(
+            child: Column(
+              children: <Widget>[
+                ScrollOnExpand(
+                  scrollOnExpand: true,
+                  scrollOnCollapse: false,
+                  child: ExpandablePanel(
+                    theme: const ExpandableThemeData(
+                      headerAlignment: ExpandablePanelHeaderAlignment.center,
+                      tapBodyToCollapse: true,
+                    ),
+                    header: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Center(
+                        child: Text(
+                          'Keyboard Access',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
+                    expanded: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: TextFormField(
+                            cursorColor: Theme.of(context).cursorColor,
+                            controller: context.watch<KeyboardController>().keyboardController,
+                            decoration: InputDecoration(
+                              //labelText: 'Label text',
+                              labelStyle: TextStyle(
+                                color: Color(0xFF6200EE),
+                              ),
+                              hintText: 'Input as keyboard',
+                              suffixIcon: Icon(
+                                Icons.keyboard,
+                              ),
+                              border: OutlineInputBorder(),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: OutlinedButton(
+                            onPressed: () {
+                              setState(() {
+                                String _text = Provider.of<KeyboardController>(context,listen:false).text();
+                                Provider.of<KeyboardController>(context,listen:false).reset('');
+                                Provider.of<Sockett>(context,listen:false).keyboard(_text);
+                              });
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Text('Send',style: TextStyle(fontSize: 25),),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12), // <-- Radius
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    builder: (_, collapsed, expanded) {
+                      return Padding(
+                        padding: EdgeInsets.only(left: 10, right: 10, bottom: 10,top:10),
+                        child: Expandable(
+                          collapsed: collapsed,
+                          expanded: expanded,
+                          theme: const ExpandableThemeData(crossFadePoint: 0),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ));
+  }
+}

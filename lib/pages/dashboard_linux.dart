@@ -34,13 +34,13 @@ import 'package:language_learning_ui/providers/socket_provider.dart';
 import 'all_commands.dart';
 
 
-class Dashboard extends StatefulWidget {
+class DashboardLinux extends StatefulWidget {
   @override
-  _DashboardState createState() => _DashboardState();
+  _DashboardLinuxState createState() => _DashboardLinuxState();
 }
 
 
-class _DashboardState extends State<Dashboard> {
+class _DashboardLinuxState extends State<DashboardLinux> {
   @override
   Color color = Colors.grey;
 
@@ -52,18 +52,17 @@ class _DashboardState extends State<Dashboard> {
         Provider.of<BottomNavigation>(context,listen:false).reset(index);
         print(Provider.of<BottomNavigation>(context,listen:false).bottomNavigation);
         if(Provider.of<BottomNavigation>(context,listen:false).bottomNavigation==1)
-          {
-            Navigator.pop(context);
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) =>  AllCommands(),
-              ),
-            );
-          }
+        {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>  AllCommands(),
+            ),
+          );
+        }
         if(Provider.of<BottomNavigation>(context,listen:false).bottomNavigation==2)
         {
-          Navigator.pop(context);
+
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -74,15 +73,15 @@ class _DashboardState extends State<Dashboard> {
       });
     }
     return Scaffold(
-      bottomNavigationBar: (((Provider.of<Sockett>(context,listen:false).twoCond)[9][3])!='')?Container(
+      bottomNavigationBar: Container(
         decoration: new BoxDecoration(
-            color: Colors.white,
-            borderRadius: new BorderRadius.only(
-              topLeft: const Radius.circular(20.0),
-              topRight: const Radius.circular(20.0),
-            ),
-                boxShadow: [
-                BoxShadow(color: Colors.grey, spreadRadius: 1,blurRadius: 10.0,),
+          color: Colors.white,
+          borderRadius: new BorderRadius.only(
+            topLeft: const Radius.circular(20.0),
+            topRight: const Radius.circular(20.0),
+          ),
+          boxShadow: [
+            BoxShadow(color: Colors.grey, spreadRadius: 1,blurRadius: 10.0,),
           ],
         ),
         child: BottomNavigationBar(
@@ -131,54 +130,12 @@ class _DashboardState extends State<Dashboard> {
           ],
 
         ),
-      ):Container(
-        decoration: new BoxDecoration(
-          color: Colors.white,
-        ),
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          showSelectedLabels: false,
-          currentIndex: 0,
-          //onTap: _onTap,
-          showUnselectedLabels: false,
-          iconSize: 22,
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-
-          unselectedIconTheme: IconThemeData(
-            color: Colors.white,
-          ),
-          selectedIconTheme: IconThemeData(
-            color: Colors.white,
-          ),
-          items: [
-            BottomNavigationBarItem(
-              label: "",
-              icon:
-              Icon(
-                Icons.apps,
-                size: 25.0,
-              ),
-            ),
-            BottomNavigationBarItem(
-              label: "",
-              icon:
-              Icon(
-                Icons.apps,
-                size: 25.0,
-              ),
-            ),
-
-
-          ],
-
-        ),
       ),
       body: SingleChildScrollView(
         child: SafeArea(
-          child: (((Provider.of<Sockett>(context,listen:false).twoCond)[9][3])!='')?Container(
+          child: Container(
             decoration: new BoxDecoration(
-                color: Constants.backColor,
+              color: Constants.backColor,
             ),
             padding: EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
@@ -215,7 +172,7 @@ class _DashboardState extends State<Dashboard> {
                               ),
                             ),
                             TextSpan(
-                              text: "Windows Version",
+                              text: "Linux Version",
                               style: TextStyle(
                                 fontSize: 15.0,
                                 fontWeight: FontWeight.w600,
@@ -384,52 +341,52 @@ class _DashboardState extends State<Dashboard> {
                           height: 100.0,
                           width: 100.0,
 
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              (((Provider.of<Sockett>(context,listen:false).twoCond)[9][3])!='')?Align(
-                                alignment: Alignment.center,
-                                child: Icon(
-                                  Icons.devices_outlined,
-                                  color: Constants.fontColor,
-                                  size: 30.0,
-                                ),
-                              ):Align(
-                                alignment: Alignment.center,
-                                child: Icon(
-                                  Icons. desktop_access_disabled,
-                                  color: Constants.fontColor,
-                                  size: 30.0,
-                                ),
-                              ),
-
-                              SizedBox(height: 10),
-                              (((Provider.of<Sockett>(context,listen:false).twoCond)[9][3])!='')?Align(
-                                alignment: Alignment.bottomCenter,
-                                child: Text(
-                                  "Connected",
-                                  style: TextStyle(
-                                    fontSize: 14.0,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                (((Provider.of<Sockett>(context,listen:false).twoCond)[9][3])!='')?Align(
+                                  alignment: Alignment.center,
+                                  child: Icon(
+                                    Icons.devices_outlined,
                                     color: Constants.fontColor,
-                                    fontWeight: FontWeight.w600,
-                                  ),),
-                              ):Align(
-                                alignment: Alignment.bottomCenter,
-                                child: Text(
-                                  "Disconnected",
-                                  style: TextStyle(
-                                    fontSize: 12.0,
+                                    size: 30.0,
+                                  ),
+                                ):Align(
+                                  alignment: Alignment.center,
+                                  child: Icon(
+                                    Icons. desktop_access_disabled,
                                     color: Constants.fontColor,
-                                    fontWeight: FontWeight.w600,
-                                  ),),
-                              ),
+                                    size: 30.0,
+                                  ),
+                                ),
 
-                              //CopyCard2(),
-                            ],
+                                SizedBox(height: 10),
+                                (((Provider.of<Sockett>(context,listen:false).twoCond)[9][3])!='')?Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: Text(
+                                    "Connected",
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                      color: Constants.fontColor,
+                                      fontWeight: FontWeight.w600,
+                                    ),),
+                                ):Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: Text(
+                                    "Disconnected",
+                                    style: TextStyle(
+                                      fontSize: 12.0,
+                                      color: Constants.fontColor,
+                                      fontWeight: FontWeight.w600,
+                                    ),),
+                                ),
+
+                                //CopyCard2(),
+                              ],
+                            ),
                           ),
-                        ),
                           decoration: new BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             color:  Constants.cardColor42,
@@ -487,20 +444,20 @@ class _DashboardState extends State<Dashboard> {
                         ),
                         InkWell(
                           onTap: () {
-                             setState(() {
-                               print('More tapped');
-                               //Provider.of<Sockett>(context,listen:false).terminal('systeminfo');
+                            setState(() {
+                              print('More tapped');
+                              //Provider.of<Sockett>(context,listen:false).terminal('systeminfo');
 
-                               //String tmpVar = Provider.of<Sockett>(context,listen:true).systemInfoOutput;
-                               //if(tmpVar!='Loading..')
-                               //Provider.of<Sockett>(context,listen:false).getSystemInfo();
-                                      Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SystemInfo(),
-                            ),
-                          );
-                                      });
+                              //String tmpVar = Provider.of<Sockett>(context,listen:true).systemInfoOutput;
+                              //if(tmpVar!='Loading..')
+                              //Provider.of<Sockett>(context,listen:false).getSystemInfo();
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SystemInfo(),
+                                ),
+                              );
+                            });
                           },
                           child: Container(
                             height: 100.0,
@@ -546,11 +503,11 @@ class _DashboardState extends State<Dashboard> {
 
                       ],
                     ),
-                     //Flexible
+                    //Flexible
                   ], //<Widget>[]
                   mainAxisAlignment: MainAxisAlignment.center,
                 ),
-                
+
                 SizedBox(
                   height: 20,
                 ),
@@ -813,68 +770,6 @@ class _DashboardState extends State<Dashboard> {
                 ),
 
               ],
-            ),
-          ):Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              height: 800,
-              decoration: new BoxDecoration(
-                color: Constants.backColor,
-              ),
-              child:Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(height: 20),
-                    Text('Error In Establishing Connection',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 50.0,
-                        color: Constants.fontColor,
-                        fontWeight: FontWeight.w600,
-                      ),),
-                    Icon(
-                      Icons.error ,
-                      color: Constants.primaryTextColor,
-                      size: 100,
-                    ),
-                    InkWell(
-                      onTap: () {
-
-                        Navigator.pop(context);
-                        Navigator.pop(context);
-                      },
-                      child: Padding(
-                        padding: EdgeInsets.fromLTRB(30.0, 10.0, 30.0, 10.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Constants.backColor,
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                              color: Constants.fontColor,
-                              width: 1,
-                            ),
-                          ),
-                          child: Center(
-                            child: Padding(
-                              padding: EdgeInsets.fromLTRB(30.0, 10.0, 30.0, 10.0),
-                              child: Text(
-                                "Try Again",
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  color: Constants.fontColor,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
             ),
           ),
         ),

@@ -77,6 +77,16 @@ class _ListDemoState extends State<ListDemo> {
     Future.delayed(const Duration(seconds: 5), () => removeLoader());
   }
 
+  // Future<void> makingTable() async
+  // {
+  //   await Provider.of<Sockett>(context, listen: false).task_manager();
+  //   await Provider.of<Sockett>(context, listen: false).getSize();
+  //   await print(Provider.of<Sockett>(context, listen: false).sze);
+  //   await Provider.of<Sockett>(context, listen: false).getTable();
+  //   await settingTable();
+  //   await removeLoader();
+  // }
+
   Future<void> removeLoader()
   async {
     setState(() {
@@ -551,10 +561,18 @@ class _MyDialogState extends State<MyDialog> {
           textColor: Colors.red,
           onPressed: () {
             setState(() {
+
               Provider.of<Sockett>(context, listen: false).kill_process(
                   Provider.of<TaskManagerProvider>(context, listen: false).pid);
               //Future.delayed(const Duration(seconds: 1), () =>(makingTable());
               Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>  TaskManager(),
+                ),
+              );
             });
           },
           child: Text('END PROCESS'),

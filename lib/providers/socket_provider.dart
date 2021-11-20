@@ -33,7 +33,7 @@ class Sockett with ChangeNotifier {
     notifyListeners();
   }
 
-  void reset(String newIp) async {
+  Future<bool> reset(String newIp) async {
     print('yes : $newIp');
 
     // TODO : change this ip to dynamic resolution
@@ -42,6 +42,7 @@ class Sockett with ChangeNotifier {
     _socket.write('Connected ... ');
     print('Connected ...');
     notifyListeners();
+    return true;
   }
 
   void volume(double val) async {
@@ -128,6 +129,27 @@ class Sockett with ChangeNotifier {
     //return message;
   }
 
+  Future<void> terminal3(String text) async {
+    String message = "                              ";
+    bool cf = true;
+    while(cf) {
+      _socket.write("terminal:" + text);
+      await _socket.listen(
+            (data) {
+          print("inside");
+          message = String.fromCharCodes(data);
+          print("Done");
+          _terminalOutput = message;
+          cf = ifIsNotInt();
+          notifyListeners();
+          print('Updated');
+        },
+      );
+    }
+    notifyListeners();
+    //return message;
+  }
+
   String _systemInfo ='';
   String get systemInfo => _systemInfo;
 
@@ -140,7 +162,8 @@ class Sockett with ChangeNotifier {
     ['Max','Size:','Virtual',''],
     ['In','Use:','Page',''],
     ['Product','ID:','Original',''],
-    ['address(es)','[01]:','[02]:','']
+    ['address(es)','[01]:','[02]:',''],
+    ['Registered','Owner:','Registered','']
 
   ];
 
@@ -208,6 +231,7 @@ class Sockett with ChangeNotifier {
     print(_threeCond[0]);
     print(_threeCond[1]);
     print(_threeCond[2]);
+    print(_twoCond[9]);
     print(_twoCond);
   }
 
@@ -240,6 +264,28 @@ class Sockett with ChangeNotifier {
     return double.parse(s, (e) => null) != null;
   }
 
+  bool ifIsNotInt()
+  {
+    int sze = 0;
+    String ret = '';
+    //print('Iitial str is ::: $_terminalOutput');
+    for (int s = 0; s < _terminalOutput.length; s++) {
+      if (_terminalOutput[s] != ';') {
+        ret = ret + _terminalOutput[s];
+      } else {
+        print('ret is::: $ret');
+        if (isNumeric(ret)) {
+            return false;
+        }
+        else {
+          return true;
+        }
+        break;
+      }
+    }
+    return false;
+  }
+
   void getSize() {
     _sze = 0;
     String ret = '';
@@ -269,31 +315,21 @@ class Sockett with ChangeNotifier {
   Future<void> task_manager() async {
     print('called');
     String message = "";
-    _socket.write("tasklist");
-    int i = 0;
-    await _socket.listen(
-      (data) {
-        // Future.delayed(Duration(seconds: 2), () {
-        //   print('Waiting..$i');
-        //   i++;
-        // });
-
-        _terminalOutput = String.fromCharCodes(data);
-        print(_terminalOutput);
-        //getSize();
-        //getTable();
-        notifyListeners();
-      },
-      // handle errors
-      // onError: (error) {
-      //   print(error);
-      // },
-      //
-      // // handle the client closing the connection
-      // onDone: () {
-      //   print('command executed');
-      // },
-    );
+    bool cf = true;
+    int i=1;
+    while(cf&&i<5) {
+      print('Calling..${i}');
+      i++;
+      _socket.write("tasklist");
+      await _socket.listen(
+            (data) {
+          _terminalOutput = String.fromCharCodes(data);
+          print(_terminalOutput);
+          cf = ifIsNotInt();
+          notifyListeners();
+        },
+      );
+    }
 
     notifyListeners();
     //  _socket.close();

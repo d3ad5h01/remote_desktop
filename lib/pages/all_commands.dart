@@ -5,6 +5,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:language_learning_ui/constants.dart';
 import 'package:language_learning_ui/pages/dashboard.dart';
+import 'package:language_learning_ui/pages/game_controls.dart';
 import 'package:language_learning_ui/pages/mouse_keyboard.dart';
 import 'package:language_learning_ui/pages/presentation.dart';
 import 'package:language_learning_ui/pages/profile.dart';
@@ -59,7 +60,7 @@ class _AllCommandsState extends State<AllCommands> {
         print(Provider.of<BottomNavigation>(context,listen:false).bottomNavigation);
         if(Provider.of<BottomNavigation>(context,listen:false).bottomNavigation==0)
         {
-
+          Navigator.pop(context);
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -69,7 +70,7 @@ class _AllCommandsState extends State<AllCommands> {
         }
         if(Provider.of<BottomNavigation>(context,listen:false).bottomNavigation==2)
         {
-
+          Navigator.pop(context);
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -480,11 +481,11 @@ class _AllCommandsState extends State<AllCommands> {
                       fit: FlexFit.tight,
                       child: InkWell(
                         onTap: (){
-                          print("Remote Mouse and Keyboard button ");
+                          print("Miniclip button ");
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>  MouseKeyboard(),
+                              builder: (context) =>  GameControls(),
                             ),
                           );
                         },
@@ -498,7 +499,7 @@ class _AllCommandsState extends State<AllCommands> {
                                 Align(
                                   alignment: Alignment.topCenter,
                                   child: Text(
-                                    "Remote Mouse and Keyboard",
+                                    "MiniClip Keyboard",
                                     style: TextStyle(
                                       fontSize: 15.0,
                                       color: Constants.fontColor,
@@ -509,7 +510,7 @@ class _AllCommandsState extends State<AllCommands> {
                                 Align(
                                   alignment: Alignment.bottomCenter,
                                   child:  Icon(
-                                    Icons.mouse,
+                                    Icons.keyboard,
                                     color: Colors.black,
                                     size: 40.0,
                                   ),
@@ -531,8 +532,150 @@ class _AllCommandsState extends State<AllCommands> {
                   ], //<Widget>[]
                   mainAxisAlignment: MainAxisAlignment.center,
                 ),
+                SizedBox(height: 30),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Flexible(
+                      flex: 1,
+                      fit: FlexFit.tight,
+                      child: InkWell(
+
+                        child: Container(
+                          height: 120,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(8.0, 20.0, 8.0, 8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                InkWell(
+                                  onTap: (){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) {
+                                          return RestartDialog();
+                                        });
+                                  },
+                                  child: Container(
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        Align(
+                                          alignment: Alignment.topCenter,
+                                          child: Text(
+                                            "Restart",
+                                            style: TextStyle(
+                                              fontSize: 15.0,
+                                              color: Constants.fontColor,
+                                              fontWeight: FontWeight.w600,
+                                            ),),
+                                        ),
+                                        SizedBox(height: 10),
+                                        Align(
+                                          alignment: Alignment.bottomCenter,
+                                          child:  Icon(
+                                            Icons.refresh,
+                                            color: Colors.black,
+                                            size: 40.0,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: (){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) {
+                                          return SleepDialog();
+                                        });
+                                  },
+                                  child: Container(
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        Align(
+                                          alignment: Alignment.topCenter,
+                                          child: Text(
+                                            "Sleep",
+                                            style: TextStyle(
+                                              fontSize: 15.0,
+                                              color: Constants.fontColor,
+                                              fontWeight: FontWeight.w600,
+                                            ),),
+                                        ),
+                                        SizedBox(height: 10),
+                                        Align(
+                                          alignment: Alignment.bottomCenter,
+                                          child:  Icon(
+                                            Icons.brightness_2_outlined ,
+                                            color: Colors.black,
+                                            size: 40.0,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: (){
+                                    showDialog(
+                                        context: context,
+                                        builder: (_) {
+                                          return ShutDownDialog();
+                                        });
+                                  },
+                                  child: Container(
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        Align(
+                                          alignment: Alignment.topCenter,
+                                          child: Text(
+                                            "Shut Down",
+                                            style: TextStyle(
+                                              fontSize: 15.0,
+                                              color: Constants.fontColor,
+                                              fontWeight: FontWeight.w600,
+                                            ),),
+                                        ),
+                                        SizedBox(height: 10),
+                                        Align(
+                                          alignment: Alignment.bottomCenter,
+                                          child:  Icon(
+                                            Icons.power_settings_new,
+                                            color: Colors.black,
+                                            size: 40.0,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Constants.cardColor49,
+                            boxShadow: [
+                              BoxShadow(color: Colors.grey, spreadRadius: 1,blurRadius: 10.0,),
+                            ],
+                          ), //BoxDecoration
+                        ),
+                      ), //Container
+                    ),
+
+
+                    //Flexible
+
+                    //Flexible
+                  ], //<Widget>[]
+                  //mainAxisAlignment: MainAxisAlignment.center,
+                ),
                 SizedBox(
-                  height: 500,
+                  height: 20,
                 ),
 
               ],
@@ -540,6 +683,158 @@ class _AllCommandsState extends State<AllCommands> {
           ),
         ),
       ),
+    );
+  }
+}
+
+
+
+class SleepDialog extends StatefulWidget {
+  @override
+  _SleepDialogState createState() => new _SleepDialogState();
+}
+
+class _SleepDialogState extends State<SleepDialog> {
+  Color _c = Colors.redAccent;
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      backgroundColor: Constants.backColor,
+      contentPadding: EdgeInsets.zero,
+      title: Text(
+        'Sleep the desktop',
+        style: TextStyle(
+          fontSize: 25.0,
+          color: Colors.red,
+          fontWeight: FontWeight.w200,
+        ),
+      ),
+      // content: Padding(
+      //   padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
+      //   child: Column(
+      //     mainAxisSize: MainAxisSize.min,
+      //     children: [
+      //       SizedBox(
+      //         height: 10,
+      //       ),
+      //       Text(
+      //         'This will sleep the desktop.',
+      //         style: TextStyle(
+      //           fontSize: 15.0,
+      //           color: Constants.fontColor,
+      //           fontWeight: FontWeight.w200,
+      //         ),
+      //       ),
+      //     ],
+      //   ),
+      // ),
+      actions: <Widget>[
+        FlatButton(
+          textColor: Constants.fontColor,
+          onPressed: () => Navigator.pop(context),
+          child: Text('CANCEL'),
+        ),
+        FlatButton(
+          textColor: Colors.red,
+          onPressed: () {
+            setState(() {
+              String _text = 'shutdown /l';
+              Provider.of<Sockett>(context,listen:false).terminal(_text);
+              Navigator.pop(context);
+            });
+          },
+          child: Text('Sleep'),
+        ),
+      ],
+    );
+  }
+}
+
+class RestartDialog extends StatefulWidget {
+  @override
+  _RestartDialogState createState() => new _RestartDialogState();
+}
+
+class _RestartDialogState extends State<RestartDialog> {
+  Color _c = Colors.redAccent;
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      backgroundColor: Constants.backColor,
+      contentPadding: EdgeInsets.zero,
+      title: Text(
+        'Restart the desktop',
+        style: TextStyle(
+          fontSize: 25.0,
+          color: Colors.red,
+          fontWeight: FontWeight.w200,
+        ),
+      ),
+
+      actions: <Widget>[
+        FlatButton(
+          textColor: Constants.fontColor,
+          onPressed: () => Navigator.pop(context),
+          child: Text('CANCEL'),
+        ),
+        FlatButton(
+          textColor: Colors.red,
+          onPressed: () {
+            setState(() {
+              String _text = 'shutdown /r';
+              Provider.of<Sockett>(context,listen:false).terminal(_text);
+              Navigator.pop(context);
+            });
+          },
+          child: Text('Restart'),
+        ),
+      ],
+    );
+  }
+}
+
+class ShutDownDialog extends StatefulWidget {
+  @override
+  _ShutDownDialogState createState() => new _ShutDownDialogState();
+}
+
+class _ShutDownDialogState extends State<ShutDownDialog> {
+  Color _c = Colors.redAccent;
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      backgroundColor: Constants.backColor,
+      contentPadding: EdgeInsets.zero,
+      title: Text(
+        'Shut Down the desktop',
+        style: TextStyle(
+          fontSize: 25.0,
+          color: Colors.red,
+          fontWeight: FontWeight.w200,
+        ),
+      ),
+
+      actions: <Widget>[
+        FlatButton(
+          textColor: Constants.fontColor,
+          onPressed: () => Navigator.pop(context),
+          child: Text('CANCEL'),
+        ),
+        FlatButton(
+          textColor: Colors.red,
+          onPressed: () {
+            setState(() {
+              String _text = 'shutdown /s';
+              Provider.of<Sockett>(context,listen:false).terminal(_text);
+              Navigator.pop(context);
+            });
+          },
+          child: Text('Shut Down'),
+        ),
+      ],
     );
   }
 }

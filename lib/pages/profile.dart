@@ -5,6 +5,7 @@ import 'package:language_learning_ui/constants.dart';
 import 'package:language_learning_ui/pages/profile.dart';
 import 'package:language_learning_ui/providers/bottom_navigation.dart';
 import 'package:language_learning_ui/providers/file_location_controller_provider.dart';
+import 'package:language_learning_ui/providers/socket_provider.dart';
 import 'package:language_learning_ui/providers/volume_provider.dart';
 import 'package:language_learning_ui/widgets/border_text_field.dart';
 import 'package:language_learning_ui/widgets/brightness_button.dart';
@@ -50,6 +51,7 @@ class _ProfileState extends State<Profile> {
         print(Provider.of<BottomNavigation>(context,listen:false).bottomNavigation);
         if(Provider.of<BottomNavigation>(context,listen:false).bottomNavigation==1)
         {
+          Navigator.pop(context);
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -59,7 +61,7 @@ class _ProfileState extends State<Profile> {
         }
         if(Provider.of<BottomNavigation>(context,listen:false).bottomNavigation==0)
         {
-
+          Navigator.pop(context);
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -227,7 +229,7 @@ class _ProfileState extends State<Profile> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Gajjala Deepak",
+                      '${(Provider.of<Sockett>(context,listen:false).twoCond)[10][3]}',
                       style: TextStyle(
                         fontSize: 25.0,
                         color: Constants.fontColor,
