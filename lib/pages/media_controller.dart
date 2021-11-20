@@ -94,26 +94,26 @@ class _ListDemoState extends State<ListDemo> {
                 children: <Widget>[
 
                   Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: OutlinedButton(
-                        onPressed: () {
-                          setState(() {
-
-                          });
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Image.asset("assets/images/icons8-replay34.png",height:50, width:50),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12), // <-- Radius
-                          ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: OutlinedButton(
+                      onPressed: () {
+                        setState(() {
+                          Provider.of<Sockett>(context,listen:false).media("left");
+                        });
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset("assets/images/icons8-replay34.png",height:50, width:50),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12), // <-- Radius
                         ),
                       ),
                     ),
                   ),
+                ),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -129,7 +129,7 @@ class _ListDemoState extends State<ListDemo> {
                         ),
                         onPressed: () {
                           setState(() {
-                            Provider.of<Sockett>(context,listen:false).media("pp");
+                            Provider.of<Sockett>(context,listen:false).media("p-p");
                             (_play == 0) ? _play = 1 : _play = 0;
                           });
                         },
@@ -140,26 +140,26 @@ class _ListDemoState extends State<ListDemo> {
                     ),
                   ),
                   Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: OutlinedButton(
-                        onPressed: () {
-                          setState(() {
-
-                          });
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Image.asset("assets/images/icons8-forward34.png",height:50, width:50),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12), // <-- Radius
-                          ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: OutlinedButton(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset("assets/images/icons8-forward34.png",height:50, width:50),
+                      ),
+                      onPressed: (){
+                        setState(() {
+                          Provider.of<Sockett>(context,listen:false).media("right");
+                        });
+                      },
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12), // <-- Radius
                         ),
                       ),
                     ),
                   ),
+                ),
 
 
                 ],
@@ -171,31 +171,33 @@ class _ListDemoState extends State<ListDemo> {
 
                 children: <Widget>[
                   Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: OutlinedButton(
-                        child:Text('Skip Intro',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            color: Constants.fontColor3,
-                            fontWeight: FontWeight.w600,
-                          ),),
-                        onPressed: () {
-                          setState(() {
-                          });
-                        },
-                        style: OutlinedButton.styleFrom(
-                          side: BorderSide(width: 1.0, color: Constants.fontColor3),
-                        ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: OutlinedButton(
+                      child:Text('Skip Intro',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          color: Constants.fontColor3,
+                          fontWeight: FontWeight.w600,
+                        ),),
+                      onPressed: (){
+                        setState(() {
+                          Provider.of<Sockett>(context,listen:false).media("skip");
+                        });
+                      },
+                      style: OutlinedButton.styleFrom(
+                        side: BorderSide(width: 1.0, color: Constants.fontColor3),
                       ),
                     ),
                   ),
+                ),
+                  SizedBox(width: 40),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: OutlinedButton(
-                        child:Text('Next',
+                        child:Text('Full Screen',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 20.0,
@@ -204,6 +206,7 @@ class _ListDemoState extends State<ListDemo> {
                           ),),
                         onPressed: () {
                           setState(() {
+                            Provider.of<Sockett>(context,listen:false).media("full");
                           });
                         },
                         style: OutlinedButton.styleFrom(

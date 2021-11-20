@@ -138,6 +138,30 @@ def accept_connection(sock):
                         pyautogui.press("prevtrack")
                     elif(command_lst[1] == "pp"):
                         pyautogui.press("playpause")
+                    elif(command_lst[1] == "right"):
+                        pyautogui.press("right")
+                    elif(command_lst[1] == "left"):
+                        pyautogui.press("left")
+                    elif(command_lst[1] == "skip"):
+                        pyautogui.press("s")
+                    elif(command_lst[1] == "full"):
+                        pyautogui.press("f")
+                    elif(command_lst[1] == "p-p"):
+                        pyautogui.press("space")
+
+                elif command_lst[0] == "mini":
+                    if(command_lst[1] == "right"):
+                        pyautogui.press("right")
+                    elif(command_lst[1] == "left"):
+                        pyautogui.press("left")
+                    elif(command_lst[1] == "up"):
+                        pyautogui.press("up")
+                    elif(command_lst[1] == "down"):
+                        pyautogui.press("down")
+                    elif(command_lst[1] == "space"):
+                        pyautogui.press("space")
+                    elif(command_lst[1] == "enter"):
+                        pyautogui.press("enter")
 
                 elif command_lst[0] == "m":
                     # n, m = pyautogui.size()
@@ -198,8 +222,8 @@ def main():
         sock = socket.socket()
         print("Socket successfully created")
 
-        port = 6969
-        sock.bind(('192.168.0.108', port))
+        port = 80
+        sock.bind(('192.168.0.6', port))
         sock.listen(5)
         print("Listening for connections")
         accept_connection(sock)

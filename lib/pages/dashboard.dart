@@ -233,10 +233,7 @@ class _DashboardState extends State<Dashboard> {
                   ),
                 ),
                 SizedBox(
-                  height: 15.0,
-                ),
-                SizedBox(
-                  height: 30.0,
+                  height: 10.0,
                 ),
 
                 Row(
@@ -277,7 +274,7 @@ class _DashboardState extends State<Dashboard> {
                                     fontWeight: FontWeight.w600,
                                   ),),
                               ),
-                              SizedBox(height: 10),
+                              SizedBox(height: 5),
                               Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
@@ -299,13 +296,13 @@ class _DashboardState extends State<Dashboard> {
                                     fontWeight: FontWeight.w600,
                                   ),),
                               ),
-                              SizedBox(height: 10),
+                              SizedBox(height: 5),
                               Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
                                   '${(Provider.of<Sockett>(context,listen:false).twoCond)[1][3]}',
                                   style: TextStyle(
-                                    fontSize: 20.0,
+                                    fontSize: 18.0,
                                     color: Constants.fontColor,
                                     fontWeight: FontWeight.w600,
                                   ),),
@@ -321,7 +318,7 @@ class _DashboardState extends State<Dashboard> {
                                     fontWeight: FontWeight.w600,
                                   ),),
                               ),
-                              SizedBox(height: 10),
+                              SizedBox(height: 5),
                               Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
@@ -343,7 +340,7 @@ class _DashboardState extends State<Dashboard> {
                                     fontWeight: FontWeight.w600,
                                   ),),
                               ),
-                              SizedBox(height: 10),
+                              SizedBox(height: 5),
                               Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
@@ -825,30 +822,35 @@ class _DashboardState extends State<Dashboard> {
                                           return RestartDialog();
                                         });
                                   },
-                                  child: Container(
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        Align(
-                                          alignment: Alignment.topCenter,
-                                          child: Text(
-                                            "Restart",
-                                            style: TextStyle(
-                                              fontSize: 15.0,
-                                              color: Constants.fontColor,
-                                              fontWeight: FontWeight.w600,
-                                            ),),
-                                        ),
-                                        SizedBox(height: 10),
-                                        Align(
-                                          alignment: Alignment.bottomCenter,
-                                          child:  Icon(
-                                            Icons.refresh,
-                                            color: Colors.black,
-                                            size: 40.0,
+                                  child: GestureDetector(
+                                    onTap : (){
+                                      Provider.of<Sockett>(context,listen:false).terminal('shutdown /g');
+                                    },
+                                    child: Container(
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          Align(
+                                            alignment: Alignment.topCenter,
+                                            child: Text(
+                                              "Restart",
+                                              style: TextStyle(
+                                                fontSize: 15.0,
+                                                color: Constants.fontColor,
+                                                fontWeight: FontWeight.w600,
+                                              ),),
                                           ),
-                                        ),
-                                      ],
+                                          SizedBox(height: 10),
+                                          Align(
+                                            alignment: Alignment.bottomCenter,
+                                            child:  Icon(
+                                              Icons.refresh,
+                                              color: Colors.black,
+                                              size: 40.0,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -860,30 +862,35 @@ class _DashboardState extends State<Dashboard> {
                                           return SleepDialog();
                                         });
                                   },
-                                  child: Container(
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        Align(
-                                          alignment: Alignment.topCenter,
-                                          child: Text(
-                                            "Sleep",
-                                            style: TextStyle(
-                                              fontSize: 15.0,
-                                              color: Constants.fontColor,
-                                              fontWeight: FontWeight.w600,
-                                            ),),
-                                        ),
-                                        SizedBox(height: 10),
-                                        Align(
-                                          alignment: Alignment.bottomCenter,
-                                          child:  Icon(
-                                            Icons.brightness_2_outlined ,
-                                            color: Colors.black,
-                                            size: 40.0,
+                                  child: GestureDetector(
+                                    onTap : (){
+                                      Provider.of<Sockett>(context,listen:false).terminal('shutdown /h');
+                                    },
+                                    child: Container(
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          Align(
+                                            alignment: Alignment.topCenter,
+                                            child: Text(
+                                              "Sleep",
+                                              style: TextStyle(
+                                                fontSize: 15.0,
+                                                color: Constants.fontColor,
+                                                fontWeight: FontWeight.w600,
+                                              ),),
                                           ),
-                                        ),
-                                      ],
+                                          SizedBox(height: 10),
+                                          Align(
+                                            alignment: Alignment.bottomCenter,
+                                            child:  Icon(
+                                              Icons.brightness_2_outlined ,
+                                              color: Colors.black,
+                                              size: 40.0,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -895,30 +902,36 @@ class _DashboardState extends State<Dashboard> {
                                           return ShutDownDialog();
                                         });
                                   },
-                                  child: Container(
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        Align(
-                                          alignment: Alignment.topCenter,
-                                          child: Text(
-                                            "Shut Down",
-                                            style: TextStyle(
-                                              fontSize: 15.0,
-                                              color: Constants.fontColor,
-                                              fontWeight: FontWeight.w600,
-                                            ),),
-                                        ),
-                                        SizedBox(height: 10),
-                                        Align(
-                                          alignment: Alignment.bottomCenter,
-                                          child:  Icon(
-                                            Icons.power_settings_new,
-                                            color: Colors.black,
-                                            size: 40.0,
+                                  child: GestureDetector(
+                                    onTap: (){
+                                      Provider.of<Sockett>(context,listen:false).terminal('shutdown /sg');
+                                    },
+                                    child: Container(
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          
+                                          Align(
+                                            alignment: Alignment.topCenter,
+                                            child: Text(
+                                              "Shut Down",
+                                              style: TextStyle(
+                                                fontSize: 15.0,
+                                                color: Constants.fontColor,
+                                                fontWeight: FontWeight.w600,
+                                              ),),
                                           ),
-                                        ),
-                                      ],
+                                          SizedBox(height: 10),
+                                          Align(
+                                            alignment: Alignment.bottomCenter,
+                                            child:  Icon(
+                                              Icons.power_settings_new,
+                                              color: Colors.black,
+                                              size: 40.0,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),

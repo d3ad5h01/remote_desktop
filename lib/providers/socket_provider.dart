@@ -37,7 +37,7 @@ class Sockett with ChangeNotifier {
     print('yes : $newIp');
 
     // TODO : change this ip to dynamic resolution
-    _socket = await Socket.connect('192.168.0.108', 6969);
+    _socket = await Socket.connect('192.168.0.6', 80);
 
     _socket.write('Connected ... ');
     print('Connected ...');
@@ -66,6 +66,12 @@ class Sockett with ChangeNotifier {
 
   void arrows(String arr) {
     String command = "m:" + arr;
+    _socket.write(command);
+    notifyListeners();
+  }
+
+  void gameArrows(String arr) {
+    String command = "mini:" + arr;
     _socket.write(command);
     notifyListeners();
   }

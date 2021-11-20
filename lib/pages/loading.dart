@@ -82,7 +82,7 @@ class _ListDemoState extends State<ListDemo> {
               Container(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 32.0),
-                  child: Image.asset("assets/images/windowsLogo.png",height:300, width:300),
+                  child: Image.asset("assets/images/windowsLogo.png",height:200, width:200),
                 ),
               ),
               Text('Windows Version',
@@ -92,12 +92,12 @@ class _ListDemoState extends State<ListDemo> {
                   fontWeight: FontWeight.w600,
                 ),),
               //https://cdn.icon-icons.com/icons2/836/PNG/512/Windows_Phone_icon-icons.com_66782.png
-              Text('Welcome',
-                style: TextStyle(
-                  fontSize: 30.0,
-                  color: Constants.fontColor,
-                  fontWeight: FontWeight.w600,
-                ),),
+              // Text('Welcome',
+              //   style: TextStyle(
+              //     fontSize: 30.0,
+              //     color: Constants.fontColor,
+              //     fontWeight: FontWeight.w600,
+              //   ),),
               Container(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 32.0),

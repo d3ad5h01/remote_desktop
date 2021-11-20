@@ -89,7 +89,7 @@ class _ListDemoState extends State<ListDemo> {
                         child: OutlinedButton(
                           onPressed: () {
                             setState(() {
-                              Provider.of<Sockett>(context,listen:false).arrows("u");
+                              Provider.of<Sockett>(context,listen:false).gameArrows("up");
                             });
                           },
                           child: Padding(
@@ -127,7 +127,7 @@ class _ListDemoState extends State<ListDemo> {
                         child: OutlinedButton(
                           onPressed: () {
                             setState(() {
-                              Provider.of<Sockett>(context,listen:false).arrows("l");
+                              Provider.of<Sockett>(context,listen:false).gameArrows("left");
                             });
                           },
                           child: Padding(
@@ -152,7 +152,7 @@ class _ListDemoState extends State<ListDemo> {
                         child: OutlinedButton(
                           onPressed: () {
                             setState(() {
-                              Provider.of<Sockett>(context,listen:false).arrows("click");
+                              Provider.of<Sockett>(context,listen:false).gameArrows("down");
                             });
                           },
                           child: Padding(
@@ -177,7 +177,7 @@ class _ListDemoState extends State<ListDemo> {
                         child: OutlinedButton(
                           onPressed: () {
                             setState(() {
-                              Provider.of<Sockett>(context,listen:false).arrows("r");
+                              Provider.of<Sockett>(context,listen:false).gameArrows("right");
                             });
                           },
                           child: Padding(
@@ -210,7 +210,7 @@ class _ListDemoState extends State<ListDemo> {
                         child: OutlinedButton(
                           onPressed: () {
                             setState(() {
-                              Provider.of<Sockett>(context,listen:false).arrows("d");
+                              Provider.of<Sockett>(context,listen:false).gameArrows("space");
                             });
                           },
                           child: Padding(
@@ -234,7 +234,7 @@ class _ListDemoState extends State<ListDemo> {
                         child: OutlinedButton(
                           onPressed: () {
                             setState(() {
-                              Provider.of<Sockett>(context,listen:false).arrows("d");
+                              Provider.of<Sockett>(context,listen:false).gameArrows("enter");
                             });
                           },
                           child: Padding(
