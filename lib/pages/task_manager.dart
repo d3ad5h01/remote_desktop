@@ -362,10 +362,10 @@ class _ListDemoState extends State<ListDemo> {
                           fontWeight: FontWeight.w200,
                         ),
                       ),
-                      leading: Icon(
-                        Icons.settings_rounded,
-                        color: Constants.fontColor,
-                      ),
+                      // leading: Icon(
+                      //   Icons.settings_rounded,
+                      //   color: Constants.fontColor,
+                      // ),
                       //selected: countToValue[i] ?? false,
                       trailing: OutlinedButton(
                         onPressed: () {

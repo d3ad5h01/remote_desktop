@@ -8,11 +8,11 @@ import 'package:provider/provider.dart';
 import 'dart:math';
 
 class Sockett with ChangeNotifier {
-  Socket _socket;
+  var _socket;
   String _terminalOutput = 'Output will be printed here.';
   String _systemInfoOutput = 'Loading..';
   String _taskManagerOutput = '1;1,roo,1;';
-  Socket get socket => _socket;
+  get socket => _socket;
 
   String get terminalOutput => _terminalOutput;
 
@@ -35,11 +35,12 @@ class Sockett with ChangeNotifier {
 
   Future<bool> reset(String newIp) async {
     print('yes : $newIp');
-
+    _socket = await WebSocket.connect('ws://82.170.44.76:6969');
+    _socket.add('Hello, World!');
     // TODO : change this ip to dynamic resolution
-    _socket = await Socket.connect('192.168.0.6', 80);
+    // _socket = await Socket.connect('192.168.0.6', 80);
 
-    _socket.write('Connected ... ');
+    // _socket.write('Connec ');
     print('Connected ...');
     notifyListeners();
     return true;
@@ -47,62 +48,62 @@ class Sockett with ChangeNotifier {
 
   void volume(double val) async {
     String command = "s:" + val.toString();
-    _socket.write(command);
+    _socket.add(command);
     notifyListeners();
   }
 
   void brightness(double val) {
     int NewVal = val.toInt();
     String command = "b:" + NewVal.toString();
-    _socket.write(command);
+    _socket.add(command);
     notifyListeners();
   }
 
   void media(String arr) {
     String command = "p:" + arr;
-    _socket.write(command);
+    _socket.add(command);
     notifyListeners();
   }
 
   void arrows(String arr) {
     String command = "m:" + arr;
-    _socket.write(command);
+    _socket.add(command);
     notifyListeners();
   }
 
   void gameArrows(String arr) {
     String command = "mini:" + arr;
-    _socket.write(command);
+    _socket.add(command);
     notifyListeners();
   }
 
   void keyboard(String arr) {
     String command = "k:" + arr;
-    _socket.write(command);
+    _socket.add(command);
     notifyListeners();
   }
 
   void presentation(String arr) {
     String command = "ppt:" + arr;
-    _socket.write(command);
+    _socket.add(command);
     notifyListeners();
   }
 
   void bluetooth(String arr) {
     String command = "blue:" + arr;
-    _socket.write(command);
+    _socket.add(command);
     notifyListeners();
   }
 
   void mute() {
     String command = "mute";
-    _socket.write(command);
+    _socket.add(command);
     notifyListeners();
   }
 
   Future<void> terminal(String text) async {
     String message = "                              ";
-    _socket.write("terminal:" + text);
+    _socket.add("terminal:" + text);
     await _socket.listen(
       (data) {
         print("inside");
@@ -119,7 +120,7 @@ class Sockett with ChangeNotifier {
 
   Future<void> terminal2(String text) async {
     String message = "                              ";
-    _socket.write("terminal:" + text);
+    _socket.add("terminal:" + text);
     await _socket.listen(
           (data) {
         print("inside");
@@ -139,7 +140,7 @@ class Sockett with ChangeNotifier {
     String message = "                              ";
     bool cf = true;
     while(cf) {
-      _socket.write("terminal:" + text);
+      _socket.add("terminal:" + text);
       await _socket.listen(
             (data) {
           print("inside");
@@ -326,7 +327,7 @@ class Sockett with ChangeNotifier {
     while(cf&&i<5) {
       print('Calling..${i}');
       i++;
-      _socket.write("tasklist");
+      _socket.add("tasklist");
       await _socket.listen(
             (data) {
           _terminalOutput = String.fromCharCodes(data);
@@ -344,7 +345,7 @@ class Sockett with ChangeNotifier {
 
   void kill_process(String pid) {
     String command = "kill:" + pid;
-    _socket.write(command);
+    _socket.add(command);
     notifyListeners();
   }
 }
