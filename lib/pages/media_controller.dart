@@ -47,31 +47,27 @@ class _ListDemoState extends State<ListDemo> {
     return Scaffold(
      appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black,size:30),
+          icon: Icon(Icons.arrow_back, color: Colors.white,size:40),
           onPressed: () => Navigator.of(context).pop(),
         ),
         //title: Text("Media Controller"),
        elevation: 0,
-        backgroundColor: Constants.backColor,
+        backgroundColor: Constants.fontColor2,
         centerTitle: true,
       ),
 
       body: Container(
         decoration: new BoxDecoration(
-          color: Constants.backColor,
+          color: Constants.fontColor2,
         ),
         child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView(
           children: [
             SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Icon(
-                Icons.audiotrack,
-                color: Constants.fontColor,
-                size: 100.0,
-              ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child:  Image.asset("assets/images/netflixColored.png",height:200, width:200),
             ),
              SizedBox(height: 20),
 
@@ -89,26 +85,26 @@ class _ListDemoState extends State<ListDemo> {
 
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: VolumeButton(),
+              child: VolumeButton(cur: Constants.fontColor3),
             ),
 
             Container(
               child: Row(
 
                 children: <Widget>[
+
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: OutlinedButton(
                         onPressed: () {
                           setState(() {
-                            Provider.of<Sockett>(context,listen:false).media("prev");
+
                           });
                         },
-                        child: Icon(
-                          Icons.skip_previous,
-                          color: Constants.fontColor,
-                          size: 60.0,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Image.asset("assets/images/icons8-replay34.png",height:50, width:50),
                         ),
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
@@ -128,7 +124,7 @@ class _ListDemoState extends State<ListDemo> {
                           size: 60.0,
                         ):const Icon(
                           Icons.pause,
-                          color: Constants.fontColor,
+                          color: Constants.fontColor3,
                           size: 60.0,
                         ),
                         onPressed: () {
@@ -138,7 +134,7 @@ class _ListDemoState extends State<ListDemo> {
                           });
                         },
                          style: OutlinedButton.styleFrom(
-                            side: BorderSide(width: 1.0, color: Constants.fontColor),
+                            side: BorderSide(width: 1.0, color: Constants.fontColor3),
                           ),
                       ),
                     ),
@@ -149,13 +145,12 @@ class _ListDemoState extends State<ListDemo> {
                       child: OutlinedButton(
                         onPressed: () {
                           setState(() {
-                            Provider.of<Sockett>(context,listen:false).media("next");
+
                           });
                         },
-                        child: Icon(
-                          Icons.skip_next,
-                          color: Constants.fontColor,
-                          size: 60.0,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Image.asset("assets/images/icons8-forward34.png",height:50, width:50),
                         ),
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
@@ -164,7 +159,59 @@ class _ListDemoState extends State<ListDemo> {
                         ),
                       ),
                     ),
-                  )
+                  ),
+
+
+                ],
+              ),
+            ),
+
+            Container(
+              child: Row(
+
+                children: <Widget>[
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: OutlinedButton(
+                        child:Text('Skip Intro',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            color: Constants.fontColor3,
+                            fontWeight: FontWeight.w600,
+                          ),),
+                        onPressed: () {
+                          setState(() {
+                          });
+                        },
+                        style: OutlinedButton.styleFrom(
+                          side: BorderSide(width: 1.0, color: Constants.fontColor3),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: OutlinedButton(
+                        child:Text('Next',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            color: Constants.fontColor3,
+                            fontWeight: FontWeight.w600,
+                          ),),
+                        onPressed: () {
+                          setState(() {
+                          });
+                        },
+                        style: OutlinedButton.styleFrom(
+                          side: BorderSide(width: 1.0, color: Constants.fontColor3),
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),

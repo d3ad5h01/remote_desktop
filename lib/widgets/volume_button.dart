@@ -6,8 +6,8 @@ import 'package:provider/provider.dart';
 
 
 class VolumeButton extends StatefulWidget {
-  const VolumeButton({Key key}) : super(key: key);
-
+  final Color cur;
+  const VolumeButton({Key key, this.cur}) : super(key: key);
   @override
   State<VolumeButton> createState() => _VolumeButton();
 }
@@ -15,7 +15,9 @@ class VolumeButton extends StatefulWidget {
 /// This is the private State class that goes with MyStatefulWidget.
 class _VolumeButton extends State<VolumeButton> {
   @override
+  Color cur;
   Widget build(BuildContext context) {
+    cur = widget.cur;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
@@ -25,7 +27,7 @@ class _VolumeButton extends State<VolumeButton> {
           min: 0,
           max: 100,
           divisions: 20,
-          activeColor: Colors.orange,
+          activeColor: cur,
           label: (context.watch<Volume>().volume).round().toString(),
           onChanged: (double value) {
             setState(() {

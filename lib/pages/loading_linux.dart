@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:language_learning_ui/pages/dashboard.dart';
+import 'package:language_learning_ui/pages/dashboard_linux.dart';
 import 'package:language_learning_ui/providers/ip_controller_provider.dart';
 import 'package:language_learning_ui/providers/task_manager_provider.dart';
 import 'package:language_learning_ui/providers/socket_provider.dart';
@@ -14,7 +15,7 @@ import 'package:language_learning_ui/providers/folder_location_provider.dart';
 import 'package:language_learning_ui/providers/file_location_controller_provider.dart';
 import 'package:language_learning_ui/providers/folder_location_controller_provider.dart';
 
-class Loading extends StatelessWidget {
+class LoadingLinux extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListDemo(),
@@ -64,7 +65,7 @@ class _ListDemoState extends State<ListDemo> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) =>  Dashboard(),
+        builder: (context) => Dashboard(),
       ),
     );
   }
@@ -82,15 +83,16 @@ class _ListDemoState extends State<ListDemo> {
               Container(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 32.0),
-                  child: Image.asset("assets/images/windowsLogo.png",height:300, width:300),
+                  child: Image.asset("assets/images/linuxLogo.png",height:300, width:300),
                 ),
               ),
-              Text('Windows Version',
+              Text('Linux Version',
                 style: TextStyle(
                   fontSize: 30.0,
                   color: Constants.fontColor,
                   fontWeight: FontWeight.w600,
                 ),),
+
               //https://cdn.icon-icons.com/icons2/836/PNG/512/Windows_Phone_icon-icons.com_66782.png
               Text('Welcome',
                 style: TextStyle(

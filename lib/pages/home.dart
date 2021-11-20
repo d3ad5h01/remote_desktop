@@ -5,6 +5,7 @@ import 'package:language_learning_ui/constants.dart';
 import 'package:language_learning_ui/pages/create_account.dart';
 import 'package:language_learning_ui/pages/dashboard.dart';
 import 'package:language_learning_ui/pages/dashboard_linux.dart';
+import 'package:language_learning_ui/pages/loading_linux.dart';
 import 'package:language_learning_ui/providers/ip_controller_provider.dart';
 import 'package:language_learning_ui/widgets/primary_button.dart';
 import 'package:provider/provider.dart';
@@ -47,7 +48,7 @@ class _HomeState extends State<Home> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) =>  DashboardLinux(),
+            builder: (context) =>  LoadingLinux(),
           ),
         );
     }
@@ -168,6 +169,25 @@ class _HomeState extends State<Home> {
                     print('Signing in..');
                     setState(() {
                       getIpAndNavigate();
+                    });
+                    // Navigator.of(context).push(
+                    //   MaterialPageRoute(
+                    //     builder: (BuildContext context) {
+                    //       return Loading();
+                    //     },
+                    //   ),
+                    // );
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: PrimaryButton(
+                  text: "Temp Button",
+                  onPressed: () {
+                    print('Signing in..');
+                    setState(() {
+                      navigator(false);
                     });
                     // Navigator.of(context).push(
                     //   MaterialPageRoute(
