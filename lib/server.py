@@ -9,7 +9,7 @@ import pyautogui
 from time import sleep
 import subprocess
 import sys
-
+import os
 
 def run_command_on_terminal(command):
     command = command.split()
@@ -49,12 +49,32 @@ def tasklist():
     ret_str = str(len(rows)) + ";" + ret_str
     return (ret_str.encode())
 
+def tasklist_linux():
+
+    os.system("top -b -o %MEM | sed -n '{s/^ *//;s/ *$//;s/  */,/gp;};80q' > tasks.csv")
+    with open('tasks.csv','r') as csvfile:
+        csvreader = csv.reader(csvfile)
+
+        for i in range(6):
+            _ = next(csvreader)
+
+        ret_str = ""
+        length = 0
+        for row in csvreader:
+            ret_str+=row[11].replace(",","").replace(";","").strip() + "," + str(row[0].strip()) + "," + row[9].replace("K","").strip() + ";"
+            length+=1
+        ret_str = str(length) + ';' + ret_str
+        return (ret_str.encode)
+
+
+
 
 def kill_process(pid):
     command = "taskkill /F /PID %s" % (pid)
     command = command.split()
     output, err = subprocess.Popen(command, stdout=subprocess.PIPE).communicate()
     print(output)
+
 
 def kill_process_linux(pid):
     command = "kill -KILL %s" % (pid)
@@ -70,7 +90,6 @@ def run_terminal(command):
 
 
 async def accept_connection(websocket):
-
     import psutil
     from ctypes import cast, POINTER
     from comtypes import CLSCTX_ALL
@@ -214,7 +233,6 @@ async def accept_connection(websocket):
 
 
 async def accept_connection_linux(websocket):
-
     import alsaaudio
     speaker = alsaaudio.Mixer()
     channel = alsaaudio.MIXER_CHANNEL_ALL
@@ -309,12 +327,12 @@ async def accept_connection_linux(websocket):
                 res = run_terminal(command_lst[1])
                 await websocket.send(res)
 
-            #TODO
+            # TODO
             elif command_lst[0] == "tasklist":
                 res = tasklist()
                 await websocket.send(res)
 
-            #TODO
+            # TODO
             elif command_lst[0] == "devc_info":
                 battery = psutil.sensors_battery()
                 percent = str(battery.percent)
