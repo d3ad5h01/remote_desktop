@@ -64,7 +64,7 @@ def tasklist_linux():
             ret_str+=row[11].replace(",","").replace(";","").strip() + "," + str(row[0].strip()) + "," + row[9].replace("K","").strip() + ";"
             length+=1
         ret_str = str(length) + ';' + ret_str
-        return (ret_str.encode)
+        return (ret_str.encode())
 
 
 
