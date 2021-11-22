@@ -13,8 +13,11 @@ import 'package:language_learning_ui/providers/folder_location_provider.dart';
 import 'package:language_learning_ui/providers/folder_location_controller_provider.dart';
 import 'package:language_learning_ui/providers/socket_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'loading.dart';
+
+String tempIp;
 
 class Home extends StatefulWidget {
   @override
@@ -27,16 +30,42 @@ class _HomeState extends State<Home> {
   Future<void> getIpAndNavigate ()
   async {
     var tempIpControler = Provider.of<IpController>(context,listen:false).ipController;
-    String tempIp = tempIpControler.text;
-    bool connectionTry;
+    tempIp = tempIpControler.text;
+    bool connectionTry = false;
+    Fluttertoast.showToast(
+        msg: "before ip await",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
     connectionTry =  await  Provider.of<Sockett>(context,listen:false).reset(tempIp);
-    navigator(connectionTry);
+   // navigator(connectionTry);
+   String k = 'connectionTry : ' + connectionTry.toString(); 
+   Fluttertoast.showToast(
+      msg: k,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      backgroundColor: Colors.red,
+      textColor: Colors.white,
+      fontSize: 16.0
+  );
+    navigator(true);
   }
 
   void navigator(bool connectionTry)
   {
     if(isSelected[0]){
       print('Tapped');
+  //     Fluttertoast.showToast(
+  //     msg: 'toLoading',
+  //     toastLength: Toast.LENGTH_SHORT,
+  //     gravity: ToastGravity.CENTER,
+  //     backgroundColor: Colors.red,
+  //     textColor: Colors.white,
+  //     fontSize: 16.0
+  // );
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -167,9 +196,18 @@ class _HomeState extends State<Home> {
                   text: "Sign In",
                   onPressed: () {
                     print('Signing in..');
-                    setState(() {
+                    Fluttertoast.showToast(
+                      msg: "Tapped",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.CENTER,
+                      backgroundColor: Colors.red,
+                      textColor: Colors.white,
+                      fontSize: 16.0
+                  );
+                    //setState(() {
+
                       getIpAndNavigate();
-                    });
+                    //});
                     // Navigator.of(context).push(
                     //   MaterialPageRoute(
                     //     builder: (BuildContext context) {
@@ -180,25 +218,25 @@ class _HomeState extends State<Home> {
                   },
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: PrimaryButton(
-                  text: "Temp Button",
-                  onPressed: () {
-                    print('Signing in..');
-                    setState(() {
-                      navigator(false);
-                    });
-                    // Navigator.of(context).push(
-                    //   MaterialPageRoute(
-                    //     builder: (BuildContext context) {
-                    //       return Loading();
-                    //     },
-                    //   ),
-                    // );
-                  },
-                ),
-              )
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: PrimaryButton(
+              //     text: "Temp Button",
+              //     onPressed: () {
+              //       print('Signing in..');
+              //       setState(() {
+              //         navigator(false);
+              //       });
+              //       // Navigator.of(context).push(
+              //       //   MaterialPageRoute(
+              //       //     builder: (BuildContext context) {
+              //       //       return Loading();
+              //       //     },
+              //       //   ),
+              //       // );
+              //     },
+              //   ),
+              // )
             ],
           ),
         ),
