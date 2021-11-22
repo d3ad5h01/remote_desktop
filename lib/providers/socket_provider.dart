@@ -13,6 +13,8 @@ class Sockett with ChangeNotifier {
   String _systemInfoOutput = 'Loading..';
   String _taskManagerOutput = '1;1,roo,1;';
   get socket => _socket;
+  String _ans = '0';
+  String get ans => _ans;
 
   String get terminalOutput => _terminalOutput;
 
@@ -35,8 +37,14 @@ class Sockett with ChangeNotifier {
 
   Future<bool> reset(String newIp) async {
     print('yes : $newIp');
-    _socket = await WebSocket.connect('ws://192.168.2.10:6969');
+    _socket = await WebSocket.connect('ws://192.168.0.6:6969');
     _socket.add('Hello, World!');
+    //_socket.add("os");
+    // await _socket.listen((data) {
+    //   _ans = String.fromCharCodes(data);
+    //   notifyListeners();
+    // },
+    // );
     // TODO : change this ip to dynamic resolution
     // _socket = await Socket.connect('192.168.0.6', 80);
 
@@ -45,6 +53,18 @@ class Sockett with ChangeNotifier {
     notifyListeners();
     return true;
   }
+
+  // Future<void> get_os_type() async {
+  //   String message = "";
+  //   _socket.add("os");
+  //   await _socket.listen((data) {
+  //       message = String.fromCharCodes(data);
+  //       _ans = message;
+  //       notifyListeners();
+  //     },
+  //   );
+  //   notifyListeners();
+  // }
 
   void volume(double val) async {
     String command = "s:" + val.toString();

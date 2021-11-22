@@ -131,9 +131,9 @@ async def accept_connection(websocket):
         print(command)
 
         if command == "os":
-            return "1"
+            await websocket.send("1".encode())
 
-        if command:
+        elif command:
             command_lst = command.split(":")
 
             if command_lst[0] == "s":
@@ -244,9 +244,9 @@ async def accept_connection_linux(websocket):
         print(command)
 
         if command == "os":
-            return "0"
+            await websocket.send("0".encode())
 
-        if command:
+        elif command:
             command_lst = command.split(":")
 
             if command_lst[0] == "s":

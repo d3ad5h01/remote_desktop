@@ -51,7 +51,9 @@ class _HomeState extends State<Home> {
       textColor: Colors.white,
       fontSize: 16.0
   );
-    navigator(true);
+    //Provider.of<Sockett>(context,listen:false).get_os_type();
+    Future.delayed(const Duration(seconds: 2), () => navigator(true));
+
   }
 
   void navigator(bool connectionTry)
