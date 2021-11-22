@@ -353,10 +353,11 @@ async def accept_connection_linux(websocket):
 
 
 async def main():
-    # ip_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    # ip_sock.connect(("192.168.0.6", 80))
-    # ip = ip_sock.getsockname()[0]
-    # print("IP address bound to: " + ip)
+    
+    ip_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    ip_sock.connect(("8.8.8.8", 80))
+    ip = ip_sock.getsockname()[0]
+    print("IP address bound to: " + ip)
 
     if sys.platform == "win32":
         print("Detected windows system..")
