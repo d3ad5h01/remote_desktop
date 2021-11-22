@@ -361,12 +361,12 @@ async def main():
 
     if sys.platform == "win32":
         print("Detected windows system..")
-        async with websockets.serve(accept_connection, "", 6969):
+        async with websockets.serve(accept_connection, ip, 6969):
             await asyncio.Future()  # run forever
 
     elif sys.platform == "linux":
         print("Detected linux system..")
-        async with websockets.serve(accept_connection_linux, "", 6969):
+        async with websockets.serve(accept_connection_linux, ip, 6969):
             await asyncio.Future()  # run forever
 
 
