@@ -11,6 +11,7 @@ import subprocess
 import sys
 import os
 
+
 def run_command_on_terminal(command):
     command = command.split()
     output, err = subprocess.Popen(command, stdout=subprocess.PIPE).communicate()
@@ -129,6 +130,9 @@ async def accept_connection(websocket):
     async for command in websocket:
         print(command)
 
+        if command == "os":
+            return "1"
+
         if command:
             command_lst = command.split(":")
 
@@ -239,6 +243,9 @@ async def accept_connection_linux(websocket):
     async for command in websocket:
         print(command)
 
+        if command == "os":
+            return "0"
+
         if command:
             command_lst = command.split(":")
 
@@ -346,19 +353,19 @@ async def accept_connection_linux(websocket):
 
 
 async def main():
-    ip_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    ip_sock.connect(("8.8.8.8", 80))
-    ip = ip_sock.getsockname()[0]
-    print("IP address bound to: " + ip)
+    # ip_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    # ip_sock.connect(("192.168.0.6", 80))
+    # ip = ip_sock.getsockname()[0]
+    # print("IP address bound to: " + ip)
 
     if sys.platform == "win32":
         print("Detected windows system..")
-        async with websockets.serve(accept_connection, ip, 6969):
+        async with websockets.serve(accept_connection, "", 6969):
             await asyncio.Future()  # run forever
 
     elif sys.platform == "linux":
         print("Detected linux system..")
-        async with websockets.serve(accept_connection_linux, ip, 6969):
+        async with websockets.serve(accept_connection_linux, "", 6969):
             await asyncio.Future()  # run forever
 
 

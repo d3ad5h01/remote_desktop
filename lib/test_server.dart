@@ -13,10 +13,8 @@ import 'dart:convert' show utf8;
 
 void connect() async
 {
-    await Socket.connect('192.168.0.6',6969).then((socket){
-           socket.write('Connected ... ');
-           print('Sonn');
-        });
+    var socket = await WebSocket.connect('http://34.127.90.130:80/');
+    socket.add('Hello, World!');
 }
 void main(){
   connect();
